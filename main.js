@@ -1,8 +1,8 @@
 
-//import * as BABYLON from 'babylonjs';
-import { SceneLoader } from "@babylonjs/core/Loading/sceneLoader";
-import "@babylonjs/loaders";
-import { AnimationEvent } from '@babylonjs/core';
+// import * as BABYLON from 'babylonjs';
+// import { SceneLoader } from "@babylonjs/core/Loading/sceneLoader";
+// import "@babylonjs/loaders";
+// import { AnimationEvent } from '@babylonjs/core';
 // INTERFACE MENU
 const jeux = ["Jeu1","Jeu2","Jeu3","Jeu4"];
 const backinterface = document.getElementById("backinterface");
