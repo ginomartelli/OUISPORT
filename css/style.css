@@ -842,7 +842,7 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .blue:hover {
-  background-image: url("/images/haies.gif");
+  background-image: url("./images/haies.gif");
   background-size: cover;
   background-position: center;
   border: 10px solid blue;
@@ -850,7 +850,7 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .black:hover {
-  background-image: url("/images/javelot.gif");
+  background-image: url("./images/javelot.gif");
   background-size: cover;
   background-position: center;
   border: 10px solid black;
@@ -858,7 +858,7 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .red:hover {
-  background-image: url("/images/arc.gif");
+  background-image: url("./images/arc.gif");
   background-size: cover;
   background-position: center;
   border: 10px solid red;
@@ -866,7 +866,7 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .yellow:hover {
-  background-image: url("/images/options.gif");
+  background-image: url("./images/options.gif");
   background-size: cover;
   background-position: center;
   border: 10px solid yellow;
@@ -874,7 +874,7 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .green:hover {
-  background-image: url("/images/options.gif");
+  background-image: url("./images/options.gif");
   background-size: cover;
   background-position: center;
   border: 10px solid green;
