@@ -162,7 +162,7 @@ async function createScene(engine) {
     const jumpsound = new BABYLON.Sound("jump", "sounds/jump.mp3", scene, null, { loop: false, autoplay: false, volume:0.4*vol, length: 1.4, offset: 0.6});
     const success = new BABYLON.Sound("success", "sounds/success.mp3", scene, null, { loop: false, autoplay: false, volume:0.4*vol,length: 1.5, offset: 0.5});
 
-    const envTex = BABYLON.CubeTexture.CreateFromPrefilteredData("/textures/environment.env", scene);
+    const envTex = BABYLON.CubeTexture.CreateFromPrefilteredData("./textures/environment.env", scene);
     scene.environmentTexture = envTex;
     scene.createDefaultSkybox(envTex,true);
 
