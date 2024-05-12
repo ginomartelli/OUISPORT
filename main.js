@@ -337,7 +337,7 @@ async function createScene(engine) {
                         bendedMesh.position.z=-35.5;
                     }
                 } else if(jeut==1){
-                    SceneLoader.ImportMeshAsync("", "/models/", "Barricade.glb", scene).then((result) => {
+                    BABYLON.SceneLoader.ImportMeshAsync("", "/models/", "Barricade.glb", scene).then((result) => {
                         var mesh = result.meshes[0];
                         mesh.position.z=3.8-2.6*(j-1);
                         mesh.position.x=positions.at(i);
