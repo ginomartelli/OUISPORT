@@ -70,7 +70,7 @@ var jeut=1;
 jeux.forEach((elem) => {
     let jeu = document.getElementById(elem);
     jeu.addEventListener('click', async function(){
-        loading.classList.remove("notplaying");
+        //loading.classList.remove("notplaying");
         const engine = new BABYLON.Engine(canvas, true);
         jeut=jeux.indexOf(elem)+1;
         var scene = await createScene(engine);   
@@ -508,7 +508,7 @@ async function createScene(engine) {
         for(let i=0;i<97;i++){
             posxrd.push(posx[Math.floor(Math.random() * posx.length)]+Math.random() *2);
         }
-        var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd.glb','',scene);
+        var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd.glb','',scene);
         var matrix = BABYLON.Matrix.Translation(0, -10, 0);
         for(let j=0;j<box.meshes.length;j++){
             var mesh = box.meshes[j];
@@ -527,7 +527,7 @@ async function createScene(engine) {
         }
         shuffle(posyrd);
         shuffle(posxrd);
-        var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd1.glb','',scene);
+        var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd1.glb','',scene);
         box.animationGroups[1].play(true);
         var matrix = BABYLON.Matrix.Translation(2, -10, 0);
         for(let j=0;j<box.meshes.length;j++){
@@ -547,7 +547,7 @@ async function createScene(engine) {
         }
         shuffle(posyrd);
         shuffle(posxrd);
-        var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd2.glb','',scene);
+        var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd2.glb','',scene);
         box.animationGroups[3].play(true);
         var matrix = BABYLON.Matrix.Translation(4, -50, 0);
         for(let j=0;j<box.meshes.length;j++){
@@ -567,7 +567,7 @@ async function createScene(engine) {
         }
         shuffle(posyrd);
         shuffle(posxrd);
-        var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd3.glb','',scene);
+        var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd3.glb','',scene);
         box.animationGroups[1].play(true);
         var matrix = BABYLON.Matrix.Translation(8, -50, 0);
         for(let j=0;j<box.meshes.length;j++){
@@ -587,7 +587,7 @@ async function createScene(engine) {
         }
         shuffle(posyrd);
         shuffle(posxrd);
-        var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd4.glb','',scene);
+        var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd4.glb','',scene);
         box.animationGroups[0].play(true);
         var matrix = BABYLON.Matrix.Translation(6, -50, 0);
         for(let j=0;j<box.meshes.length;j++){
@@ -607,7 +607,7 @@ async function createScene(engine) {
         }
         shuffle(posyrd);
         shuffle(posxrd);
-        var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd.glb','',scene);
+        var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd.glb','',scene);
         var matrix = BABYLON.Matrix.Translation(0, -50, 0);
         for(let j=0;j<box.meshes.length;j++){
             var mesh = box.meshes[j];
@@ -627,7 +627,7 @@ async function createScene(engine) {
         }
         shuffle(posyrd);
         shuffle(posxrd);
-        var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd1.glb','',scene);
+        var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd1.glb','',scene);
         box.animationGroups[3].play(true);
         var matrix = BABYLON.Matrix.Translation(2, -50, 0);
         for(let j=0;j<box.meshes.length;j++){
@@ -648,7 +648,7 @@ async function createScene(engine) {
         }
         shuffle(posyrd);
         shuffle(posxrd);
-        var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd2.glb','',scene);
+        var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd2.glb','',scene);
         box.animationGroups[0].play(true);
         var matrix = BABYLON.Matrix.Translation(4, -50, 0);
         for(let j=0;j<box.meshes.length;j++){
@@ -669,7 +669,7 @@ async function createScene(engine) {
         }
         shuffle(posyrd);
         shuffle(posxrd);
-        var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd3.glb','',scene);
+        var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd3.glb','',scene);
         box.animationGroups[1].play(true);
         var matrix = BABYLON.Matrix.Translation(8, -50, 0);
         for(let j=0;j<box.meshes.length;j++){
@@ -690,7 +690,7 @@ async function createScene(engine) {
         }
         shuffle(posyrd);
         shuffle(posxrd);
-        var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd4.glb','',scene);
+        var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd4.glb','',scene);
         box.animationGroups[1].play(true);
         var matrix = BABYLON.Matrix.Translation(6, -50, 0);
         for(let j=0;j<box.meshes.length;j++){
@@ -727,7 +727,7 @@ async function createScene(engine) {
             for(let i=0;i<30;i++){
                 poszrd.push(posz[Math.floor(Math.random() * posz.length)]+Math.random() *2);
             }
-            var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd4.glb','',scene);
+            var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd4.glb','',scene);
             box.animationGroups[0].play(true);
             var matrix = BABYLON.Matrix.Translation(6, -50, 0);
             for(let j=0;j<box.meshes.length;j++){
@@ -748,7 +748,7 @@ async function createScene(engine) {
             }
             shuffle(posyrd);
             shuffle(posxrd);
-            var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd3.glb','',scene);
+            var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd3.glb','',scene);
             box.animationGroups[1].play(true);
             var matrix = BABYLON.Matrix.Translation(6, -50, 0);
             for(let j=0;j<box.meshes.length;j++){
@@ -769,7 +769,7 @@ async function createScene(engine) {
             }
             shuffle(posyrd);
             shuffle(posxrd);
-            var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd2.glb','',scene);
+            var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd2.glb','',scene);
             box.animationGroups[3].play(true);
             var matrix = BABYLON.Matrix.Translation(6, -50, 0);
             for(let j=0;j<box.meshes.length;j++){
@@ -790,7 +790,7 @@ async function createScene(engine) {
             }
             shuffle(posyrd);
             shuffle(posxrd);
-            var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd1.glb','',scene);
+            var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd1.glb','',scene);
             box.animationGroups[1].play(true);
             var matrix = BABYLON.Matrix.Translation(6, -50, 0);
             for(let j=0;j<box.meshes.length;j++){
@@ -809,7 +809,7 @@ async function createScene(engine) {
                     mesh.thinInstanceSetMatrixAt(idx2, matrix2);
                 }
             }
-            var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd4.glb','',scene);
+            var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd4.glb','',scene);
             box.animationGroups[0].play(true);
             var matrix = BABYLON.Matrix.Translation(6, -50, 0);
             for(let j=0;j<box.meshes.length;j++){
@@ -830,7 +830,7 @@ async function createScene(engine) {
             }
             shuffle(posyrd);
             shuffle(posxrd);
-            var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd3.glb','',scene);
+            var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd3.glb','',scene);
             box.animationGroups[1].play(true);
             var matrix = BABYLON.Matrix.Translation(6, -50, 0);
             for(let j=0;j<box.meshes.length;j++){
@@ -851,7 +851,7 @@ async function createScene(engine) {
             }
             shuffle(posyrd);
             shuffle(posxrd);
-            var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd2.glb','',scene);
+            var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd2.glb','',scene);
             box.animationGroups[3].play(true);
             var matrix = BABYLON.Matrix.Translation(6, -50, 0);
             for(let j=0;j<box.meshes.length;j++){
@@ -872,7 +872,7 @@ async function createScene(engine) {
             }
             shuffle(posyrd);
             shuffle(posxrd);
-            var box = await SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd1.glb','',scene);
+            var box = await BABYLON.SceneLoader.ImportMeshAsync('','https://raw.githubusercontent.com/Ginosprod/OUISPORT/main/textures/crowd1.glb','',scene);
             box.animationGroups[1].play(true);
             var matrix = BABYLON.Matrix.Translation(6, -50, 0);
             for(let j=0;j<box.meshes.length;j++){
@@ -946,7 +946,7 @@ async function createScene(engine) {
         var camerabox3 = BABYLON.MeshBuilder.CreateBox("startBox", { size:3}, scene); camerabox3.isVisible=false; camerabox3.position.z=1.8;
         var camerabox4 = BABYLON.MeshBuilder.CreateBox("startBox", { size:3}, scene); camerabox4.isVisible=false; camerabox4.position.z=3.8;
 
-        SceneLoader.ImportMeshAsync("", "/models/", "gate.glb", scene).then((result) => {
+        BABYLON.SceneLoader.ImportMeshAsync("", "/models/", "gate.glb", scene).then((result) => {
             var mesh = result.meshes[1];
             mesh.rotationQuaternion = null;
             mesh.rotation.y=1.57;
