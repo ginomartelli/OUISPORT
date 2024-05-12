@@ -1,5 +1,5 @@
 
-import * as BABYLON from 'babylonjs';
+//import * as BABYLON from 'babylonjs';
 import { SceneLoader } from "@babylonjs/core/Loading/sceneLoader";
 import "@babylonjs/loaders";
 import { AnimationEvent } from '@babylonjs/core';
