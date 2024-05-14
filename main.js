@@ -2,7 +2,7 @@
 // import * as BABYLON from 'babylonjs';
 // import { SceneLoader } from "@babylonjs/core/Loading/sceneLoader";
 // import "@babylonjs/loaders";
-import { AnimationEvent } from '@babylonjs/core';
+//import { AnimationEvent } from '@babylonjs/core';
 // INTERFACE MENU
 const jeux = ["Jeu1","Jeu2","Jeu3","Jeu4"];
 const backinterface = document.getElementById("backinterface");
@@ -1002,7 +1002,7 @@ async function createScene(engine) {
             var jumped=false;
             var score = 20;
             const jumpAnim = anim[1].targetedAnimations[0].animation;
-            const jumpEvt = new AnimationEvent(
+            const jumpEvt = new BABYLON.AnimationEvent(
                 44,
                 () => {
                     anim.forEach((an) => an.stop());
@@ -1011,14 +1011,14 @@ async function createScene(engine) {
                 },
                 false
             );
-            const injumpEvt = new AnimationEvent(
+            const injumpEvt = new BABYLON.AnimationEvent(
                 15,
                 () => {
                     injump=true;
                 },
                 false
             );
-            const offjumpEvt = new AnimationEvent(
+            const offjumpEvt = new BABYLON.AnimationEvent(
                 30,
                 () => {
                     injump=false;
@@ -1029,7 +1029,7 @@ async function createScene(engine) {
             jumpAnim.addEvent(offjumpEvt);
             jumpAnim.addEvent(injumpEvt);
             const failAnim = anim[0].targetedAnimations[0].animation;
-            const failEvt = new AnimationEvent(
+            const failEvt = new BABYLON.AnimationEvent(
                 25,
                 () => {
                     anim[0].stop();
