@@ -1108,7 +1108,7 @@ async function createScene(engine) {
             var jumped=false;
             var score = 20;
             const jumpAnim = anim[1].targetedAnimations[0].animation;
-            const jumpEvt = new AnimationEvent(
+            const jumpEvt = new BABYLON.AnimationEvent(
                 44,
                 () => {
                     anim.forEach((an) => an.stop());
@@ -1117,14 +1117,14 @@ async function createScene(engine) {
                 },
                 false
             );
-            const injumpEvt = new AnimationEvent(
+            const injumpEvt = new BABYLON.AnimationEvent(
                 15,
                 () => {
                     injump=true;
                 },
                 false
             );
-            const offjumpEvt = new AnimationEvent(
+            const offjumpEvt = new BABYLON.AnimationEvent(
                 30,
                 () => {
                     injump=false;
@@ -1135,7 +1135,7 @@ async function createScene(engine) {
             jumpAnim.addEvent(offjumpEvt);
             jumpAnim.addEvent(injumpEvt);
             const failAnim = anim[0].targetedAnimations[0].animation;
-            const failEvt = new AnimationEvent(
+            const failEvt = new BABYLON.AnimationEvent(
                 25,
                 () => {
                     anim[0].stop();
@@ -1212,7 +1212,7 @@ async function createScene(engine) {
             var jumped=false;
             var score = 20;
             const jumpAnim = anim[1].targetedAnimations[0].animation;
-            const jumpEvt = new AnimationEvent(
+            const jumpEvt = new BABYLON.AnimationEvent(
                 44,
                 () => {
                     anim.forEach((an) => an.stop());
@@ -1221,14 +1221,14 @@ async function createScene(engine) {
                 },
                 false
             );
-            const injumpEvt = new AnimationEvent(
+            const injumpEvt = new BABYLON.AnimationEvent(
                 15,
                 () => {
                     injump=true;
                 },
                 false
             );
-            const offjumpEvt = new AnimationEvent(
+            const offjumpEvt = new BABYLON.AnimationEvent(
                 30,
                 () => {
                     injump=false;
@@ -1239,7 +1239,7 @@ async function createScene(engine) {
             jumpAnim.addEvent(offjumpEvt);
             jumpAnim.addEvent(injumpEvt);
             const failAnim = anim[0].targetedAnimations[0].animation;
-            const failEvt = new AnimationEvent(
+            const failEvt = new BABYLON.AnimationEvent(
                 25,
                 () => {
                     anim[0].stop();
@@ -1316,7 +1316,7 @@ async function createScene(engine) {
             var jumped=false;
             var score = 20;
             const jumpAnim = anim[1].targetedAnimations[0].animation;
-            const jumpEvt = new AnimationEvent(
+            const jumpEvt = new BABYLON.AnimationEvent(
                 44,
                 () => {
                     anim.forEach((an) => an.stop());
@@ -1325,14 +1325,14 @@ async function createScene(engine) {
                 },
                 false
             );
-            const injumpEvt = new AnimationEvent(
+            const injumpEvt = new BABYLON.AnimationEvent(
                 15,
                 () => {
                     injump=true;
                 },
                 false
             );
-            const offjumpEvt = new AnimationEvent(
+            const offjumpEvt = new BABYLON.AnimationEvent(
                 30,
                 () => {
                     injump=false;
@@ -1343,7 +1343,7 @@ async function createScene(engine) {
             jumpAnim.addEvent(offjumpEvt);
             jumpAnim.addEvent(injumpEvt);
             const failAnim = anim[0].targetedAnimations[0].animation;
-            const failEvt = new AnimationEvent(
+            const failEvt = new BABYLON.AnimationEvent(
                 25,
                 () => {
                     anim[0].stop();
@@ -1629,7 +1629,7 @@ async function createScene(engine) {
         const start1Anim = anim1[1].targetedAnimations[0].animation;
         const start2Anim = anim2[1].targetedAnimations[0].animation;
         const start3Anim = anim3[1].targetedAnimations[0].animation;
-        const start1Evt = new AnimationEvent(60,
+        const start1Evt = new BABYLON.AnimationEvent(60,
             () => {
                 anim1[1].stop();
                 anim1[3].start(true);
@@ -1646,7 +1646,7 @@ async function createScene(engine) {
                 qtelettre.classList.remove("disapear");
                 jav1.position.y=-1;
             },false);
-        const start2Evt = new AnimationEvent(60,
+        const start2Evt = new BABYLON.AnimationEvent(60,
             () => {
                 anim2[1].stop();
                 anim2[3].start(true);
@@ -1662,7 +1662,7 @@ async function createScene(engine) {
                 qtelettre.classList.remove("disapear");
                 jav2.position.y=-1;
             },false);
-        const start3Evt = new AnimationEvent(60,
+        const start3Evt = new BABYLON.AnimationEvent(60,
             () => {
                 anim3[1].stop();
                 anim3[3].start(true);
@@ -1685,36 +1685,36 @@ async function createScene(engine) {
         const throw1Anim = anim1[4].targetedAnimations[0].animation;
         const throw2Anim = anim2[4].targetedAnimations[0].animation;
         const throw3Anim = anim3[4].targetedAnimations[0].animation;
-        const throwEvt = new AnimationEvent(55,
+        const throwEvt = new BABYLON.AnimationEvent(55,
             () => {
                 throwing=true;
             },false);
-        const throw1Evt = new AnimationEvent(10,
+        const throw1Evt = new BABYLON.AnimationEvent(10,
             () => {
                 jav.rotation.z=-0.6;
                 jav.position.x-=0.2;
                 jav.position.y-=0.6;
                 jav.rotation.y=-0.4+Math.PI;
             },false);
-        const throw2Evt = new AnimationEvent(15,
+        const throw2Evt = new BABYLON.AnimationEvent(15,
             () => {
                 jav.position.x-=0.1
                 jav.position.y-=0.2
                 jav.rotation.y=-0.3+Math.PI;
             },false);
-        const throw3Evt = new AnimationEvent(20,
+        const throw3Evt = new BABYLON.AnimationEvent(20,
             () => {
                 jav.position.x+=0.5
                 jav.position.y+=0.2
                 jav.rotation.y=-0.1+Math.PI;
             },false);
-        const throw4Evt = new AnimationEvent(25,
+        const throw4Evt = new BABYLON.AnimationEvent(25,
             () => {
                 jav.position.x+=0.5
                 jav.position.y+=0.2
                 jav.rotation.y=Math.PI;
             },false);
-        const throw5Evt = new AnimationEvent(30,
+        const throw5Evt = new BABYLON.AnimationEvent(30,
             () => {
                 jav.position.x+=0.7
                 jav.position.y+=0.2
@@ -1726,22 +1726,22 @@ async function createScene(engine) {
         const run1Anim = anim1[3].targetedAnimations[0].animation;
         const run2Anim = anim2[3].targetedAnimations[0].animation;
         const run3Anim = anim3[3].targetedAnimations[0].animation;
-        const runEvt = new AnimationEvent(5,
+        const runEvt = new BABYLON.AnimationEvent(5,
             () => {
                 jav.position.y=1.7;
                 jav.position.z=0.5;
             },false);
-        const run1Evt = new AnimationEvent(12,
+        const run1Evt = new BABYLON.AnimationEvent(12,
             () => {
                 jav.position.y=1.65;
                 jav.position.z=0.45;
             },false);
-        const run3Evt = new AnimationEvent(40,
+        const run3Evt = new BABYLON.AnimationEvent(40,
             () => {
                 jav.position.y=1.63;
                 jav.position.z=0.45;
             },false);
-        const run2Evt = new AnimationEvent(20,
+        const run2Evt = new BABYLON.AnimationEvent(20,
             () => {
                 jav.position.y=1.6;
                 jav.position.z=0.4;
