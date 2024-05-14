@@ -70,7 +70,7 @@ var jeut=1;
 jeux.forEach((elem) => {
     let jeu = document.getElementById(elem);
     jeu.addEventListener('click', async function(){
-        //loading.classList.remove("notplaying");
+        loading.classList.remove("notplaying");
         const engine = new BABYLON.Engine(canvas, true);
         jeut=jeux.indexOf(elem)+1;
         var scene = await createScene(engine);   
