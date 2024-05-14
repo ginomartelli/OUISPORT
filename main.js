@@ -1088,7 +1088,7 @@ async function createScene(engine) {
                         if (started && !jumped && !fail1 && event.key === "a" ){
                             jumpsound.play();
                             anim.forEach((an) => an.stop());
-                            console.log(anim);  //ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+                            console.log(anim); 
                             anim[1].start();
                             jumped=true;
                         }
@@ -1193,6 +1193,7 @@ async function createScene(engine) {
                         if (started && !jumped && !fail2 && event.key === "p" ){
                             jumpsound.play();
                             anim.forEach((an) => an.stop());
+                            console.log("player2"+anim);
                             anim[1].start();
                             jumped=true;
                         }
@@ -1297,6 +1298,7 @@ async function createScene(engine) {
                         if (started && !jumped && !fail3 && event.key === "w" ){
                             jumpsound.play();
                             anim.forEach((an) => an.stop());
+                            console.log("player3"+anim);
                             anim[1].start();
                             jumped=true;
                         }
@@ -1402,6 +1404,7 @@ async function createScene(engine) {
                         if (started && !jumped && !fail4 && event.key === "n" ){
                             jumpsound.play();
                             anim.forEach((an) => an.stop());
+                            console.log("player4"+anim);
                             anim[1].start();
                             jumped=true;
                         }
