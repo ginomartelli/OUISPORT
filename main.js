@@ -1088,7 +1088,6 @@ async function createScene(engine) {
                         if (started && !jumped && !fail1 && event.key === "a" ){
                             jumpsound.play();
                             anim.forEach((an) => an.stop());
-                            console.log(anim); 
                             anim[1].start();
                             jumped=true;
                         }
@@ -1193,7 +1192,6 @@ async function createScene(engine) {
                         if (started && !jumped && !fail2 && event.key === "p" ){
                             jumpsound.play();
                             anim.forEach((an) => an.stop());
-                            console.log("player2"+anim);
                             anim[1].start();
                             jumped=true;
                         }
@@ -1298,7 +1296,6 @@ async function createScene(engine) {
                         if (started && !jumped && !fail3 && event.key === "w" ){
                             jumpsound.play();
                             anim.forEach((an) => an.stop());
-                            console.log("player3"+anim);
                             anim[1].start();
                             jumped=true;
                         }
@@ -1404,7 +1401,6 @@ async function createScene(engine) {
                         if (started && !jumped && !fail4 && event.key === "n" ){
                             jumpsound.play();
                             anim.forEach((an) => an.stop());
-                            console.log("player4"+anim);
                             anim[1].start();
                             jumped=true;
                         }
@@ -2024,7 +2020,7 @@ async function createScene(engine) {
         camera.setTarget(new BABYLON.Vector3(0,10,0));
         camera.inertia = 0.1;
         //cadre et decor :
-        var truss = await SceneLoader.ImportMeshAsync("", "/models/", "truss.glb", scene);
+        var truss = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "truss.glb", scene);
         var truss1 = truss.meshes[0];
         var truss2 = truss1.clone("truss2");
         var truss3 = truss1.clone("truss3");
@@ -2190,7 +2186,7 @@ async function createScene(engine) {
             ciblesa[i].position.x=-108.02-0.001*i;
         }
         //texte j1 
-        var txtj1 = (await SceneLoader.ImportMeshAsync("", "/models/", "joueurText.glb", scene)).meshes[0];
+        var txtj1 = (await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "joueurText.glb", scene)).meshes[0];
         txtj1.scaling = new BABYLON.Vector3(0.7, 0.7, 0.7);
         txtj1.position.x=-105.42;
         txtj1.position.z=-6.43;
@@ -2201,7 +2197,7 @@ async function createScene(engine) {
         txtj1.scaling = new BABYLON.Vector3(0.7, 0.7, 0.7);
         var txtj2 = txtj1.clone("txtj2");
         txtj2.position.y=0.2
-        var numbers = await SceneLoader.ImportMeshAsync("", "/models/", "numbers.glb", scene); //nb[1]==0
+        var numbers = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "numbers.glb", scene); //nb[1]==0
         numbers.meshes.forEach( (value,index)=>{
             if(index!=0){
                 value.position.y=-10;
@@ -2302,7 +2298,7 @@ async function createScene(engine) {
 
         }
 
-        var player1 = await SceneLoader.ImportMeshAsync("", "/models/", "player13.glb", scene);
+        var player1 = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "player3.glb", scene);
         player1.meshes[0].scaling = new BABYLON.Vector3(1.6, 1.6, 1.6);
         player1.meshes[0].rotationQuaternion = null;
         player1.meshes[0].position.x=-109.2;
@@ -2327,7 +2323,7 @@ async function createScene(engine) {
             }
         });
         //scene action:
-        var fleche = (await SceneLoader.ImportMeshAsync("", "/models/", "arrow.glb", scene)).meshes[0];
+        var fleche = (await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "arrow.glb", scene)).meshes[0];
         fleche.rotationQuaternion = null;
         fleche.rotation.z=-1.57;
         fleche.position.x=-120;
