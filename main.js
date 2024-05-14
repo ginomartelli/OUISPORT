@@ -1088,6 +1088,7 @@ async function createScene(engine) {
                         if (started && !jumped && !fail1 && event.key === "a" ){
                             jumpsound.play();
                             anim.forEach((an) => an.stop());
+                            console.log(anim);  //ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
                             anim[1].start();
                             jumped=true;
                         }
@@ -1492,7 +1493,7 @@ async function createScene(engine) {
         material.diffuseTexture.vScale=0.1;
         bench.material = material;
 
-        var player1 = await SceneLoader.ImportMeshAsync("", "./models/", "player12.glb", scene);  //PLAYER 1
+        var player1 = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "player12.glb", scene);  //PLAYER 1
         var mesh1 = player1.meshes[0];
         var anim1 = player1.animationGroups;
         anim1[0].stop();
@@ -1504,7 +1505,7 @@ async function createScene(engine) {
         mesh1.scaling = new BABYLON.Vector3(1.2, 1.2, 1.2);
         mesh1.rotationQuaternion = null;
         mesh1.rotation.y=3.14;
-        var player2 = await SceneLoader.ImportMeshAsync("", "./models/", "player22.glb", scene);  //PLAYER 2
+        var player2 = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "player22.glb", scene);  //PLAYER 2
         var mesh2 = player2.meshes[0];
         var anim2 = player2.animationGroups;
         anim2[0].stop();
@@ -1516,7 +1517,7 @@ async function createScene(engine) {
         mesh2.scaling = new BABYLON.Vector3(1.2, 1.2, 1.2);
         mesh2.rotationQuaternion = null;
         mesh2.rotation.y=3.14;
-        var player3 = await SceneLoader.ImportMeshAsync("", "./models/", "player32.glb", scene);  //PLAYER 3
+        var player3 = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "player32.glb", scene);  //PLAYER 3
         var mesh3 = player3.meshes[0];
         var anim3 = player3.animationGroups;
         anim3[0].stop();
@@ -1533,7 +1534,7 @@ async function createScene(engine) {
         camera.position.z=-10;
         camera.setTarget(new BABYLON.Vector3(-50,1,5));
         
-        SceneLoader.ImportMeshAsync("", "./models/", "cam.glb", scene).then((result) => {
+        BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "cam.glb", scene).then((result) => {
             result.meshes.forEach((mesh)=>{
                 mesh.rotationQuaternion = null;
                 mesh.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5)
@@ -1543,7 +1544,7 @@ async function createScene(engine) {
                 mesh.position.y=1.3;
             })
         });
-        SceneLoader.ImportMeshAsync("", "./models/", "cam.glb", scene).then((result) => {
+        BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "cam.glb", scene).then((result) => {
             result.meshes.forEach((mesh)=>{
                 mesh.rotationQuaternion = null;
                 mesh.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5)
@@ -1553,7 +1554,7 @@ async function createScene(engine) {
                 mesh.position.y=1.3;
             })
         });
-        SceneLoader.ImportMeshAsync("", "/models/", "cam.glb", scene).then((result) => {
+        BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "cam.glb", scene).then((result) => {
             result.meshes.forEach((mesh)=>{
                 mesh.rotationQuaternion = null;
                 mesh.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5)
@@ -1563,7 +1564,7 @@ async function createScene(engine) {
                 mesh.position.y=1.3;
             })
         });
-        SceneLoader.ImportMeshAsync("", "/models/", "cam.glb", scene).then((result) => {
+        BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "cam.glb", scene).then((result) => {
             result.meshes.forEach((mesh)=>{
                 mesh.rotationQuaternion = null;
                 mesh.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5)
@@ -1573,7 +1574,7 @@ async function createScene(engine) {
                 mesh.position.y=1.3;
             })
         });
-        var javelot1 = await SceneLoader.ImportMeshAsync("", "/models/", "javelin.glb", scene);
+        var javelot1 = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "javelin.glb", scene);
         var jav1 = javelot1.meshes[0];
         jav1.rotationQuaternion = null;
         jav1.scaling = new BABYLON.Vector3(2, 1, 1);
@@ -1581,7 +1582,7 @@ async function createScene(engine) {
         jav1.position.x=-53.5;
         jav1.position.y=0.53;
         jav1.position.z=5;
-        var javelot2 = await SceneLoader.ImportMeshAsync("", "/models/", "javelin.glb", scene);
+        var javelot2 = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "javelin.glb", scene);
         var jav2 = javelot2.meshes[0];
         jav2.rotationQuaternion = null;
         jav2.scaling = new BABYLON.Vector3(2, 1, 1);
@@ -1589,7 +1590,7 @@ async function createScene(engine) {
         jav2.position.x=-50.5;
         jav2.position.y=0.53;
         jav2.position.z=5;
-        var javelot3 = await SceneLoader.ImportMeshAsync("", "/models/", "javelin.glb", scene);
+        var javelot3 = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "javelin.glb", scene);
         var jav3 = javelot3.meshes[0];
         jav3.rotationQuaternion = null;
         jav3.scaling = new BABYLON.Vector3(2, 1, 1);
@@ -1597,7 +1598,7 @@ async function createScene(engine) {
         jav3.position.x=-47.5;
         jav3.position.y=0.53;
         jav3.position.z=5;
-        var javelot = await SceneLoader.ImportMeshAsync("", "/models/", "javelin.glb", scene);
+        var javelot = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "javelin.glb", scene);
         var jav = javelot.meshes[0];
         jav.rotationQuaternion = null;
         jav.scaling = new BABYLON.Vector3(2, 1, 1);
