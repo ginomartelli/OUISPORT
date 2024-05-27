@@ -79,7 +79,6 @@ jeux.forEach((elem) => {
         window.addEventListener("resize", function () {
             engine.resize();
         });
-        //engine.enterPointerlock();
         gameinterface.classList.add("playing");
         gameinterface.classList.remove("notplaying");
         canvas.classList.remove("notplaying");
