@@ -508,7 +508,7 @@ async function createScene(engine) {
         for(let i=0;i<97;i++){
             posxrd.push(posx[Math.floor(Math.random() * posx.length)]+Math.random() *2);
         }
-        var box = await BABYLON.SceneLoader.ImportMeshAsync('',"./textures/",'crowd.glb',scene);
+        var box = await BABYLON.SceneLoader.ImportMeshAsync('',"./models/",'crowd.glb',scene);
         var matrix = BABYLON.Matrix.Translation(0, -10, 0);
         for(let j=0;j<box.meshes.length;j++){
             var mesh = box.meshes[j];
