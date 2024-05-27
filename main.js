@@ -179,7 +179,7 @@ async function createScene(engine) {
 
     //gradin
     var foule = localStorage.getItem("foule");
-    if(foule==null) {foule="full";}
+    if(foule==null) {foule=50;}
     var path = [];
     var bottomLine = BABYLON.Curve3.CreateQuadraticBezier(
     new BABYLON.Vector3(0, 3, -10),
