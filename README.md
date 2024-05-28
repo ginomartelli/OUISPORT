@@ -5,19 +5,28 @@
 - ### [Vidéos de gameplay et de présentation](https://github.com/Ginosprod/OUISPORT)
 - ### [Documentation](https://github.com/gamesonweb/gow-olympic-edition-ouisport/blob/main/Documentation.md)
 
+## **SOMMAIRE**
+- [Description de **OUISPORT**](https://github.com/gamesonweb/gow-olympic-edition-ouisport?tab=readme-ov-file#description-de-ouisport)
+  - [Niveau 1](https://github.com/gamesonweb/gow-olympic-edition-ouisport?tab=readme-ov-file#niveau-1--la-course-de-haies)
+  - [Niveau 2](https://github.com/gamesonweb/gow-olympic-edition-ouisport?tab=readme-ov-file#niveau-2--le-lancer-de-javelot)
+  - [Niveau 3](https://github.com/gamesonweb/gow-olympic-edition-ouisport?tab=readme-ov-file#niveau-3--le-tir-%C3%A0-larc)
+  - [Niveau 4](https://github.com/gamesonweb/gow-olympic-edition-ouisport?tab=readme-ov-file#niveau-4--le-football)
+- [Personnes impliquées dans le projet](https://github.com/gamesonweb/gow-olympic-edition-ouisport?tab=readme-ov-file#personnes-impliqu%C3%A9es-dans-le-projet)
+- [L'histoire du jeu](https://github.com/gamesonweb/gow-olympic-edition-ouisport?tab=readme-ov-file#lhistoire-du-jeu)
+  - [Games On Web 2024](https://github.com/gamesonweb/gow-olympic-edition-ouisport?tab=readme-ov-file#games-on-web-2024)
+  - [Pourquoi OUISPORT ?](https://github.com/gamesonweb/gow-olympic-edition-ouisport?tab=readme-ov-file#pourquoi-ouisport-)
+  - [Les versions du jeu au cours du temps](https://github.com/gamesonweb/gow-olympic-edition-ouisport?tab=readme-ov-file#les-versions-du-jeu-au-cours-du-temps)
+  - [Le choix des niveaux](https://github.com/gamesonweb/gow-olympic-edition-ouisport?tab=readme-ov-file#le-choix-des-niveaux)
+- [Présentation de l'équipe](https://github.com/gamesonweb/gow-olympic-edition-ouisport?tab=readme-ov-file#pr%C3%A9sentation-de-l%C3%A9quipe)
+  - [Qui sommes-nous ?](https://github.com/gamesonweb/gow-olympic-edition-ouisport?tab=readme-ov-file#qui-sommes-nous-)
+  - [Contacts](https://github.com/gamesonweb/gow-olympic-edition-ouisport?tab=readme-ov-file#contacts)
+
 ## Description de OUISPORT
 **OUISPORT** contient 4 mini-jeux de 1 à 4 joueurs chacun pour soi. Chaque niveau contient une discipline qui est ou a été présente aux jeux olympiques.
+![image](https://github.com/gamesonweb/gow-olympic-edition-ouisport/assets/85039742/030d5fca-e80f-43ce-9b4c-96d331a37c1a)
 > [!NOTE]
 > [Description détaillé du jeu](https://github.com/gamesonweb/gow-olympic-edition-ouisport/blob/main/Documentation.md#description-d%C3%A9taill%C3%A9e-du-jeu-).
 
-### Niveau 1 : La course de haies.
-Ce premier niveau se joue à 4 joueurs. Le but de ce niveau est d'atteindre la ligne d'arrivée en faisant tomber le moins de haies possible : il faut sauter au bon moment.
-### Niveau 2 : Le lancer de javelot.
-Ce niveau se joue à 3 joueurs. Le but de ce niveau est de lancer le javelot le plus loin possible : il faut appuyer rapidement sur les touches qui s'affichent à l'écran.
-### Niveau 3 : Le tir à l'arc.
-Ce niveau se joue à 2 joueurs. Le but de ce niveau est de marquer le plus de points en touchant la cible que l'autre joueur peut déplacer.
-### Niveau 4 : Le football.
-Ce dernier niveau se joue en solo. Le but de ce niveau est de marquer un but en effectuant des passes rapides aux bons joueurs. 
 > [!TIP]
 > Dans **OUISPORT**, quatre joueurs peuvent s'affronter dans un tournoi où les deux premiers niveaux servent d'étapes éliminatoires. Le niveau 3 correspond à la finale entre les deux derniers joueurs.
 >
@@ -26,6 +35,21 @@ Ce dernier niveau se joue en solo. Le but de ce niveau est de marquer un but en 
 > Si vous jouez sur un ordinateur portable et que le jeu n'est pas fluide, branchez-le sur secteur. Si le problème persiste ou si vous jouez sur un ordinateur fixe, réglez la qualité d'affichage.
 > 
 > Pour ajuster la qualité d'affichage, vous pouvez utiliser le zoom de votre fenêtre de navigateur (CTRL + molette de la souris).
+
+### Niveau 1 : La course de haies.
+Ce premier niveau se joue à 4 joueurs. Le but de ce niveau est d'atteindre la ligne d'arrivée en faisant tomber le moins de haies possible : il faut sauter au bon moment.
+![Capture d’écran (6)](https://github.com/gamesonweb/gow-olympic-edition-ouisport/assets/85039742/c6eda7ac-fbf4-4af2-9388-7aeb801f2d05)
+
+### Niveau 2 : Le lancer de javelot.
+Ce niveau se joue à 3 joueurs. Le but de ce niveau est de lancer le javelot le plus loin possible : il faut appuyer rapidement sur les touches qui s'affichent à l'écran.
+![image](https://github.com/gamesonweb/gow-olympic-edition-ouisport/assets/85039742/f1d0e8e5-597a-4b5a-bc96-00eb700d2cea)
+
+### Niveau 3 : Le tir à l'arc.
+Ce niveau se joue à 2 joueurs. Le but de ce niveau est de marquer le plus de points en touchant la cible que l'autre joueur peut déplacer.
+![image](https://github.com/gamesonweb/gow-olympic-edition-ouisport/assets/85039742/6523957b-f563-4252-b6ea-54c82d113b33)
+
+### Niveau 4 : Le football.
+Ce dernier niveau se joue en solo. Le but de ce niveau est de marquer un but en effectuant des passes rapides aux bons joueurs. 
 
 
 ## Personnes impliquées dans le projet
@@ -70,4 +94,3 @@ Nous sommes trois étudiants de Polytech Nice Sophia, actuellement en deuxième 
 - Amy Joseph :
 - Gino Martelli : gino.martelli-rakotonindrainy@etu.univ-cotedazur.fr
 - Alexandre Krausener :
-
