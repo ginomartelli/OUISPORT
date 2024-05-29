@@ -2037,7 +2037,7 @@ async function createScene(engine) {
                         score22.innerText=score[1]+"m";
                         score32.innerText=score[2]+"m";
                         if(tour!=0){
-                            start2tour.innerText = "Appuyez sur espace pour commencer au tour du joueur "+tour;
+                            start2tour.innerText = "Appuyez sur espace pour commencer. Au tour du joueur "+tour;
                         }
                     }
                 }
