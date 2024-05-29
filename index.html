@@ -35,16 +35,25 @@
       <!-- JEU 1 INTERFACE DÉBUT -->
       <div id="start1">
         <h1>Comment jouer ?</h1>
-        <p>Il faut atteindre la ligne d'arrivée en touchant le moins de haies.</p>
-        <p>Pour sauter, appuyez sur la touche qui correspond à votre joueur.</p>
+        <p>Il faut atteindre la ligne d'arrivée en premier en touchant aucune des 20 haies.</p>
+        <p>Le gagnant est celui qui fera tomber le moins de haies possible. S'il y a égalité, le gagnant est celui qui est arrivé en premier.</p>
+        <p>Pour sauter, appuyez sur la touche qui correspond à votre joueur :</p>
+        <p id="jb">JOUEUR 1 : N</p>
+        <p id="jn">JOUEUR 2: W</p>
+        <p id="jr">JOUEUR 3 : P</p>
+        <p id="jv">JOUEUR 4 : A</p>
         <h2>Appuyez sur espace pour commencer</h2> 
       </div>
       <!-- JEU 2 INTERFACE DÉBUT -->
       <div id="start2">
         <h1>Comment jouer ?</h1>
         <p>Il faut lancer le javelot le plus loin possible chacun son tour.</p>
-        <p>Appuyez rapidement sur les touches qui apparaissent à l'écran pour qu'il aille plus loin.</p>
-        <h2 id="start2tour">Appuyez sur espace pour commencer au tour de joueur 1</h2>
+        <p>Appuyez rapidement sur les touches qui apparaissent à l'écran. Les touches possibles sont :</p>
+        <p>A T P W V N</p>
+        <p>Moins vous ratez de touches et plus vous appuyez rapidement, plus votre javelot ira loin.</p>
+        <p>Le gagnant est celui qui aura lancé le javelot le plus loin.</p>
+        <p>C'est chacun son tour en commencant par le joueur 1.</p>
+        <h2 id="start2tour">Appuyez sur espace pour commencer au tour du joueur 1</h2>
       </div>
       <!-- JEU 3 INTERFACE DÉBUT -->
       <div id="start3">
@@ -72,18 +81,22 @@
       <div id="p4">
         <h1>JOUEUR 4</h1>
         <h1 id="score4"></h1>
+        <p id="time4"></p>
       </div>
       <div id="p3">
         <h1>JOUEUR 3</h1>
         <h1 id="score3"></h1>
+        <p id="time3"></p>
       </div>
       <div id="p2">
         <h1>JOUEUR 2</h1>
         <h1 id="score2"></h1>
+        <p id="time2"></p>
       </div>
       <div id="p1">
         <h1>JOUEUR 1</h1>
         <h1 id="score1"></h1>
+        <p id="time1"></p>
       </div>
       <button id="menu1">CLIQUEZ ICI POUR RETOURNER AU MENU</button>
     </div>
@@ -130,6 +143,10 @@
     <div id="qte">
       <h1 id="qtelettre"></h1>
     </div>
+    <!-- JEU 2 TIMER -->
+    <div id="timerj2">
+      <p id="timej2"></p>
+    </div>
     <!-- JEU 2 INTERFACE FIN -->
     <div id="end2">
       <h1 id="wintext2">SCORES</h1>
@@ -138,14 +155,19 @@
 
     <!-- JEU 3 INTERFACE SCORE -->
     <div id="interface3">
-      <p>Au tour du joueur 1 de tirer.</p>
+      <p id="indic">Au tour du joueur 1 de tirer.</p>
+    </div>
+    <!-- JEU 3 INTERFACE FIN -->
+    <div id="end3">
+      <button id="menu3">CLIQUEZ ICI POUR RETOURNER AU MENU</button>
     </div>
     <span id="crs">+</span>
 
     <!-- INTERFACE MENU -->
     <div id="interface">
       <div id="title">
-        <img src="./images/title.gif">
+        <p> OUISPORT </p>
+        <!--<img src="/images/title.gif"> -->
       </div>
       <div id="Jeu1" class="circle blue">
         <p>NIVEAU&nbsp;1</p>
@@ -262,7 +284,7 @@
         <p>NIVEAU&nbsp;4</p>
         <div class="warp4" aria-labelledby="warp-label">
           <span id="warp-label" class="warpàplaceholder">
-              1 JOUEURS
+              1 JOUEUR
           </span>
           <span aria-role="presentation">
               <span class="warpà0">
@@ -290,12 +312,13 @@
                   R
               </span>
               <span class="warpà8">
-                  S
+                  
               </span>
           </span>
         </div>
       </div>
       <div id="INFORMATIONS" class="circle green"><p>PARAMETRES</p></div>
+      <div id="acr"><p>DÉFIEZ VOS AMIS AUX JEUX OLYMPIQUES !</p></div>
     </div>
 
     <!-- INTERFACE PARAMETRES -->
@@ -322,11 +345,11 @@
             document.getElementById('rangeValue1').innerHTML = value;
         }
       </script>
-      <p><a href="https://github.com/Ginosprod/OUISPORT">Lien du GitHub </a>(code source, trailer, gameplay...)</p>
+      <p><a href="https://github.com/Ginosprod/OUISPORT">GitHub</a></p>
     </div>
 
     <canvas id="renderCanvas"></canvas>
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="/main.js"></script>
     
   </body>
 </html>
