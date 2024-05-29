@@ -1,9 +1,8 @@
-
 // import * as BABYLON from 'babylonjs';
 // import { SceneLoader } from "@babylonjs/core/Loading/sceneLoader";
 // import "@babylonjs/loaders";
-//import { AnimationEvent } from '@babylonjs/core';
-// INTERFACE MENU
+// import { AnimationEvent } from '@babylonjs/core';
+// // INTERFACE MENU
 const jeux = ["Jeu1","Jeu2","Jeu3","Jeu4"];
 const backinterface = document.getElementById("backinterface");
 const Interface = document.getElementById("interface");
@@ -16,12 +15,14 @@ const interfaceParam = document.getElementById("interfaceInfo");
 const loading = document.getElementById("loading");
 const end1 = document.getElementById("end1");
 const end2 = document.getElementById("end2");
+const end3 = document.getElementById("end3");
 const wintext = document.getElementById("wintext");
 const wintext2 = document.getElementById("wintext2");
 canvas.classList.add("notplaying");
 const menu = document.getElementById("menu");
 const menu1 = document.getElementById("menu1");
 const menu2 = document.getElementById("menu2");
+const menu3 = document.getElementById("menu3");
 menu.classList.add("notplaying");
 interface1.classList.add("notplaying");
 interface2.classList.add("notplaying");
@@ -34,6 +35,7 @@ gameinterface.classList.add("notplaying");
 loading.classList.add("notplaying")
 end1.classList.add("notplaying");
 end2.classList.add("notplaying");
+end3.classList.add("notplaying");
 //START JEU AFFICHAGE DU HAUT
 const start1 = document.getElementById("start1");
 start1.classList.add("notplaying");
@@ -55,6 +57,10 @@ qtebox.classList.add("notplaying");
 //JEU 3
 var crs = document.getElementById("crs");
 crs.classList.add("notplaying");
+
+//decompte jeu 2 3 
+var time = document.getElementById("timej2");
+time.classList.add("notplaying");
 
 //FAIL JEU 1
 var fail1=false;
@@ -79,6 +85,7 @@ jeux.forEach((elem) => {
         window.addEventListener("resize", function () {
             engine.resize();
         });
+        engine.enterPointerlock();
         gameinterface.classList.add("playing");
         gameinterface.classList.remove("notplaying");
         canvas.classList.remove("notplaying");
@@ -128,6 +135,9 @@ menu1.addEventListener('click', function() {
 menu2.addEventListener('click', function() {
     location.reload();
 })
+menu3.addEventListener('click', function() {
+    location.reload();
+})
 
 
 //SCENE DE JEU
@@ -152,7 +162,7 @@ async function createScene(engine) {
     var vol = localStorage.getItem("vol");
     if(vol==null) {vol=1;}
     //soundstade
-    const music1 = new BABYLON.Sound("stade", "sounds/stadium.mp3", scene, null, { loop: true, autoplay: true, length: 24, offset: 2.0, volume:0.2*vol});
+    const music1 = new BABYLON.Sound("stade", "sounds/stadium.mp3", scene, null, { loop: true, autoplay: true, length: 24, offset: 2.0, volume:0.12*vol});
     const background = new BABYLON.Sound("background", "sounds/background.mp3", scene, null, { loop: true, autoplay: true, volume:0.1*vol});
     //clapping stade
     const clap1 = new BABYLON.Sound("gunshot", "sounds/clapping.mp3", scene,null, { loop: true, autoplay: false, length: 18, offset: 3.0, volume:0.5*vol});
@@ -160,6 +170,10 @@ async function createScene(engine) {
     const wined = new BABYLON.Sound("win", "sounds/win.mp3", scene,null, { loop: false, autoplay: false, volume:0.4*vol});
     const jumpsound = new BABYLON.Sound("jump", "sounds/jump.mp3", scene, null, { loop: false, autoplay: false, volume:0.4*vol, length: 1.4, offset: 0.6});
     const success = new BABYLON.Sound("success", "sounds/success.mp3", scene, null, { loop: false, autoplay: false, volume:0.4*vol,length: 1.5, offset: 0.5});
+    const countdown = new BABYLON.Sound("countdown", "sounds/countdown.mp3", scene, null, { loop: false, autoplay: false, volume:0.4*vol});
+    //sound jeu 3
+    const air = new BABYLON.Sound("air", "sounds/air.mp3", scene, null, { loop: false, autoplay: false, volume:0.22*vol,length: 1, offset: 0.5});
+    const machine = new BABYLON.Sound("machine", "sounds/machine.mp3", scene, null, { loop: false, autoplay: false, volume:0.12*vol,length: 5, offset: 0.5});
 
     const envTex = BABYLON.CubeTexture.CreateFromPrefilteredData("./textures/environment.env", scene);
     scene.environmentTexture = envTex;
@@ -951,42 +965,59 @@ async function createScene(engine) {
             mesh.rotation.y=1.57;
             mesh.position.x=-145;
         });
-        BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "cam.glb", scene).then((result) => {
-            result.meshes.forEach((mesh)=>{
-                mesh.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5)
-                mesh.rotation.y=-2.80;
-                mesh.position.z=14;
-                mesh.position.x=202;
-                mesh.position.y=1.3;
-            })
-        });
-        BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "cam.glb", scene).then((result) => {
-            result.meshes.forEach((mesh)=>{
-                mesh.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5)
-                mesh.rotation.y=-2.80+1.8;
-                mesh.position.z=-14;
-                mesh.position.x=202;
-                mesh.position.y=1.3;
-            })
-        });
-        BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "cam.glb", scene).then((result) => {
-            result.meshes.forEach((mesh)=>{
-                mesh.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5)
-                mesh.position.z=-14;
-                mesh.position.x=-137.5;
-                mesh.position.y=1.3;
-            })
-        });
-        BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "cam.glb", scene).then((result) => {
-            result.meshes.forEach((mesh)=>{
-                mesh.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5)
-                mesh.rotation.y=3.14;
-                mesh.position.z=14;
-                mesh.position.x=-137.5;
-                mesh.position.y=1.3;
-            })
-        });
 
+        var camra = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "camera.glb", scene)
+        var cam1 = camra.meshes[0];
+        cam1.rotationQuaternion = null;
+        cam1.scaling = new BABYLON.Vector3(0.4, 0.4, 0.4)
+        cam1.rotation.y=0;
+        cam1.position.z=6;
+        cam1.position.x=-100;
+        var cam2 = cam1.clone("cam2");
+        cam2.position.z=-6;
+        cam2.rotation.y=3.14;
+        cam2.position.x=-100;
+        var cam3 = cam1.clone("cam3");
+        cam3.position.z=6;
+        cam3.position.x=104;
+        var cam4 = cam1.clone("cam4");
+        cam4.position.z=-6;
+        cam4.position.x=70;
+        cam4.rotation.y=2;
+        var cam5 = cam1.clone("cam5");
+        cam5.position.z=6;
+        cam5.position.x=44;
+        cam5.rotation.y=0;
+        var cam6 = cam1.clone("cam6");
+        cam6.position.z=6;
+        cam6.position.x=150;
+        cam6.rotation.y=0.7;
+        var cam7 = cam1.clone("cam7");
+        cam7.position.z=-6;
+        cam7.position.x=150;
+        cam7.rotation.y=2.74;
+        var cam8 = cam1.clone("cam8");
+        cam8.position.z=-6;
+        cam8.position.x=8;
+        cam8.rotation.y= 3.14;
+
+
+        var timed = false;
+        var started=false;
+        var para1 = true;
+        var para2 = true;
+        var para3 = true;
+        var para4 = true;
+        var ended=false;
+        var generaltime=0;
+        var timescore1=0;
+        var timescore2=0;
+        var timescore3=0;
+        var timescore4=0;
+        var timesc1 = document.getElementById("time1");
+        var timesc2 = document.getElementById("time2");
+        var timesc3 = document.getElementById("time3");
+        var timesc4 = document.getElementById("time4");
         //PLAYER
         BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "player1bis.glb", scene).then((result) => {  //PLAYER 1
             var mesh = result.meshes[0];
@@ -996,7 +1027,6 @@ async function createScene(engine) {
             mesh.position.z=-3.8;
             mesh.position.x=-100;
             anim[3].play(true);
-            var started=false;
             var injump=false;
             var jumped=false;
             var score = 20;
@@ -1038,61 +1068,65 @@ async function createScene(engine) {
                 false
             );
             failAnim.addEvent(failEvt);
+            var line=false;
+            var reg=true;
             scene.onAfterRenderObservable.add(function () {
                 camerabox1.position.x=mesh.position.x;
                 if (started){
-                    if(!fail1)mesh.position.x+=0.18*(60/fps);
-                    boxs1.forEach((box) => {
-                        if(!injump){
-                            if(mesh.intersectsMesh(box, false)){
-                                boxs1.splice(boxs1.indexOf(box))
-                                anim[1].stop();
-                                jumped=false;
-                                anim[2].stop()
-                                fail1=true;
-                                anim[0].start(false);
-                                score-=1; 
-                                camerabox1.position.y=1;
+                    if(para1){
+                        anim.forEach((an) => an.stop());
+                        anim[2].start(true);
+                        window.addEventListener("keydown", function (event) {  
+                            if (started && !jumped && !fail1 && !line && (event.key === "a"||event.key==="A")){
+                                jumpsound.play();
+                                anim.forEach((an) => an.stop());
+                                anim[1].start();
+                                jumped=true;
                             }
-                            score1.forEach(function(scor){scor.innerText=score+"/20";})
-                        }
-                    });
+                        });
+                        para1=false;
+                    }
+                    if(!line){
+                        
+                        if(!fail1)mesh.position.x+=0.18*(60/fps);
+                        boxs1.forEach((box) => {
+                            if(!injump){
+                                if(mesh.intersectsMesh(box, false)){
+                                    boxs1.splice(boxs1.indexOf(box))
+                                    anim[1].stop();
+                                    jumped=false;
+                                    anim[2].stop()
+                                    fail1=true;
+                                    anim[0].start(false);
+                                    score-=1;
+                                    camerabox1.position.y=1;
+                                }
+                                score1.forEach(function(scor){scor.innerText=score+"/20";})
+                            }
+                        });
+                    }
                     if(mesh.intersectsMesh(limitBox, false)){
                         anim[1].stop();
                         jumped=false;
                         anim[2].stop()
-                        var listbox=[camerabox1.position.x,camerabox2.position.x,camerabox3.position.x,camerabox4.position.x];
-                        var max = Math.max(...listbox);
                         anim[3].start(true);
-                        if(max==camerabox1.position.x){
+                        if(!ended){
+                            ended=true;
                             anim[3].start(true);
                             wintext.innerText = "FÉLICITATIONS JOUEUR 4";
 
-                        }else{
+                        }else if(wintext.innerText != "FÉLICITATIONS JOUEUR 4"){
                             anim[3].goToFrame(15)
                             anim[3].stop();
                         }
-                        started=false;
+                        line=true;
+                        if(reg){
+                            timescore1=generaltime;
+                            reg=false;
+                        }
                     }
                 }
             })
-            canvas.addEventListener("keydown", function (event) {  
-                if (started==false && event.key === " "){
-                    gameinterface.classList.add("notplaying");
-                    gameinterface.classList.remove("playing");
-                    started=true;
-                    anim.forEach((an) => an.stop());
-                    anim[2].start(true);
-                    canvas.addEventListener("keydown", function (event) {  
-                        if (started && !jumped && !fail1 && event.key === "a" ){
-                            jumpsound.play();
-                            anim.forEach((an) => an.stop());
-                            anim[1].start();
-                            jumped=true;
-                        }
-                    });
-                }
-            });
         });
         BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "player2bis.glb", scene).then((result) => {  //PLAYER 2
             var mesh = result.meshes[0];
@@ -1102,7 +1136,6 @@ async function createScene(engine) {
             mesh.position.z=-1.3;
             mesh.position.x=-100;
             anim[3].play(true);
-            var started=false;
             var injump=false;
             var jumped=false;
             var score = 20;
@@ -1144,59 +1177,64 @@ async function createScene(engine) {
                 false
             );
             failAnim.addEvent(failEvt);
+            var line=false;
+            var reg=true;
             scene.onAfterRenderObservable.add(function () {
                 camerabox2.position.x=mesh.position.x;
                 if (started){
-                    if(!fail2)mesh.position.x+=0.18*(60/fps);
-                    boxs2.forEach((box) => {
-                        if(!injump){
-                            if(mesh.intersectsMesh(box, false)){
-                                boxs2.splice(boxs2.indexOf(box))
-                                anim[1].stop();
-                                jumped=false;
-                                anim[2].stop()
-                                fail2=true;
-                                anim[0].start(false);
-                                score-=1;
-                                camerabox2.position.y=1;
+                    if(para2){
+                        anim.forEach((an) => an.stop());
+                        anim[2].start(true);
+                        window.addEventListener("keydown", function (event) {  
+                            if (started && !jumped && !fail2 && !line && (event.key === "p"||event.key==="P") ){
+                                jumpsound.play();
+                                anim.forEach((an) => an.stop());
+                                anim[1].start();
+                                jumped=true;
                             }
-                            score2.forEach(function(scor){scor.innerText=score+"/20";})
-                        }
-                    });
+                        });
+                        para2=false;
+                    }
+                    if(!line){
+                        if(!fail2)mesh.position.x+=0.18*(60/fps);
+                        boxs2.forEach((box) => {
+                            if(!injump){
+                                if(mesh.intersectsMesh(box, false)){
+                                    boxs2.splice(boxs2.indexOf(box))
+                                    anim[1].stop();
+                                    jumped=false;
+                                    anim[2].stop()
+                                    fail2=true;
+                                    anim[0].start(false);
+                                    score-=1;
+                                    camerabox2.position.y=1;
+                                }
+                                score2.forEach(function(scor){scor.innerText=score+"/20";})
+                            }
+                        });
+                    }
                     if(mesh.intersectsMesh(limitBox, false)){
                         anim[1].stop();
                         jumped=false;
                         anim[2].stop()
-                        var listbox=[camerabox1.position.x,camerabox2.position.x,camerabox3.position.x,camerabox4.position.x];
-                        var max = Math.max(...listbox);
                         anim[3].start(true);
-                        if(max==camerabox2.position.x){
+                        if(!ended){
+                            ended=true;
                             anim[3].start(true);
                             wintext.innerText = "FÉLICITATIONS JOUEUR 3";
 
-                        }else{
+                        }else if(wintext.innerText != "FÉLICITATIONS JOUEUR 3"){
                             anim[3].goToFrame(6)
                             anim[3].stop();
                         }
-                        started=false;
+                        line=true;
+                        if(reg){
+                            timescore2=generaltime;
+                            reg=false;
+                        }
                     }
                 }
             })
-            canvas.addEventListener("keydown", function (event) {  
-                if (started==false && event.key === " "){
-                    started=true;
-                    anim.forEach((an) => an.stop());
-                    anim[2].start(true);
-                    canvas.addEventListener("keydown", function (event) {  
-                        if (started && !jumped && !fail2 && event.key === "p" ){
-                            jumpsound.play();
-                            anim.forEach((an) => an.stop());
-                            anim[1].start();
-                            jumped=true;
-                        }
-                    });
-                }
-            });
         });
         BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "player3bis.glb", scene).then((result) => {  //PLAYER 3 (2)
             var mesh = result.meshes[0];
@@ -1206,7 +1244,6 @@ async function createScene(engine) {
             mesh.position.z=1.3;
             mesh.position.x=-100;
             anim[3].play(true);
-            var started=false;
             var injump=false;
             var jumped=false;
             var score = 20;
@@ -1248,60 +1285,66 @@ async function createScene(engine) {
                 false
             );
             failAnim.addEvent(failEvt);
+            var line=false;
+            var reg=true;
             scene.onAfterRenderObservable.add(function () {
                 camerabox3.position.x=mesh.position.x;
                 if (started){
-                    if(!fail3)mesh.position.x+=0.18*(60/fps);
-                    boxs3.forEach((box) => {
-                        if(!injump){
-                            if(mesh.intersectsMesh(box, false)){
-                                boxs3.splice(boxs3.indexOf(box))
-                                anim[1].stop();
-                                jumped=false;
-                                anim[2].stop()
-                                fail3=true;
-                                anim[0].start(false);
-                                score-=1;
-                                camerabox3.position.y=1;
+                    if(para3){
+                        anim.forEach((an) => an.stop());
+                        anim[2].start(true);
+                        window.addEventListener("keydown", function (event) {  
+                            if (started && !jumped && !fail3 && !line && (event.key === "w"||event.key==="W") ){
+                                jumpsound.play();
+                                anim.forEach((an) => an.stop());
+                                anim[1].start();
+                                jumped=true;
                             }
-                            score3.forEach(function(scor){scor.innerText=score+"/20";})
-                        }
-                    });
+                        });
+                        para3=false;
+                    }
+                    if(!line){
+                        if(!fail3)mesh.position.x+=0.18*(60/fps);
+                        boxs3.forEach((box) => {
+                            if(!injump){
+                                if(mesh.intersectsMesh(box, false)){
+                                    boxs3.splice(boxs3.indexOf(box))
+                                    anim[1].stop();
+                                    jumped=false;
+                                    anim[2].stop()
+                                    fail3=true;
+                                    anim[0].start(false);
+                                    score-=1;
+                                    camerabox3.position.y=1;
+                                }
+                                score3.forEach(function(scor){scor.innerText=score+"/20";})
+                            }
+                        });
+                    }
                     if(mesh.intersectsMesh(limitBox, false)){
                         anim[1].stop();
                         jumped=false;
                         anim[2].stop()
-                        var listbox=[camerabox1.position.x,camerabox2.position.x,camerabox3.position.x,camerabox4.position.x];
-                        var max = Math.max(...listbox);
                         anim[3].start(true);
-                        if(max==camerabox3.position.x){
+                        if(!ended){
+                            ended=true;
                             anim[3].start(true);
                             wintext.innerText = "FÉLICITATIONS JOUEUR 2";
 
-                        }else{
+                        }else if(wintext.innerText != "FÉLICITATIONS JOUEUR 2"){
                             anim[3].goToFrame(4)
                             anim[3].stop();
                         }
-                        started=false;
+                        line=true;
+                        if(reg){
+                            timescore3=generaltime;
+                            reg=false;
+                        }
                     }
                 }
             })
-            canvas.addEventListener("keydown", function (event) {  
-                if (started==false && event.key === " "){
-                    started=true;
-                    anim.forEach((an) => an.stop());
-                    anim[2].start(true);
-                    canvas.addEventListener("keydown", function (event) {  
-                        if (started && !jumped && !fail3 && event.key === "w" ){
-                            jumpsound.play();
-                            anim.forEach((an) => an.stop());
-                            anim[1].start();
-                            jumped=true;
-                        }
-                    });
-                }
-            });
         });
+        
         BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "player4bis.glb", scene).then((result) => {  //PLAYER 4
             var mesh = result.meshes[0];
             var anim = result.animationGroups;
@@ -1310,7 +1353,6 @@ async function createScene(engine) {
             mesh.position.z=3.8;
             mesh.position.x=-100;
             anim[3].play(true);
-            var started=false;
             var injump=false;
             var jumped=false;
             var score = 20;
@@ -1352,62 +1394,102 @@ async function createScene(engine) {
                 false
             );
             failAnim.addEvent(failEvt);
+            var line=false;
+            var reg=true;
             scene.onAfterRenderObservable.add(function () {
-                loading.classList.add("notplaying");
                 camerabox4.position.x=mesh.position.x;
                 if (started){
-                    if(!fail4)mesh.position.x+=0.18*(60/fps);
-                    boxs4.forEach((box) => {
-                        if(!injump){
-                            if(mesh.intersectsMesh(box, false)){
-                                boxs4.splice(boxs4.indexOf(box))
-                                anim[1].stop();
-                                jumped=false;
-                                anim[2].stop()
-                                fail4=true;
-                                anim[0].start(false);
-                                score-=1;
-                                camerabox4.position.y=1;
+                    if(para4){
+                        anim.forEach((an) => an.stop());
+                        anim[2].start(true);
+                        window.addEventListener("keydown", function (event) {  
+                            if (started && !jumped && !fail4 && !line &&(event.key === "n"||event.key==="N") ){
+                                jumpsound.play();
+                                anim.forEach((an) => an.stop());
+                                anim[1].start();
+                                jumped=true;
                             }
-                            score4.forEach(function(scor){scor.innerText=score+"/20";})
-                        }
-                    });
+                        });
+                        para4=false;
+                    }
+                    if(!line){
+                        if(!fail4)mesh.position.x+=0.18*(60/fps);
+                        boxs4.forEach((box) => {
+                            if(!injump){
+                                if(mesh.intersectsMesh(box, false)){
+                                    boxs4.splice(boxs4.indexOf(box))
+                                    anim[1].stop();
+                                    jumped=false;
+                                    anim[2].stop()
+                                    fail4=true;
+                                    anim[0].start(false);
+                                    score-=1;
+                                    camerabox4.position.y=1;
+                                }
+                                score4.forEach(function(scor){scor.innerText=score+"/20";})
+                            }
+                        });
+                    }
                     if(mesh.intersectsMesh(limitBox, false)){
                         anim[1].stop();
                         jumped=false;
                         anim[2].stop()
-                        var listbox=[camerabox1.position.x,camerabox2.position.x,camerabox3.position.x,camerabox4.position.x];
-                        var max = Math.max(...listbox);
                         anim[3].start(true);
-                        if(max==camerabox4.position.x){
+                        if(!ended){
+                            ended=true;
                             anim[3].start(true);
                             wintext.innerText = "FÉLICITATIONS JOUEUR 1";
-
-                        }else{
+                        }else if(wintext.innerText != "FÉLICITATIONS JOUEUR 1"){
                             anim[3].goToFrame(10)
                             anim[3].stop();
                         }
-                        started=false;
+                        line=true;
+                        if(reg){
+                            timescore4=generaltime;
+                            reg=false;
+                        }
                     }
                 }
             })
-            canvas.addEventListener("keydown", function (event) {  
-                if (started==false && event.key === " "){
-                    started=true;
-                    anim.forEach((an) => an.stop());
-                    anim[2].start(true);
-                    canvas.addEventListener("keydown", function (event) {  
-                        if (started && !jumped && !fail4 && event.key === "n" ){
-                            jumpsound.play();
-                            anim.forEach((an) => an.stop());
-                            anim[1].start();
-                            jumped=true;
-                        }
-                    });
-                }
-            });
+            loading.classList.add("notplaying");
         });
-        
+        var timer=0;
+        var tps=0;
+        var lt=0;
+        window.addEventListener("keydown", function (event) {  
+            if (started==false && event.key === " "){
+                timed=true;
+                gameinterface.classList.add("notplaying");
+                gameinterface.classList.remove("playing");
+                engine.enterPointerlock();
+            }
+        });
+        scene.onAfterRenderObservable.add(function () {
+            if(started){
+                generaltime+=1/fps;
+            }
+            if(timed){
+                time.classList.remove("notplaying");
+                timer+=1/fps;
+                tps = Math.floor(timer);
+                if(tps==3){
+                    time.innerText = "GO !";
+                    time.classList.add("disapear")
+                }else{
+                    time.innerText = 3-tps;
+                    if(lt==tps){
+                        countdown.play(0,tps,1)
+                        lt = tps+1;
+                    }
+                }
+                if(timer>3){
+                    countdown.play(0,3,1)
+                    started=true;
+                    timed=false;
+                    
+                }
+            }
+        });
         scene.onAfterRenderObservable.add(function () {
             var listbox=[camerabox1.position.x,camerabox2.position.x,camerabox3.position.x,camerabox4.position.x];
             var max = Math.max(...listbox);
@@ -1428,10 +1510,21 @@ async function createScene(engine) {
                     end1.classList.remove("notplaying");
                     interface1.classList.add("notplaying");
                     finish=true;
+                    engine.exitPointerlock();
+                    var timscs = [timescore4,timescore3,timescore2,timescore1];
+                    var timescs = [timesc1,timesc2,timesc3,timesc4];
+                    var max = Math.min(...timscs);
+                    var maxsc = timscs.indexOf(max);
+                    timescs[maxsc].innerText = Math.floor(timscs[maxsc]*1000)/1000+"s";
+                    timescs.forEach((affich) => {
+                        if(affich!=timescs[maxsc]){
+                            affich.innerText = "+"+(Math.floor((timscs[timescs.indexOf(affich)]-timscs[maxsc])*1000)/1000)+"s";
+                        }
+                    });
                 }
             }else if(center<-95){
                 camera.position.y=3;
-                camera.position.z=0
+                camera.position.z=0;
                 camera.position.x=-115;
                 camera.setTarget(new BABYLON.Vector3(center,3,0));
             } else {
@@ -1442,7 +1535,7 @@ async function createScene(engine) {
         });
     }
 
-    //JEU 2
+    //JEU 2 clone fait (pas joueur #flemme)
     if(jeut==2){
         var randomPos="pos1";
         var randomPosList=["pos1","pos2","pos3","pos4"];
@@ -1450,9 +1543,9 @@ async function createScene(engine) {
         var score = new Array(3).fill(0);
         var qtelettre = document.getElementById("qtelettre");
         var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(-30, 10, -20), scene);
-        var runGrd = BABYLON.MeshBuilder.CreateGround("runGrd", { width: 60, height: 10 }, scene);
+        var runGrd = BABYLON.MeshBuilder.CreateGround("runGrd", { width: 62, height: 10 }, scene);
         runGrd.material = CreateGroundMaterial();
-        runGrd.position.x=-60;
+        runGrd.position.x=-61;
         runGrd.position.y=0.008;
         for(let i=0;i<29;i++){
             var traitGrd = BABYLON.MeshBuilder.CreateGround("traitGrd", { width: 10+i*(1.2), height: (i%4==0? 0.3:0.1)}, scene);
@@ -1470,17 +1563,17 @@ async function createScene(engine) {
         traitGrd.position.x=40;
         traitGrd.position.z=-13.5;
         traitGrd.rotation.y=0.1212;
-        var traitGrd = BABYLON.MeshBuilder.CreateGround("traitGrd", { width: 60, height: 0.3}, scene);
+        var traitGrd = BABYLON.MeshBuilder.CreateGround("traitGrd", { width: 62, height: 0.3}, scene);
         traitGrd.position.y=0.01;
-        traitGrd.position.x=-60;
+        traitGrd.position.x=-61;
         traitGrd.position.z=-5;
-        var traitGrd = BABYLON.MeshBuilder.CreateGround("traitGrd", { width: 60, height: 0.3}, scene);
+        var traitGrd = BABYLON.MeshBuilder.CreateGround("traitGrd", { width: 62, height: 0.3}, scene);
         traitGrd.position.y=0.01;
-        traitGrd.position.x=-60;
+        traitGrd.position.x=-61;
         traitGrd.position.z=5;
-        var traitGrd = BABYLON.MeshBuilder.CreateGround("traitGrd", { width: 10, height: 0.3}, scene);
+        var traitGrd = BABYLON.MeshBuilder.CreateGround("traitGrd", { width: 10.3, height: 0.3}, scene);
         traitGrd.position.y=0.01;
-        traitGrd.position.x=-90;
+        traitGrd.position.x=-92;
         traitGrd.rotation.y=1.57;
         var bench = BABYLON.MeshBuilder.CreateBox("bench", { height: 0.68, width: 10, depth: 1 }, scene);
         bench.position.x=-50;
@@ -1532,75 +1625,48 @@ async function createScene(engine) {
         camera.position.z=-10;
         camera.setTarget(new BABYLON.Vector3(-50,1,5));
         
-        BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "cam.glb", scene).then((result) => {
-            result.meshes.forEach((mesh)=>{
-                mesh.rotationQuaternion = null;
-                mesh.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5)
-                mesh.rotation.y=-0.7;
-                mesh.position.z=10;
-                mesh.position.x=-45;
-                mesh.position.y=1.3;
-            })
-        });
-        BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "cam.glb", scene).then((result) => {
-            result.meshes.forEach((mesh)=>{
-                mesh.rotationQuaternion = null;
-                mesh.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5)
-                mesh.rotation.y=0.7;
-                mesh.position.z=0;
-                mesh.position.x=-32;
-                mesh.position.y=1.3;
-            })
-        });
-        BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "cam.glb", scene).then((result) => {
-            result.meshes.forEach((mesh)=>{
-                mesh.rotationQuaternion = null;
-                mesh.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5)
-                mesh.rotation.y=3.14;
-                mesh.position.z=20;
-                mesh.position.x=0;
-                mesh.position.y=1.3;
-            })
-        });
-        BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "cam.glb", scene).then((result) => {
-            result.meshes.forEach((mesh)=>{
-                mesh.rotationQuaternion = null;
-                mesh.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5)
-                mesh.rotation.y=1.47;
-                mesh.position.z=-10;
-                mesh.position.x=10;
-                mesh.position.y=1.3;
-            })
-        });
+        var camra = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "camera.glb", scene)
+        var cam1 = camra.meshes[0];
+        cam1.rotationQuaternion = null;
+        cam1.scaling = new BABYLON.Vector3(0.4, 0.4, 0.4)
+        cam1.rotation.y=-1.2;
+        cam1.position.z=5.5;
+        cam1.position.x=-58;
+        var cam2 = cam1.clone("cam2");
+        cam2.position.z=-5.5;
+        cam2.rotation.y=-1.9;
+        var cam3 = cam1.clone("cam3");
+        cam3.position.z=5.5;
+        cam3.position.x=-42;
+        cam3.rotation.y=1.2;
+        var cam4 = cam1.clone("cam4");
+        cam4.position.z=-5.5;
+        cam4.position.x=-30;
+        cam4.rotation.y=-3.14;
+        var cam5 = cam1.clone("cam5");
+        cam5.position.z=15;
+        cam5.position.x=40;
+        cam5.rotation.y=0;
+        var cam6 = cam1.clone("cam6");
+        cam6.position.z=0;
+        cam6.position.x=115;
+        cam6.rotation.y=1.57;
+
         var javelot1 = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "javelin.glb", scene);
         var jav1 = javelot1.meshes[0];
         jav1.rotationQuaternion = null;
         jav1.scaling = new BABYLON.Vector3(2, 1, 1);
         jav1.rotation.y=-Math.PI/2;
-        jav1.position.x=-53.5;
         jav1.position.y=0.53;
         jav1.position.z=5;
-        var javelot2 = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "javelin.glb", scene);
-        var jav2 = javelot2.meshes[0];
-        jav2.rotationQuaternion = null;
-        jav2.scaling = new BABYLON.Vector3(2, 1, 1);
-        jav2.rotation.y=-Math.PI/2;
+        jav1.position.x=-53.5;
+        var jav2 = jav1.clone("jav2");
         jav2.position.x=-50.5;
-        jav2.position.y=0.53;
-        jav2.position.z=5;
-        var javelot3 = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "javelin.glb", scene);
-        var jav3 = javelot3.meshes[0];
-        jav3.rotationQuaternion = null;
-        jav3.scaling = new BABYLON.Vector3(2, 1, 1);
-        jav3.rotation.y=-Math.PI/2;
+        var jav3 = jav1.clone("jav3");
         jav3.position.x=-47.5;
-        jav3.position.y=0.53;
-        jav3.position.z=5;
-        var javelot = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "javelin.glb", scene);
-        var jav = javelot.meshes[0];
-        jav.rotationQuaternion = null;
-        jav.scaling = new BABYLON.Vector3(2, 1, 1);
+        var jav = jav1.clone("jav");
         jav.rotation.y=Math.PI;
+        jav.position.y=-1;
         var limitJav = BABYLON.MeshBuilder.CreateBox("startBox", { size:1}, scene);
         limitJav.position.x = -30;
         limitJav.position.y = 2;
@@ -1631,51 +1697,47 @@ async function createScene(engine) {
         const start1Evt = new BABYLON.AnimationEvent(60,
             () => {
                 anim1[1].stop();
-                anim1[3].start(true);
                 mesh1.position.z=0;
                 mesh1.rotation.y=0;
                 mesh1.position.x=-90;
-                run=true;
-                qtebox.classList.remove("notplaying");
-                qtebox.classList.add("pos1");
-                QTEkey = QTEkeys[Math.floor(Math.random()*QTEkeys.length)];
-                qtelettre.innerText = QTEkey.toUpperCase();
-                qtebox.classList.remove("fail");
-                qtebox.classList.remove("success");
-                qtelettre.classList.remove("disapear");
+                camera.position.x=-105;
+                camera.position.y=4;
+                camera.position.z=0;
+                camera.setTarget(new BABYLON.Vector3(0,1,0));
                 jav1.position.y=-1;
+                anim1[3].start(true);
+                anim1[3].goToFrame(15);
+                anim1[3].pause();
             },false);
         const start2Evt = new BABYLON.AnimationEvent(60,
             () => {
                 anim2[1].stop();
-                anim2[3].start(true);
                 mesh2.position.z=0;
                 mesh2.rotation.y=0;
                 mesh2.position.x=-90;
-                run=true;
-                qtebox.classList.remove("notplaying");
-                QTEkey = QTEkeys[Math.floor(Math.random()*QTEkeys.length)];
-                qtelettre.innerText = QTEkey.toUpperCase();
-                qtebox.classList.remove("fail");
-                qtebox.classList.remove("success");
-                qtelettre.classList.remove("disapear");
+                camera.position.x=-105;
+                camera.position.y=4;
+                camera.position.z=0;
+                camera.setTarget(new BABYLON.Vector3(0,1,0));
                 jav2.position.y=-1;
+                anim2[3].start(true);
+                anim2[3].goToFrame(15);
+                anim2[3].pause();
             },false);
         const start3Evt = new BABYLON.AnimationEvent(60,
             () => {
                 anim3[1].stop();
-                anim3[3].start(true);
                 mesh3.position.z=0;
                 mesh3.rotation.y=0;
                 mesh3.position.x=-90;
-                run=true;
-                qtebox.classList.remove("notplaying");
-                QTEkey = QTEkeys[Math.floor(Math.random()*QTEkeys.length)];
-                qtelettre.innerText = QTEkey.toUpperCase();
-                qtebox.classList.remove("fail");
-                qtebox.classList.remove("success");
-                qtelettre.classList.remove("disapear");
+                camera.position.x=-105;
+                camera.position.y=4;
+                camera.position.z=0;
+                camera.setTarget(new BABYLON.Vector3(0,1,0));
                 jav3.position.y=-1;
+                anim3[3].start(true);
+                anim3[3].goToFrame(15);
+                anim3[3].pause();
             },false);
         start1Anim.addEvent(start1Evt);
         start2Anim.addEvent(start2Evt);
@@ -1749,8 +1811,49 @@ async function createScene(engine) {
         run2Anim.addEvent(runEvt);run2Anim.addEvent(run2Evt);run2Anim.addEvent(run1Evt);run2Anim.addEvent(run3Evt);
         run3Anim.addEvent(runEvt);run3Anim.addEvent(run2Evt);run3Anim.addEvent(run1Evt);run3Anim.addEvent(run3Evt);
 
-
+        var timer=0;
+        var timed = false
+        var tps=0;
+        var lt=0;
         scene.onAfterRenderObservable.add(function () {
+            if(timed){
+                timer+=1/fps;
+                tps = Math.floor(timer);
+                if(tps==3){
+                    time.innerText = "GO !";
+                    time.classList.add("disapear")
+                }else{
+                    time.innerText = 3-tps;
+                    if(lt==tps){
+                        countdown.play(0,tps,1)
+                        lt = tps+1;
+                    }
+                }
+                if(timer>3){
+                    countdown.play(0,3,1)
+                    timed=false;
+                    timer=0;
+                    lt=0;
+                    run=true;
+                    qtebox.classList.remove("notplaying");
+                    qtebox.classList.add("pos1");
+                    QTEkey = QTEkeys[Math.floor(Math.random()*QTEkeys.length)];
+                    qtelettre.innerText = QTEkey.toUpperCase();
+                    qtebox.classList.remove("fail");
+                    qtebox.classList.remove("success");
+                    qtelettre.classList.remove("disapear");
+                    if(tour==1){
+                        anim1[3].stop();
+                        anim1[3].start(true);
+                    } else if(tour==2){
+                        anim2[3].stop();
+                        anim2[3].start(true);
+                    }else if(tour==3){
+                        anim3[3].stop();
+                        anim3[3].start(true);
+                    }
+                }
+            }
             if(tour==0){
                 background.setVolume(0.3*vol)
                 clap1.play();
@@ -1780,6 +1883,7 @@ async function createScene(engine) {
                 var index = score.indexOf(max);
                 end2.classList.remove("notplaying");
                 gameinterface.classList.add("notplaying");
+                engine.exitPointerlock();
                 if(index==0){
                     wintext2.innerText = "FÉLICITATIONS JOUEUR 1";
                     anim1[2].stop();
@@ -1800,7 +1904,6 @@ async function createScene(engine) {
             }
             if(started){
                 if(run){
-                    
                     camera.position.x=-10+jav.position.x;
                     if(camera.position.x<=-90){
                         camera.position.y=5;
@@ -1878,6 +1981,8 @@ async function createScene(engine) {
                         }
                     }
                 } else if(throwing){
+                    time.classList.add("notplaying");
+                    time.classList.remove("disapear");
                     limitBox.position.x = -80;
                     limitJav.position.x+=(nbSuccess*0.01+0.4)*(60/fps);
                     limitJav.position.y=-((limitJav.position.x+33)*(limitJav.position.x-8.46*nbSuccess))/(100 + 20*nbSuccess);
@@ -1955,15 +2060,19 @@ async function createScene(engine) {
                 qtebox.classList.add("notplaying");
             }
         };
-        canvas.addEventListener("keydown", function (event){
+        window.addEventListener("keydown", function (event){
             if (tour!=-1&&!started&&event.key === " "){
                 camera.position.x=-50;
                 camera.position.y=2;
                 camera.position.z=-10;
                 camera.setTarget(new BABYLON.Vector3(-50,1,5));
-                started=true;
                 interface2.classList.add("notplaying"); 
                 gameinterface.classList.add("notplaying");
+                engine.enterPointerlock();
+                jav.position.x=-90;
+                jav.position.y=1.65;
+                jav.position.z=0.45;
+                jav.rotation.z=0;
                 if(tour==1){
                     anim1[1].stop();
                     anim1[1].play();
@@ -1988,14 +2097,13 @@ async function createScene(engine) {
                     anim3[1].stop();
                     anim3[1].play();
                 }
-                jav.position.x=-90;
-                jav.position.y=1.65;
-                jav.position.z=0.45;
-                jav.rotation.z=0;
+                started=true;
+                time.classList.remove("notplaying");
+                timed=true;
             }
             if(started&&run){
                 if(isSuccess){return;}
-                if (stop||event.key !== QTEkey) {stop=true;qtebox.classList.add("fail");qtelettre.classList.add("disapear");}
+                if (stop||event.key.toLowerCase()!== QTEkey) {stop=true;qtebox.classList.add("fail");qtelettre.classList.add("disapear");}
                 else{
                     if(tour==1){
                         if (mesh1.position.x < limitBox.position.x ) {isSuccess = true;qtebox.classList.add("success");qtelettre.classList.add("disapear");varcount=count;success.play();} 
@@ -2011,7 +2119,7 @@ async function createScene(engine) {
         });
     }
 
-    //JEU 3
+    //JEU 3 clone fait
     if(jeut==3){
         var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(-120, 1.8, 0), scene);
         camera.attachControl(canvas, true);
@@ -2135,6 +2243,7 @@ async function createScene(engine) {
         var S=false;
         var D=false;
 
+        var indic = document.getElementById("indic");
         //affichage set:
         var screen = BABYLON.MeshBuilder.CreateBox("screen", { height: 4.5, width: 8, depth: 0.1 }, scene);
         screen.position.x=-108;
@@ -2306,18 +2415,51 @@ async function createScene(engine) {
         player1.meshes[0].position.y=0.5;
         player1.animationGroups[0].speedRatio=0.5;
 
-        //player1.meshes[6].material = mat    POUR CHANGER DE COULEUR
-
-
         var tour = 0;
+        var pause = true;
+        var end=false;
         window.addEventListener("keydown", function (event){
             if(event.key === " "){
-                if(tour==0){
+                if(pause&&!end){
                     gameinterface.classList.add("notplaying");
+                    time.classList.remove("notplaying");
+                    timed=true;
+                }
+            }
+        });
+        var timer=0;
+        var timed = false
+        var tps=0;
+        var lt=0;
+        scene.onAfterRenderObservable.add(function () {
+            if(timed){
+                timer+=1/fps;
+                tps = Math.floor(timer);
+                if(tps==3){
+                    time.innerText = "GO !";
+                    time.classList.add("disapear")
+                }else{
+                    time.innerText = 3-tps;
+                    if(lt==tps){
+                        countdown.play(0,tps,1)
+                        lt = tps+1;
+                    }
+                }
+                if(timer>3){
+                    countdown.play(0,3,1)
+                    timed=false;
+                    timer=0;
+                    lt=0;
                     engine.enterPointerlock();
-                    tour=1;
-                    scoreAff(0,1);
-                    scoreAff(0,2);
+                    pause=false;
+                    tour+=1;
+                    if(tour==1){
+                        scoreAff(0,1);
+                        scoreAff(0,2);
+                    }
+                    indic.innerText = "Au tour du joueur "+tour+" de tirer : il reste 5 flèches";
+                    time.classList.add("notplaying");
+                    time.classList.remove("disapear");
                 }
             }
         });
@@ -2335,11 +2477,24 @@ async function createScene(engine) {
         var scorej2 = 0;
         var sc = 0;
         var charge = 5;
+        var speed = 0.04;
+        const GrdMat = new BABYLON.StandardMaterial("GrdMat", scene);
+        GrdMat.diffuseColor = new BABYLON.Color3(0.1, 0.1, 0.1);
+        GrdMat.diffuseTexture = undefined;
+        var timej1=0;
+        var timej2=0;
+        var vect1 = new BABYLON.Vector3(0,0,0);
         scene.onBeforeRenderObservable.add(function () {
-            if(tour!=0){
+            if(!pause&&!end){
+                if(tour==1){
+                    timej1+=1/fps;
+                }
+                if(tour==2){
+                    timej2+=1/fps;
+                }
                 var vect = camera.absoluteRotation.toEulerAngles();
                 if(!clicked){
-                    var vect1 = camera.absoluteRotation.toEulerAngles();
+                    vect1 = camera.absoluteRotation.toEulerAngles();
                 }
                 if(Math.floor(vect.y*100)/100 > 1.845){
                     camera.rotation.y=1.845;
@@ -2355,75 +2510,29 @@ async function createScene(engine) {
                 }
                 //opérateur action:
                 if(Z&&cible1.position.y<4.8){
-                    trussH.position.y+=0.08*(60/fps);
+                    trussH.position.y+=speed*(60/fps);
                     for(let i=0;i<5;i++){
-                        cibles[i].position.y+=0.08*(60/fps);
+                        cibles[i].position.y+=speed*(60/fps);
                     }
                 }
                 if(Q&&cible1.position.z<5.1){
-                    trussV.position.z+=0.08*(60/fps);
+                    trussV.position.z+=speed*(60/fps);
                     for(let i=0;i<5;i++){
-                        cibles[i].position.z+=0.08*(60/fps);
+                        cibles[i].position.z+=speed*(60/fps);
                     }
                 }
                 if(S&&cible1.position.y>0.8){
-                    trussH.position.y-=0.08*(60/fps);
+                    trussH.position.y-=speed*(60/fps);
                     for(let i=0;i<5;i++){
-                        cibles[i].position.y-=0.08*(60/fps);
+                        cibles[i].position.y-=speed*(60/fps);
                     }
                 }
                 if(D&&cible1.position.z>-4.9){
-                    trussV.position.z-=0.08*(60/fps);
+                    trussV.position.z-=speed*(60/fps);
                     for(let i=0;i<5;i++){
-                        cibles[i].position.z-=0.08*(60/fps);
+                        cibles[i].position.z-=speed*(60/fps);
                     }
                 }
-                canvas.addEventListener("keydown", function (event){
-                    if(!Z&&event.key === "z"){
-                        Z=true;
-                        boardz.material = matbOn;
-                    }
-                    if(!Q&&event.key === "q"){
-                        Q=true;
-                        boardq.material = matbOn;
-                    }
-                    if(!S&&event.key === "s"){
-                        S=true;
-                        boards.material = matbOn;
-                    }
-                    if(!D&&event.key === "d"){
-                        D=true;
-                        boardd.material = matbOn;
-                    }
-                });
-                canvas.addEventListener("keyup", function (event){
-                    if(event.key === "z"){
-                        Z=false;
-                        boardz.material = matb;
-                    }
-                    if(event.key === "q"){
-                        Q=false;
-                        boardq.material = matb;
-                    }
-                    if(event.key === "s"){
-                        S=false;
-                        boards.material = matb;
-                    }
-                    if(event.key === "d"){
-                        D=false;
-                        boardd.material = matb;
-                    }
-                });
-                canvas.addEventListener("click", function (event){
-                    if(vect1!=undefined){
-                        z = Math.sin(vect1.y-1.57);
-                        fleche.rotation.y=vect1.y-1.57;
-                        y = Math.sin(vect1.x);
-                        fleche.rotation.z=-vect1.x-1.57;
-                    }
-                    launch = true;
-                    clicked=true;
-                });
                 if(launch){
                     fleche.position.x+=(60/fps);
                     fleche.position.z=-((fleche.position.x+120)*z);
@@ -2477,19 +2586,8 @@ async function createScene(engine) {
                         cible2a.material.diffuseColor = new BABYLON.Color3(0, 0, 0);
                         cible1a.material.diffuseColor = new BABYLON.Color3(0, 1, 0);
                     } 
-                    if(charge==0){
-                        if(tour==1){
-                            tour=2;
-                            charge=5;
-                            const GrdMat = new BABYLON.StandardMaterial("GrdMat", scene);
-                            GrdMat.diffuseColor = new BABYLON.Color3(0.1, 0.1, 0.1);
-                            GrdMat.diffuseTexture = undefined;
-                            player1.meshes[6].material = GrdMat;
-                        } else {
-                            console.log("fin de la partie");
-                        }
-                    }
                     if(!launch){
+                        air.stop();
                         if(tour==1){
                             scorej1+=sc;
                             scoreAff(scorej1,1);
@@ -2497,24 +2595,164 @@ async function createScene(engine) {
                             scorej2+=sc;
                             scoreAff(scorej2,2);
                         }
+                        if(sc!=0){
+                            success.play();
+                        }
                         charge--;
+                        indic.innerText = "Au tour du joueur "+tour+" de tirer : il reste "+charge+" flèche(s)";
                         clicked=false;
                         fleche.position.x=-120;
                         fleche.position.z=0;
                         fleche.position.y=1.5;
                     }
+                    if(charge==0){
+                        if(tour==1){
+                            charge=5;
+                            player1.meshes[6].material = GrdMat;
+                            gameinterface.classList.remove("notplaying");
+                            pause=true;
+                            indic.innerText = "Au tour du joueur "+(tour+1)+" de tirer";
+                        } else {
+                            engine.exitPointerlock();
+                            pause=true;
+                            end = true;
+                            camera.position.x=-118;
+                            camera.detachControl();
+                            camera.setTarget(new BABYLON.Vector3(-108,2,-9));
+                            player1.meshes[0].position.z=-9;
+                            player1.meshes[0].rotation.y=-0.5;
+                            player1.meshes[0].position.y=0;
+                            player1.meshes[0].position.x=-110;
+                            var ctr="";
+                            if(scorej1==scorej2){
+                                if(timej1<timej2){
+                                    scorej2--;
+                                    ctr="<br> (contre "+Math.floor(timej2*100)/100+" secondes)"
+                                } else {
+                                    scorej1--;
+                                    ctr="<br> (contre "+Math.floor(timej1*100)/100+" secondes)"
+                                }
+                            }
+                            if(scorej1>scorej2){
+                                indic.innerHTML = "Le joueur 1 a gagné avec "+scorej1+" points en "+Math.floor(timej1*100)/100+" secondes"+ctr+"";
+                                GrdMat.diffuseColor = new BABYLON.Color3(1, 1, 1);
+                                player1.meshes[6].material = GrdMat;
+                            } else {
+                                indic.innerHTML = "Le joueur 2 a gagné avec "+scorej2+" points en "+Math.floor(timej2*100)/100+" secondes"+ctr+"";
+                            }
+                            clap1.play();
+                            background.setVolume(0.3*vol);
+                            end3.classList.remove("notplaying");
+                            crs.classList.add("notplaying");
+                            player1.animationGroups[0].stop();
+                            player1.animationGroups[1].play(true);
+                            engine.exitPointerlock();
+                        }
+                        machine.stop();
+                        Q=false;
+                        boardq.material = matb;
+                        Z=false;
+                        boardz.material = matb;
+                        S=false;
+                        boards.material = matb;
+                        D=false;
+                        boardd.material = matb;
+                    }
                 }
             }
         
         });
-
+        window.addEventListener("click", function (event){
+            if(!pause){
+                if(vect1!=undefined){
+                    z = Math.sin(vect1.y-1.57);
+                    fleche.rotation.y=vect1.y-1.57;
+                    y = Math.sin(vect1.x);
+                    fleche.rotation.z=-vect1.x-1.57;
+                }
+                launch = true;
+                clicked=true;
+                air.play();
+            }  
+        });
+        var plysd = false;
+        window.addEventListener("keydown", function (event){
+            if(!pause){
+                if(!Z&&event.key.toLowerCase() === "z"){
+                    if(!plysd){
+                        machine.play();
+                        
+                    } else {
+                        machine.stop();
+                        machine.play();
+                    }
+                    plysd=true;
+                    Z=true;
+                    boardz.material = matbOn;
+                }
+                if(!Q&&event.key.toLowerCase() === "q"){
+                    if(!plysd){
+                        machine.play();
+                        
+                    } else {
+                        machine.stop();
+                        machine.play();
+                    }
+                    plysd=true;
+                    Q=true;
+                    boardq.material = matbOn;
+                }
+                if(!S&&event.key.toLowerCase() === "s"){
+                    if(!plysd){
+                        machine.play();
+                        
+                    } else {
+                        machine.stop();
+                        machine.play();
+                    }
+                    plysd=true;
+                    S=true;
+                    boards.material = matbOn;
+                }
+                if(!D&&event.key.toLowerCase() === "d"){
+                    if(!plysd){
+                        machine.play();
+                        
+                    } else {
+                        machine.stop();
+                        machine.play();
+                    }
+                    plysd=true;
+                    D=true;
+                    boardd.material = matbOn;
+                }
+            } 
+        });
+        window.addEventListener("keyup", function (event){
+            if(!pause){
+                if(event.key.toLowerCase() === "z"){
+                    Z=false;
+                    boardz.material = matb;
+                }
+                if(event.key.toLowerCase() === "q"){
+                    Q=false;
+                    boardq.material = matb;
+                }
+                if(event.key.toLowerCase() === "s"){
+                    S=false;
+                    boards.material = matb;
+                }
+                if(event.key.toLowerCase() === "d"){
+                    D=false;
+                    boardd.material = matb;
+                }
+                if(!(Z||Q||S||D)){
+                    machine.stop();
+                    plysd=false;
+                }
+            }
+        });
         loading.classList.add("notplaying");
-        //fin scene 
-
-        //tireur action:
-        
-        //cible action:
-
     }
 
     //JEU4
