@@ -219,6 +219,7 @@ async function createScene(engine) {
     new BABYLON.Vector3(16, 0, 20),
     4);
     path1.push(topLine.getPoints());
+    var barricades = [[],[],[],[]];
     if(jeut==1){
         var Lbarricade = await BABYLON.SceneLoader.LoadAssetContainerAsync("./models/","Barricade.glb",scene);
         Lbarricade.addAllToScene();
