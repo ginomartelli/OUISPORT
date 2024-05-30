@@ -219,6 +219,11 @@ async function createScene(engine) {
     new BABYLON.Vector3(16, 0, 20),
     4);
     path1.push(topLine.getPoints());
+    if(jeut==1){
+        var Lbarricade = await BABYLON.SceneLoader.LoadAssetContainerAsync("./models/","Barricade.glb",scene);
+        Lbarricade.addAllToScene();
+        Lbarricade.meshes[0].position.y=-10;
+    }
     for(let k=0; k<3;k++){
         var stair = BABYLON.MeshBuilder.CreateGround("stair", { width: 5, height: 10 }, scene);
         stair.material = CreateStairMaterial();
@@ -349,43 +354,44 @@ async function createScene(engine) {
                         bendedMesh.position.y=9.8;
                         bendedMesh.position.z=-35.5;
                     }
-                } else if(jeut==1){
-                    BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "Barricade.glb", scene).then((result) => {
-                        var mesh = result.meshes[0];
-                        mesh.position.z=3.8-2.6*(j-1);
-                        mesh.position.x=positions.at(i);
-                        mesh.rotationQuaternion=false;
-                        mesh.rotation.y=3.14;
-                        var down=false;
-                        scene.onAfterRenderObservable.add(function(){
-                            if(!down){
-                                if(j==4&&fail1){   //j1
-                                    if(mesh.intersectsMesh(camerabox1,false)){
-                                        mesh.rotation.z=1.47;
-                                        down=true;
-                                        metal.play();
-                                    }
-                                }else if(j==3&&fail2){   //j1
-                                    if(mesh.intersectsMesh(camerabox2,false)){
-                                        mesh.rotation.z=1.47;
-                                        down=true;
-                                        metal.play();
-                                    }
-                                }else if(j==2&&fail3){   //j1
-                                    if(mesh.intersectsMesh(camerabox3,false)){
-                                        mesh.rotation.z=1.47;
-                                        down=true;
-                                        metal.play();
-                                    }
-                                }else if(j==1&&fail4){   //j1
-                                    if(mesh.intersectsMesh(camerabox4,false)){
-                                        mesh.rotation.z=1.47;
-                                        down=true;
-                                        metal.play();
-                                    }
+                } else if(jeut==1&&k==0){
+                    var barricade = Lbarricade.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+                    console.log(barricades);
+                    barricade = barricade.rootNodes[0];
+                    barricade.position.z=3.8-2.6*(j-1);
+                    barricade.position.x=positions.at(i);
+                    barricade.rotationQuaternion=false;
+                    barricade.rotation.y=3.14;
+                    barricade.position.y=0;
+                    barricades[j-1].push([barricade, false]);
+                    scene.onAfterRenderObservable.add(function(){
+                        if(!barricades[j-1].at(i)[1]){
+                            if(j==4&&fail1){   //j1
+                                if(barricades[j-1].at(i)[0].intersectsMesh(camerabox1,false)){
+                                    barricades[j-1].at(i)[0].rotation.z=1.47;
+                                    barricades[j-1].at(i)[1]=true;
+                                    metal.play();
+                                }
+                            } else if(j==3&&fail2){   //j1
+                                if(barricades[j-1].at(i)[0].intersectsMesh(camerabox2,false)){
+                                    barricades[j-1].at(i)[0].rotation.z=1.47;
+                                    barricades[j-1].at(i)[1]=true;
+                                    metal.play();
+                                }
+                            } else if(j==2&&fail3){   //j1
+                                if(barricades[j-1].at(i)[0].intersectsMesh(camerabox3,false)){
+                                    barricades[j-1].at(i)[0].rotation.z=1.47;
+                                    barricades[j-1].at(i)[1]=true;
+                                    metal.play();
+                                }
+                            } else if(j==1&&fail4){   //j1
+                                if(barricades[j-1].at(i)[0].intersectsMesh(camerabox4,false)){
+                                    barricades[j-1].at(i)[0].rotation.z=1.47;
+                                    barricades[j-1].at(i)[1]=true;
+                                    metal.play();
                                 }
                             }
-                        });
+                        }
                     });
                     var limitBox = BABYLON.MeshBuilder.CreateBox("startBox", { height: 2 , width:0.2,depth:2}, scene);
                     limitBox.position.x = positions.at(i);
