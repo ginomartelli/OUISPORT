@@ -1,8 +1,8 @@
-// import * as BABYLON from 'babylonjs';
-// import { SceneLoader } from "@babylonjs/core/Loading/sceneLoader";
-// import "@babylonjs/loaders";
-// import { AnimationEvent } from '@babylonjs/core';
-// // INTERFACE MENU
+import * as BABYLON from 'babylonjs';
+import { BABYLON.SceneLoader } from "@babylonjs/core/Loading/sceneLoader";
+import "@babylonjs/loaders";
+import { BABYLON.AnimationEvent } from '@babylonjs/core';
+// INTERFACE MENU
 const jeux = ["Jeu1","Jeu2","Jeu3","Jeu4"];
 const backinterface = document.getElementById("backinterface");
 const Interface = document.getElementById("interface");
@@ -11,22 +11,29 @@ const gameinterface = document.getElementById("gameinterface");
 const interface1 = document.getElementById("interface1");
 const interface2 = document.getElementById("interface2");
 const interface3 = document.getElementById("interface3");
+const interface4 = document.getElementById("interface4");
 const interfaceParam = document.getElementById("interfaceInfo");
 const loading = document.getElementById("loading");
 const end1 = document.getElementById("end1");
 const end2 = document.getElementById("end2");
 const end3 = document.getElementById("end3");
+const end4 = document.getElementById("end4");
 const wintext = document.getElementById("wintext");
 const wintext2 = document.getElementById("wintext2");
+const wintext4 = document.getElementById("wintext4");
 canvas.classList.add("notplaying");
 const menu = document.getElementById("menu");
 const menu1 = document.getElementById("menu1");
 const menu2 = document.getElementById("menu2");
 const menu3 = document.getElementById("menu3");
+const menu4 = document.getElementById("menu4");
+const soundactive = document.getElementById("sound");
 menu.classList.add("notplaying");
+soundactive.classList.add("notplaying");
 interface1.classList.add("notplaying");
 interface2.classList.add("notplaying");
 interface3.classList.add("notplaying");
+interface4.classList.add("notplaying");
 interfaceParam.classList.add("notplaying");
 const info = document.getElementById("INFORMATIONS")
 const crowds = document.getElementById("crowds");
@@ -36,6 +43,7 @@ loading.classList.add("notplaying")
 end1.classList.add("notplaying");
 end2.classList.add("notplaying");
 end3.classList.add("notplaying");
+end4.classList.add("notplaying");
 //START JEU AFFICHAGE DU HAUT
 const start1 = document.getElementById("start1");
 start1.classList.add("notplaying");
@@ -51,6 +59,18 @@ const score2 = document.querySelectorAll("#score3");
 const score3 = document.querySelectorAll("#score2");
 const score4 = document.querySelectorAll("#score1");
 
+const tip = document.getElementById("tiptxt");
+const tips = ["Si vous jouez sur un ordinateur portable et que le jeu n'est pas fluide, branchez-le sur secteur. Si le problème persiste ou si vous jouez sur un ordinateur fixe, réglez la qualité d'affichage.",
+            "Pour ajuster la qualité d'affichage, vous pouvez utiliser le zoom de votre fenêtre de navigateur (CTRL + molette de la souris).",
+            "Appuyez sur Échap pour afficher le curseur de la souris.",
+            "Pour jouer en plein écran, appuyez sur F11.",
+            "Pour couper la musique, cliquez sur l'icône de la note de musique.",
+            "La foule utilise les ressources graphiques de votre appareil. Réduisez la foule dans les paramètres si vous avez des bugs",
+            "Le jeu peut présenter des comportements étranges si vous le quittez alors qu'une partie est en cours.",
+            "Le jeu peut ne pas fonctionner sur le navigateur Opera GX.",
+            "Si le nombre de joueurs requis pour jouer à un niveau n'est pas atteint, vous pouvez choisir vos propres règles et techniques pour jouer avec moins de joueurs ou en solo."
+        ];
+tip.innerHTML = tips[Math.floor(Math.random() * tips.length)]+" <a href='https://github.com/gamesonweb/gow-olympic-edition-ouisport/blob/main/Documentation.md' target='_blank'>Aide</a>";
 //JEU 2
 var qtebox = document.getElementById("qte");
 qtebox.classList.add("notplaying");
@@ -73,6 +93,10 @@ var finish=false;
 var activated=false;
 var jeut=1;
 
+localStorage.setItem("sound", true);
+
+var background = new BABYLON.Sound("background", "sounds/background.mp3", undefined, null, { loop: true, autoplay: true, volume:0.05});
+
 jeux.forEach((elem) => {
     let jeu = document.getElementById(elem);
     jeu.addEventListener('click', async function(){
@@ -91,6 +115,7 @@ jeux.forEach((elem) => {
         canvas.classList.remove("notplaying");
         canvas.classList.add("playing");
         menu.classList.remove("notplaying");
+        soundactive.classList.remove("notplaying");
         if(jeut==1){
             interface1.classList.remove("notplaying");
             start1.classList.remove("notplaying");
@@ -105,6 +130,7 @@ jeux.forEach((elem) => {
             interface2.classList.remove("notplaying");
             start4.classList.remove("notplaying");
         }
+        
         engine.resize();
         Interface.classList.add("notplaying");
         backinterface.classList.add("notplaying");
@@ -117,6 +143,20 @@ info.addEventListener('click', function() {
     menu.classList.remove("notplaying");
     interfaceParam.classList.remove("notplaying");
     Interface.classList.add("notplaying");
+    if(localStorage.getItem("vol")==null){
+        document.getElementById('rangeValue1').innerHTML = 25;
+        volum.value = 25;
+    } else {
+        document.getElementById('rangeValue1').innerHTML = localStorage.getItem("vol");
+        volum.value = localStorage.getItem("vol");
+    }
+    if(localStorage.getItem("foule")==null){
+        document.getElementById('rangeValue').innerHTML = "25%";
+        crowds.value = 25;
+    } else {
+        document.getElementById('rangeValue').innerHTML = localStorage.getItem("foule")+"%";
+        crowds.value = localStorage.getItem("foule");
+    }
 })
 crowds.addEventListener('click', function() {
     var val = crowds.value;
@@ -138,10 +178,20 @@ menu2.addEventListener('click', function() {
 menu3.addEventListener('click', function() {
     location.reload();
 })
-
+menu4.addEventListener('click', function() {
+    location.reload();
+})
+soundactive.addEventListener('click', function() {
+    if(localStorage.getItem("sound")=="true"){
+        localStorage.setItem("sound", false);
+        background.setVolume(0);
+    } else {
+        localStorage.setItem("sound", true);
+        background.setVolume(0.05*localStorage.getItem("vol"));
+    }
+});
 
 //SCENE DE JEU
-
 
 async function createScene(engine) {
     var scene = new BABYLON.Scene(engine);
@@ -163,7 +213,7 @@ async function createScene(engine) {
     if(vol==null) {vol=1;}
     //soundstade
     const music1 = new BABYLON.Sound("stade", "sounds/stadium.mp3", scene, null, { loop: true, autoplay: true, length: 24, offset: 2.0, volume:0.12*vol});
-    const background = new BABYLON.Sound("background", "sounds/background.mp3", scene, null, { loop: true, autoplay: true, volume:0.1*vol});
+    background = new BABYLON.Sound("background", "sounds/background.mp3", scene, null, { loop: true, autoplay: true, volume:0.05*vol});
     //clapping stade
     const clap1 = new BABYLON.Sound("gunshot", "sounds/clapping.mp3", scene,null, { loop: true, autoplay: false, length: 18, offset: 3.0, volume:0.5*vol});
     //wintrumpet
@@ -174,7 +224,8 @@ async function createScene(engine) {
     //sound jeu 3
     const air = new BABYLON.Sound("air", "sounds/air.mp3", scene, null, { loop: false, autoplay: false, volume:0.22*vol,length: 1, offset: 0.5});
     const machine = new BABYLON.Sound("machine", "sounds/machine.mp3", scene, null, { loop: false, autoplay: false, volume:0.12*vol,length: 5, offset: 0.5});
-
+    const sifflet = new BABYLON.Sound("sifflet", "sounds/sifflet.mp3", scene, null, { loop: false, autoplay: false, volume:0.4*vol,length: 1.5, offset: 0.5});
+    
     const envTex = BABYLON.CubeTexture.CreateFromPrefilteredData("./textures/environment.env", scene);
     scene.environmentTexture = envTex;
     scene.createDefaultSkybox(envTex,true);
@@ -192,7 +243,7 @@ async function createScene(engine) {
 
     //gradin
     var foule = localStorage.getItem("foule");
-    if(foule==null) {foule=50;}
+    if(foule==null) {foule=25;}
     var path = [];
     var bottomLine = BABYLON.Curve3.CreateQuadraticBezier(
     new BABYLON.Vector3(0, 3, -10),
@@ -357,6 +408,7 @@ async function createScene(engine) {
                     }
                 } else if(jeut==1&&k==0){
                     var barricade = Lbarricade.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+                    console.log(barricades);
                     barricade = barricade.rootNodes[0];
                     barricade.position.z=3.8-2.6*(j-1);
                     barricade.position.x=positions.at(i);
@@ -393,7 +445,7 @@ async function createScene(engine) {
                             }
                         }
                     });
-                    var limitBox = BABYLON.MeshBuilder.CreateBox("startBox", { height: 2 , width:0.2,depth:2}, scene);
+                    var limitBox = BABYLON.MeshBuilder.CreateBox("startBox", { height: 2 , width:0.4,depth:2}, scene);
                     limitBox.position.x = positions.at(i);
                     limitBox.position.z=-3.8+2.5*(j-1);
                     limitBox.isVisible=false;
@@ -402,7 +454,6 @@ async function createScene(engine) {
                     if(j==3) boxs3.push(limitBox);
                     else boxs4.push(limitBox);
                 }
-                
             }
         }
     }
@@ -921,7 +972,11 @@ async function createScene(engine) {
     var fps = 60;
     scene.onAfterRenderObservable.add(function(){
         if(finish&&!activated){
-            clap1.play();background.setVolume(0.3*vol);activated=true;
+            clap1.play();
+            if(localStorage.getItem("sound")=="true"){
+                background.setVolume(0.3*vol);
+            }
+            activated=true;
         }
         fps = engine.getFps();
     })
@@ -1861,7 +1916,9 @@ async function createScene(engine) {
                 }
             }
             if(tour==0){
-                background.setVolume(0.3*vol)
+                if(localStorage.getItem("sound")=="true"){
+                    background.setVolume(0.3*vol);
+                }
                 clap1.play();
                 camera.position.x=-50;
                 camera.position.y=2;
@@ -2043,7 +2100,7 @@ async function createScene(engine) {
                         score22.innerText=score[1]+"m";
                         score32.innerText=score[2]+"m";
                         if(tour!=0){
-                            start2tour.innerText = "Appuyez sur espace pour commencer. Au tour du joueur "+tour;
+                            start2tour.innerText = "Appuyez sur espace pour commencer au tour du joueur "+tour;
                         }
                     }
                 }
@@ -2318,7 +2375,6 @@ async function createScene(engine) {
                 value.scaling = new BABYLON.Vector3(0.7, 0.7, 0.7)
             }
         });
-        
         //j1 et j2
         var ofstnb = 0.39;
         var nb1 = numbers.meshes[2];
@@ -2329,7 +2385,6 @@ async function createScene(engine) {
         nb1.position.y=3.9;nb2.position.y=0.2;
         nb1.rotation.y=Math.PI/4;nb2.rotation.y=Math.PI/4;
         nb1.rotation.x=1.57;nb2.rotation.x=1.57;
-
         //unités j1
         var j10 = numbers.meshes[1];
         var j11 = nb1.clone("j11")
@@ -2342,7 +2397,6 @@ async function createScene(engine) {
         var j18 = numbers.meshes[9];
         var j19 = numbers.meshes[10];
         var j1 = [j10,j11,j12,j13,j14,j15,j16,j17,j18,j19];
-
         //unités j2 et position
         var j2 = [];
         j1.forEach((value,index)=>{
@@ -2355,16 +2409,12 @@ async function createScene(engine) {
             j2.push(value.clone("j2"+index));
             j2[index].position.y=-12;
         });
-
         //dizaine j1
         var j1d1 = j11.clone("j1d1");j1d1.position.x=108-ofstnb;j1d1.position.z=-9+ofstnb;
         var j1d2 = j12.clone("j1d2");j1d2.position.x=108-2*ofstnb;j1d2.position.z=-9+2*ofstnb;
-
         //dizaine j2
         var j2d1 = j1d1.clone("j2d1");j2d1.position.y=0.2;
         var j2d2 = j1d2.clone("j2d2");j2d2.position.y=0.2;
-
-
         function scoreAff(score,joueur) {
             var str = score.toString();
             var unité = str.charAt(0);
@@ -2411,7 +2461,6 @@ async function createScene(engine) {
             }
 
         }
-
         var player1 = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "player3.glb", scene);
         player1.meshes[0].scaling = new BABYLON.Vector3(1.6, 1.6, 1.6);
         player1.meshes[0].rotationQuaternion = null;
@@ -2420,7 +2469,6 @@ async function createScene(engine) {
         player1.meshes[0].rotation.y=2.07;
         player1.meshes[0].position.y=0.5;
         player1.animationGroups[0].speedRatio=0.5;
-
         var tour = 0;
         var pause = true;
         var end=false;
@@ -2651,7 +2699,9 @@ async function createScene(engine) {
                                 indic.innerHTML = "Le joueur 2 a gagné avec "+scorej2+" points en "+Math.floor(timej2*100)/100+" secondes"+ctr+"";
                             }
                             clap1.play();
-                            background.setVolume(0.3*vol);
+                            if(localStorage.getItem("sound")=="true"){
+                                background.setVolume(0.3*vol);
+                            }
                             end3.classList.remove("notplaying");
                             crs.classList.add("notplaying");
                             player1.animationGroups[0].stop();
@@ -2767,9 +2817,936 @@ async function createScene(engine) {
 
     //JEU4
     if(jeut==4){
-        var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(-120, 1.8, 0), scene);
-        camera.attachControl(canvas, true);
+        menu1.classList.add("notplaying");
+        var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(179,11, 0), scene);
+        camera.rotation.y=-1.57;
+        camera.rotation.x=0.5;
+        var started=false;
+        // CONSTRUCTIOINN TERRAIN :
+        BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "soccergoal.glb", scene).then((result) => {
+            result.meshes.forEach((mesh)=>{
+                mesh.scaling = new BABYLON.Vector3(0.17, 0.13, 0.12);
+                mesh.rotationQuaternion = null;
+                mesh.rotation.y=0.84;
+                mesh.position.x=145.2;
+                mesh.position.y=0;
+                mesh.position.z=23;
+            })
+        });
+        BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "soccergoal.glb", scene).then((result) => {
+            result.meshes.forEach((mesh)=>{
+                mesh.scaling = new BABYLON.Vector3(0.17, 0.13, 0.12);
+                mesh.rotationQuaternion = null;
+                mesh.rotation.y=-0.87;
+                mesh.position.x=-147.2;
+                mesh.position.y=0;
+                mesh.position.z=12.5;
+            })
+        });
+
+        const landPoints = [
+            new BABYLON.Vector3(163, 0, -25),
+            new BABYLON.Vector3(163, 0, 25),
+            new BABYLON.Vector3(-163, 0, 25),
+            new BABYLON.Vector3(-163, 0, -25),
+            new BABYLON.Vector3(163, 0, -25),
+        ]
+        const midlePoints = [
+            new BABYLON.Vector3(0, 0, -25),
+            new BABYLON.Vector3(0, 0, 25),
+        ]
+        const landLines = BABYLON.MeshBuilder.CreateLines("lines", {points: landPoints});
+        const midleLines = BABYLON.MeshBuilder.CreateLines("lines", {points: midlePoints});
+
+
+        const goalPointsDroite = [
+            new BABYLON.Vector3(163, 0, 7),
+            new BABYLON.Vector3(155, 0, 7),
+            new BABYLON.Vector3(155, 0, -5.5),
+            new BABYLON.Vector3(163, 0, -5.5),
+        ]
+        
+        const butPointsDroite = [
+            new BABYLON.Vector3(163, 0, 15),
+            new BABYLON.Vector3(145, 0, 15),
+            new BABYLON.Vector3(145, 0, -15),
+            new BABYLON.Vector3(163, 0, -15),
+        ]
+        const goalLinesDroite = BABYLON.MeshBuilder.CreateLines("lines", {points: goalPointsDroite});
+        const butLinesDroite = BABYLON.MeshBuilder.CreateLines("lines", {points: butPointsDroite});
+
+
+        const goalPointsGauche= [
+            new BABYLON.Vector3(-163, 0, 7),
+            new BABYLON.Vector3(-155, 0, 7),
+            new BABYLON.Vector3(-155, 0, -5.5),
+            new BABYLON.Vector3(-163, 0, -5.5),
+        ]
+        
+        const butPointsGauche = [
+            new BABYLON.Vector3(-163, 0, 15),
+            new BABYLON.Vector3(-145, 0, 15),
+            new BABYLON.Vector3(-145, 0, -15),
+            new BABYLON.Vector3(-163, 0, -15),
+        ]
+        const goalLinesGauche  = BABYLON.MeshBuilder.CreateLines("lines", {points: goalPointsGauche});
+        const butLinesGauche  = BABYLON.MeshBuilder.CreateLines("lines", {points: butPointsGauche});
+
+
+        var mySinus = [];
+        var radius = 10;
+        
+        for (var i = -Math.PI; i <= Math.PI; i+=Math.PI/360) {
+         mySinus.push( new BABYLON.Vector3(radius*Math.cos(i),0, radius*Math.sin(i)) );
+        }
+        const baseCircle = BABYLON.Mesh.CreateLines("qbezier2", mySinus, scene);
+        baseCircle.scaling = new BABYLON.Vector3(1.3, 1.3, 1.3);
+
+        
+        
+        var premierGardien = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "premierGardien.glb", scene);
+                premierGardien.animationGroups[0].play(true);
+                premierGardien.meshes[0].rotationQuaternion = null;
+                premierGardien.meshes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+                premierGardien.meshes[0].position.x=162;
+                premierGardien.meshes[0].rotation.y=-1.57;
+                
+        //LIGNE JOEUR 1 :
+        var Joeur = await BABYLON.SceneLoader.LoadAssetContainerAsync("./models/","soccerPlayer.glb",scene);// ("", "./models/", "player13.glb", scene);
+        Joeur.addAllToScene();
+        Joeur.meshes[0].position.y=-10;
+        const JoeurDroite1 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurDroite1.animationGroups[1].play(true);
+        JoeurDroite1.rootNodes[0].rotationQuaternion = null;
+        JoeurDroite1.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurDroite1.rootNodes[0].position.x=115;
+        JoeurDroite1.rootNodes[0].rotation.y=1.57;
+        JoeurDroite1.rootNodes[0].position.z=20;
+        JoeurDroite1.rootNodes[0].position.y=0;
+        
+        const JoeurMilieu1 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurMilieu1.animationGroups[1].play(true);
+        JoeurMilieu1.rootNodes[0].rotationQuaternion = null;
+        JoeurMilieu1.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurMilieu1.rootNodes[0].position.x=115;
+        JoeurMilieu1.rootNodes[0].rotation.y=1.57;
+        JoeurMilieu1.rootNodes[0].position.z=0;
+        JoeurMilieu1.rootNodes[0].position.y=0;
+        
+        const JoeurGauche1 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurGauche1.animationGroups[1].play(true);
+        JoeurGauche1.rootNodes[0].rotationQuaternion = null;
+        JoeurGauche1.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurGauche1.rootNodes[0].position.x=115;
+        JoeurGauche1.rootNodes[0].rotation.y=1.57;
+        JoeurGauche1.rootNodes[0].position.z=-20;
+        JoeurGauche1.rootNodes[0].position.y=0;
+        
+        
+        
+
+        //LIGNE JOEUR 2 :
+        const JoeurDroite2 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurDroite2.animationGroups[1].play(true);
+        JoeurDroite2.rootNodes[0].rotationQuaternion = null;
+        JoeurDroite2.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurDroite2.rootNodes[0].position.x=75;
+        JoeurDroite2.rootNodes[0].rotation.y=1.57;
+        JoeurDroite2.rootNodes[0].position.z=20;
+        JoeurDroite2.rootNodes[0].position.y=0;
+
+
+        const JoeurMilieu2 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurMilieu2.animationGroups[1].play(true);
+        JoeurMilieu2.rootNodes[0].rotationQuaternion = null;
+        JoeurMilieu2.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurMilieu2.rootNodes[0].position.x=75;
+        JoeurMilieu2.rootNodes[0].rotation.y=1.57;
+        JoeurMilieu2.rootNodes[0].position.z=0;
+        JoeurMilieu2.rootNodes[0].position.y=0;
+        
+        const JoeurGauche2 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurGauche2.animationGroups[1].play(true);
+        JoeurGauche2.rootNodes[0].rotationQuaternion = null;
+        JoeurGauche2.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurGauche2.rootNodes[0].position.x=75;
+        JoeurGauche2.rootNodes[0].rotation.y=1.57;
+        JoeurGauche2.rootNodes[0].position.z=-20;
+        JoeurGauche2.rootNodes[0].position.y=0;
+        
+
+        //LIGNE JOEUR 3 :
+
+        const JoeurDroite3 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurDroite3.animationGroups[1].play(true);
+        JoeurDroite3.rootNodes[0].rotationQuaternion = null;
+        JoeurDroite3.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurDroite3.rootNodes[0].position.x=35;
+        JoeurDroite3.rootNodes[0].rotation.y=1.57;
+        JoeurDroite3.rootNodes[0].position.z=20;
+        JoeurDroite3.rootNodes[0].position.y=0;
+        
+        const JoeurMilieu3 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurMilieu3.animationGroups[1].play(true);
+        JoeurMilieu3.rootNodes[0].rotationQuaternion = null;
+        JoeurMilieu3.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurMilieu3.rootNodes[0].position.x=35;
+        JoeurMilieu3.rootNodes[0].rotation.y=1.57;
+        JoeurMilieu3.rootNodes[0].position.z=0;
+        JoeurMilieu3.rootNodes[0].position.y=0;
+        
+        const JoeurGauche3 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurGauche3.animationGroups[1].play(true);
+        JoeurGauche3.rootNodes[0].rotationQuaternion = null;
+        JoeurGauche3.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurGauche3.rootNodes[0].position.x=35;
+        JoeurGauche3.rootNodes[0].rotation.y=1.57;
+        JoeurGauche3.rootNodes[0].position.z=-20;
+        JoeurGauche3.rootNodes[0].position.y=0;
+        
+
+        //LIGNE JOEUR 4 :
+        const JoeurDroite4 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurDroite4.animationGroups[1].play(true);
+        JoeurDroite4.rootNodes[0].rotationQuaternion = null;
+        JoeurDroite4.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurDroite4.rootNodes[0].position.x=-5;
+        JoeurDroite4.rootNodes[0].rotation.y=1.57;
+        JoeurDroite4.rootNodes[0].position.z=20;
+        JoeurDroite4.rootNodes[0].position.y=0;
+
+        const JoeurMilieu4 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurMilieu4.animationGroups[1].play(true);
+        JoeurMilieu4.rootNodes[0].rotationQuaternion = null;
+        JoeurMilieu4.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurMilieu4.rootNodes[0].position.x=-5;
+        JoeurMilieu4.rootNodes[0].rotation.y=1.57;
+        JoeurMilieu4.rootNodes[0].position.z=0;
+        JoeurMilieu4.rootNodes[0].position.y=0;
+
+        const JoeurGauche4 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurGauche4.animationGroups[1].play(true);
+        JoeurGauche4.rootNodes[0].rotationQuaternion = null;
+        JoeurGauche4.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurGauche4.rootNodes[0].position.x=-5;
+        JoeurGauche4.rootNodes[0].rotation.y=1.57;
+        JoeurGauche4.rootNodes[0].position.z=-20;
+        JoeurGauche4.rootNodes[0].position.y=0;
+
+        //LIGNE JOEUR 5 :
+        const JoeurDroite5 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurDroite5.animationGroups[1].play(true);
+        JoeurDroite5.rootNodes[0].rotationQuaternion = null;
+        JoeurDroite5.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurDroite5.rootNodes[0].position.x=-45;
+        JoeurDroite5.rootNodes[0].rotation.y=1.57;
+        JoeurDroite5.rootNodes[0].position.z=20;
+        JoeurDroite5.rootNodes[0].position.y=0;
+
+        const JoeurMilieu5 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurMilieu5.animationGroups[1].play(true);
+        JoeurMilieu5.rootNodes[0].rotationQuaternion = null;
+        JoeurMilieu5.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurMilieu5.rootNodes[0].position.x=-45;
+        JoeurMilieu5.rootNodes[0].rotation.y=1.57;
+        JoeurMilieu5.rootNodes[0].position.z=0;
+        JoeurMilieu5.rootNodes[0].position.y=0;
+        
+        const JoeurGauche5 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurGauche5.animationGroups[1].play(true);
+        JoeurGauche5.rootNodes[0].rotationQuaternion = null;
+        JoeurGauche5.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurGauche5.rootNodes[0].position.x=-45;
+        JoeurGauche5.rootNodes[0].rotation.y=1.57;
+        JoeurGauche5.rootNodes[0].position.z=-20;
+        JoeurGauche5.rootNodes[0].position.y=0;
+        
+        //LIGNE JOEUR 6 :
+
+        const JoeurDroite6 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurDroite6.animationGroups[1].play(true);
+        JoeurDroite6.rootNodes[0].rotationQuaternion = null;
+        JoeurDroite6.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurDroite6.rootNodes[0].position.x=-85;
+        JoeurDroite6.rootNodes[0].rotation.y=1.57;
+        JoeurDroite6.rootNodes[0].position.z=20;
+        JoeurDroite6.rootNodes[0].position.y=0;
+
+        const JoeurMilieu6 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurMilieu6.animationGroups[1].play(true);
+        JoeurMilieu6.rootNodes[0].rotationQuaternion = null;
+        JoeurMilieu6.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurMilieu6.rootNodes[0].position.x=-85;
+        JoeurMilieu6.rootNodes[0].rotation.y=1.57;
+        JoeurMilieu6.rootNodes[0].position.z=0;
+        JoeurMilieu6.rootNodes[0].position.y=0;
+        
+        const JoeurGauche6 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurGauche6.animationGroups[1].play(true);
+        JoeurGauche6.rootNodes[0].rotationQuaternion = null;
+        JoeurGauche6.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurGauche6.rootNodes[0].position.x=-85;
+        JoeurGauche6.rootNodes[0].rotation.y=1.57; 
+        JoeurGauche6.rootNodes[0].position.z=-20;
+        JoeurGauche6.rootNodes[0].position.y=0;
+            //LIGNE JOEUR 7 :
+
+        const JoeurDroite7 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurDroite7.animationGroups[1].play(true);
+        JoeurDroite7.rootNodes[0].rotationQuaternion = null;
+        JoeurDroite7.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurDroite7.rootNodes[0].position.x=-125;
+        JoeurDroite7.rootNodes[0].rotation.y=1.57;
+        JoeurDroite7.rootNodes[0].position.z=20;
+        JoeurDroite7.rootNodes[0].position.y=0;
+
+        const JoeurMilieu7 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurMilieu7.animationGroups[1].play(true);
+        JoeurMilieu7.rootNodes[0].rotationQuaternion = null;
+        JoeurMilieu7.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurMilieu7.rootNodes[0].position.x=-125;
+        JoeurMilieu7.rootNodes[0].rotation.y=1.57;
+        JoeurMilieu7.rootNodes[0].position.z=0;
+        JoeurMilieu7.rootNodes[0].position.y=0;
+
+        const JoeurGauche7 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        JoeurGauche7.animationGroups[1].play(true);
+        JoeurGauche7.rootNodes[0].rotationQuaternion = null;
+        JoeurGauche7.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        JoeurGauche7.rootNodes[0].position.x=-125;
+        JoeurGauche7.rootNodes[0].rotation.y=1.57;
+        JoeurGauche7.rootNodes[0].position.z=-20;
+        JoeurGauche7.rootNodes[0].position.y=0;
+
+
+
+        //LIGNE D'ADVERSAIRE 1
+        let rand1=getRand1to3();
+        var JoeurAdd = await BABYLON.SceneLoader.LoadAssetContainerAsync("./models/","adversairplayer.glb",scene);// ("", "./models/", "player13.glb", scene);
+        JoeurAdd.meshes[0].position.y=-10;
+        var adversairePlayer11 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        adversairePlayer11.animationGroups[0].play(true);
+        adversairePlayer11.rootNodes[0].rotationQuaternion = null;
+        adversairePlayer11.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        adversairePlayer11.rootNodes[0].position.x=120;
+        adversairePlayer11.rootNodes[0].position.y=0;
+        adversairePlayer11.rootNodes[0].rotation.y=1.57;
+        if(rand1[0]==0){
+            adversairePlayer11.rootNodes[0].position.z=20;
+        }
+        if(rand1[0]==1){
+            adversairePlayer11.rootNodes[0].position.z=0;
+        }
+        if(rand1[0]==2){
+            adversairePlayer11.rootNodes[0].position.z=-20;
+        }
+        var adversairePlayer12 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        adversairePlayer12.animationGroups[0].play(true);
+        adversairePlayer12.rootNodes[0].rotationQuaternion = null;
+        adversairePlayer12.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        adversairePlayer12.rootNodes[0].position.x=120;
+        adversairePlayer12.rootNodes[0].position.y=0;
+        adversairePlayer12.rootNodes[0].rotation.y=1.57;
+        if(rand1[1]==0){
+            adversairePlayer12.rootNodes[0].position.z=20;
+        }
+        if(rand1[1]==1){
+            adversairePlayer12.rootNodes[0].position.z=0;
+        }
+        if(rand1[1]==2){
+            adversairePlayer12.rootNodes[0].position.z=-20;
+        }
+        //LIGNE D'ADVERSAIRE 2
+        let rand2=getRand1to3();
+        var adversairePlayer21 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        adversairePlayer21.animationGroups[0].play(true);
+        adversairePlayer21.rootNodes[0].rotationQuaternion = null;
+        adversairePlayer21.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        adversairePlayer21.rootNodes[0].position.x=80;
+        adversairePlayer21.rootNodes[0].rotation.y=1.57;
+        adversairePlayer21.rootNodes[0].position.y=0;
+        if(rand2[0]==0){
+            adversairePlayer21.rootNodes[0].position.z=20;
+        }
+        if(rand2[0]==1){
+            adversairePlayer21.rootNodes[0].position.z=0;
+        }
+        if(rand2[0]==2){
+            adversairePlayer21.rootNodes[0].position.z=-20;
+        }
+        var adversairePlayer22 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        adversairePlayer22.animationGroups[0].play(true);
+        adversairePlayer22.rootNodes[0].rotationQuaternion = null;
+        adversairePlayer22.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        adversairePlayer22.rootNodes[0].position.x=80;
+        adversairePlayer22.rootNodes[0].rotation.y=1.57;
+        adversairePlayer22.rootNodes[0].position.y=0;
+        if(rand2[1]==0){
+            adversairePlayer22.rootNodes[0].position.z=20;
+        }
+        if(rand2[1]==1){
+            adversairePlayer22.rootNodes[0].position.z=0;
+        }
+        if(rand2[1]==2){
+            adversairePlayer22.rootNodes[0].position.z=-20;
+        }
+        //LIGNE D'ADVERSAIRE 3
+        let rand3=getRand1to3();
+        var adversairePlayer31 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        adversairePlayer31.animationGroups[0].play(true);
+        adversairePlayer31.rootNodes[0].rotationQuaternion = null;
+        adversairePlayer31.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        adversairePlayer31.rootNodes[0].position.x=40;
+        adversairePlayer31.rootNodes[0].rotation.y=1.57;
+        adversairePlayer31.rootNodes[0].position.y=0;
+        if(rand3[0]==0){
+            adversairePlayer31.rootNodes[0].position.z=20;
+        }
+        if(rand3[0]==1){
+            adversairePlayer31.rootNodes[0].position.z=0;
+        }
+        if(rand3[0]==2){
+            adversairePlayer31.rootNodes[0].position.z=-20;
+        }
+        var adversairePlayer32 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        adversairePlayer32.animationGroups[0].play(true);
+        adversairePlayer32.rootNodes[0].rotationQuaternion = null;
+        adversairePlayer32.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        adversairePlayer32.rootNodes[0].position.x=40;
+        adversairePlayer32.rootNodes[0].rotation.y=1.57;
+        adversairePlayer32.rootNodes[0].position.y=0;
+        if(rand3[1]==0){
+            adversairePlayer32.rootNodes[0].position.z=20;
+        }
+        if(rand3[1]==1){
+            adversairePlayer32.rootNodes[0].position.z=0;
+        }
+        if(rand3[1]==2){
+            adversairePlayer32.rootNodes[0].position.z=-20;
+        }
+        //LIGNE D'ADVERSAIRE 4
+        let rand4=getRand1to3();
+        var adversairePlayer41 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        adversairePlayer41.animationGroups[0].play(true);
+        adversairePlayer41.rootNodes[0].rotationQuaternion = null;
+        adversairePlayer41.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        adversairePlayer41.rootNodes[0].position.x=0;
+        adversairePlayer41.rootNodes[0].rotation.y=1.57;
+        adversairePlayer41.rootNodes[0].position.y=0;
+        if(rand4[0]==0){
+            adversairePlayer41.rootNodes[0].position.z=20;
+        }
+        if(rand4[0]==1){
+            adversairePlayer41.rootNodes[0].position.z=0;
+        }
+        if(rand4[0]==2){
+            adversairePlayer41.rootNodes[0].position.z=-20;
+        }
+        var adversairePlayer42 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        adversairePlayer42.animationGroups[0].play(true);
+        adversairePlayer42.rootNodes[0].rotationQuaternion = null;
+        adversairePlayer42.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        adversairePlayer42.rootNodes[0].position.x=0;
+        adversairePlayer42.rootNodes[0].rotation.y=1.57;
+        adversairePlayer42.rootNodes[0].position.y=0;
+        if(rand4[1]==0){
+            adversairePlayer42.rootNodes[0].position.z=20;
+        }
+        if(rand4[1]==1){
+            adversairePlayer42.rootNodes[0].position.z=0;
+        }
+        if(rand4[1]==2){
+            adversairePlayer42.rootNodes[0].position.z=-20;
+        }
+        //LIGNE D'ADVERSAIRE 5
+        let rand5=getRand1to3(); 
+        var adversairePlayer51 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        adversairePlayer51.animationGroups[0].play(true);
+        adversairePlayer51.rootNodes[0].rotationQuaternion = null;
+        adversairePlayer51.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        adversairePlayer51.rootNodes[0].position.x=-40;
+        adversairePlayer51.rootNodes[0].rotation.y=1.57;
+        adversairePlayer51.rootNodes[0].position.y=0;
+        if(rand5[0]==0){
+            adversairePlayer51.rootNodes[0].position.z=20;
+        }
+        if(rand5[0]==1){
+            adversairePlayer51.rootNodes[0].position.z=0;
+        }
+        if(rand5[0]==2){
+            adversairePlayer51.rootNodes[0].position.z=-20;
+        }
+        var adversairePlayer52 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        adversairePlayer52.animationGroups[0].play(true);
+        adversairePlayer52.rootNodes[0].rotationQuaternion = null;
+        adversairePlayer52.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        adversairePlayer52.rootNodes[0].position.x=-40;
+        adversairePlayer52.rootNodes[0].rotation.y=1.57;
+        adversairePlayer52.rootNodes[0].position.y=0;
+        if(rand5[1]==0){
+            adversairePlayer52.rootNodes[0].position.z=20;
+        }
+        if(rand5[1]==1){
+            adversairePlayer52.rootNodes[0].position.z=0;
+        }
+        if(rand5[1]==2){
+            adversairePlayer52.rootNodes[0].position.z=-20;
+        }
+        //LIGNE D'ADVERSAIRE 6
+        let rand6=getRand1to3(); 
+        var adversairePlayer61 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        adversairePlayer61.animationGroups[0].play(true);
+        adversairePlayer61.rootNodes[0].rotationQuaternion = null;
+        adversairePlayer61.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        adversairePlayer61.rootNodes[0].position.x=-80;
+        adversairePlayer61.rootNodes[0].rotation.y=1.57;
+        adversairePlayer61.rootNodes[0].position.y=0;
+        if(rand6[0]==0){
+            adversairePlayer61.rootNodes[0].position.z=20;
+        }
+        if(rand6[0]==1){
+            adversairePlayer61.rootNodes[0].position.z=0;
+        }
+        if(rand6[0]==2){
+            adversairePlayer61.rootNodes[0].position.z=-20;
+        }
+        var adversairePlayer62 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        adversairePlayer62.animationGroups[0].play(true);
+        adversairePlayer62.rootNodes[0].rotationQuaternion = null;
+        adversairePlayer62.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        adversairePlayer62.rootNodes[0].position.x=-80;
+        adversairePlayer62.rootNodes[0].rotation.y=1.57;
+        adversairePlayer62.rootNodes[0].position.y=0;
+        if(rand6[1]==0){
+            adversairePlayer62.rootNodes[0].position.z=20;
+        }
+        if(rand6[1]==1){
+            adversairePlayer62.rootNodes[0].position.z=0;
+        }
+        if(rand6[1]==2){
+            adversairePlayer62.rootNodes[0].position.z=-20;
+        }
+        //LIGNE D'ADVERSAIRE 7
+        let rand7=getRand1to3();
+        var adversairePlayer71 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        adversairePlayer71.animationGroups[0].play(true);
+        adversairePlayer71.rootNodes[0].rotationQuaternion = null;
+        adversairePlayer71.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        adversairePlayer71.rootNodes[0].position.x=-120;
+        adversairePlayer71.rootNodes[0].rotation.y=1.57;
+        adversairePlayer71.rootNodes[0].position.y=0;
+        if(rand7[0]==0){
+            adversairePlayer71.rootNodes[0].position.z=20;
+        }
+        if(rand7[0]==1){
+            adversairePlayer71.rootNodes[0].position.z=0;
+        }
+        if(rand7[0]==2){
+            adversairePlayer71.rootNodes[0].position.z=-20;
+        }
+        var adversairePlayer72 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
+        adversairePlayer72.animationGroups[0].play(true);
+        adversairePlayer72.rootNodes[0].rotationQuaternion = null;
+        adversairePlayer72.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        adversairePlayer72.rootNodes[0].position.x=-120;
+        adversairePlayer72.rootNodes[0].rotation.y=1.57;
+        adversairePlayer72.rootNodes[0].position.y=0;
+        if(rand7[1]==0){
+            adversairePlayer72.rootNodes[0].position.z=20;
+        }
+        if(rand7[1]==1){
+            adversairePlayer72.rootNodes[0].position.z=0;
+        }
+        if(rand7[1]==2){
+            adversairePlayer72.rootNodes[0].position.z=-20;
+        }
+        var soccereGoal = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "goalPlayer.glb", scene);
+        soccereGoal.animationGroups[3].play(true);
+        soccereGoal.meshes[0].rotationQuaternion = null;
+        soccereGoal.meshes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
+        soccereGoal.meshes[0].position.x=-162;
+        soccereGoal.meshes[0].rotation.y=1.57;
+        var ball =  (await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "ball.glb", scene));
+        ball.meshes[0].position.x=120;
+        ball.meshes[0].position.z=-0.7;
+        ball.meshes[0].position.y=0.1;
+        ball.meshes[0].position.x=160;
+        ball.meshes[0].scaling= new BABYLON.Vector3(1.5,1.5,1.5);
+        interface2.style.display = "none";
         loading.classList.add("notplaying");
+        canvas.addEventListener("keydown", async function (event) {  
+            if (started==false && event.key === " "){
+                let compteur=0;
+                sifflet.play();
+                gameinterface.classList.remove("playing");
+                gameinterface.classList.add("notplaying");
+                started=true;
+                console.log("j'ai appuyé");
+                interface4.style.display = "none";
+                var depasser=false;
+                if (camera.isInFrustum(ball.meshes[0])) {
+                    console.log("La caméra voit le mesh !");
+                } else {
+                    console.log("La caméra ne voit pas le mesh.");
+                }
+                canvas.addEventListener("keydown",function(event){
+                    if (camera.isInFrustum(ball.meshes[0])&&((compteur!=1)||(compteur!=2))) { 
+                    if((started==true)){
+                        if((event.key=="q"||event.key=="s"||event.key=="d")&&(compteur==0)){
+                            var cameraMove = BABYLON.MeshBuilder.CreateBox("startBox", { size:3}, scene); cameraMove.isVisible=false; cameraMove.position.x=180; cameraMove.position.y=11; cameraMove.position.z=0;
+                            scene.onAfterRenderObservable.add(function () { 
+                                setTimeout(function (){
+                                    if(cameraMove.position.x>-100){
+                                        let vitesse=parseInt(cameraMove.position.x);
+                                        cameraMove.position.x-=(360-vitesse)*0.001*(60/fps);
+                                        camera.position.x= cameraMove.position.x;
+                                        premierGardien.animationGroups.forEach((an) => an.stop());
+                                        premierGardien.animationGroups[1].start();
+                                        
+                                    } 
+                                });
+                            });
+                            compteur+=1;
+                            if((compteur==1)&&(((event.key=="d")&&(((rand1[0]==0)||(rand1[1]==0))))||((event.key=="s")&&((rand1[0]==1)||(rand1[1]==1)))||((event.key=="q")&&((rand1[0]==2)||(rand1[1]==2))))){
+                                console.log("collision");
+                                started=false;
+                                wintext4.innerText="TU AS PERDUUUUU !!!!";
+                                menu2.classList.remove("notplaying");
+                                menu2.classList.add("playing");
+                                end4.classList.remove("notplaying");
+                                end4.classList.add("playing");
+
+                            } 
+                            
+                            
+                        }
+                        
+                        
+                        else if ((ball.meshes[0].position.z>5)&&(compteur==1)){
+                            compteur+=1;
+                            JoeurDroite1.rootNodes[0].rotation.y=-1.57;
+                            JoeurDroite1.animationGroups.forEach((an) => an.stop());
+                            JoeurDroite1.animationGroups[0].start();
+                            
+                            
+                        }
+                        else if((ball.meshes[0].position.z>-5)&&(ball.meshes[0].position.z<5)&&(compteur==1)){
+                            compteur+=1;
+                            JoeurMilieu1.rootNodes[0].rotation.y=-1.57;
+                            JoeurMilieu1.animationGroups.forEach((an) => an.stop());
+                            JoeurMilieu1.animationGroups[0].start();
+                            
+                        }
+                        else if((ball.meshes[0].position.z<-5)&&(compteur==1)){
+                            compteur+=1;
+                            JoeurGauche1.rootNodes[0].rotation.y=-1.57;
+                            JoeurGauche1.animationGroups.forEach((an) => an.stop());
+                            JoeurGauche1.animationGroups[0].start();
+                            
+                        }
+
+
+                        else if ((ball.meshes[0].position.z>5)&&(compteur==2)){
+                            compteur+=1;
+                            JoeurDroite2.rootNodes[0].rotation.y=-1.57;
+                            JoeurDroite2.animationGroups.forEach((an) => an.stop());
+                            JoeurDroite2.animationGroups[0].start();
+                            
+                            
+                        }
+                        else if((ball.meshes[0].position.z>-5)&&(ball.meshes[0].position.z<5)&&(compteur==2)){
+                            compteur+=1;
+                            JoeurMilieu2.rootNodes[0].rotation.y=-1.57;
+                            JoeurMilieu2.animationGroups.forEach((an) => an.stop());
+                            JoeurMilieu2.animationGroups[0].start();
+                            
+                        }
+                        else if((ball.meshes[0].position.z<-5)&&(compteur==2)){
+                            compteur+=1;
+                            JoeurGauche2.rootNodes[0].rotation.y=-1.57;
+                            JoeurGauche2.animationGroups.forEach((an) => an.stop());
+                            JoeurGauche2.animationGroups[0].start();
+                            
+                        }
+                        else if ((ball.meshes[0].position.z>5)&&(compteur==3)){
+                            compteur+=1;
+                            JoeurDroite3.rootNodes[0].rotation.y=-1.57;
+                            JoeurDroite3.animationGroups.forEach((an) => an.stop());
+                            JoeurDroite3.animationGroups[0].start();
+                            
+                            
+                        }
+                        else if((ball.meshes[0].position.z>-5)&&(ball.meshes[0].position.z<5)&&(compteur==3)){
+                            compteur+=1;
+                            JoeurMilieu3.rootNodes[0].rotation.y=-1.57;
+                            JoeurMilieu3.animationGroups.forEach((an) => an.stop());
+                            JoeurMilieu3.animationGroups[0].start();
+                            
+                        }
+                        else if((ball.meshes[0].position.z<-5)&&(compteur==3)){
+                            compteur+=1;
+                            JoeurGauche3.rootNodes[0].rotation.y=-1.57;
+                            JoeurGauche3.animationGroups.forEach((an) => an.stop());
+                            JoeurGauche3.animationGroups[0].start();
+                            
+                        }
+                        else if ((ball.meshes[0].position.z>5)&&(compteur==4)){
+                            compteur+=1;
+                            JoeurDroite4.rootNodes[0].rotation.y=-1.57;
+                            JoeurDroite4.animationGroups.forEach((an) => an.stop());
+                            JoeurDroite4.animationGroups[0].start();
+                            
+                            
+                        }
+                        else if((ball.meshes[0].position.z>-5)&&(ball.meshes[0].position.z<5)&&(compteur==4)){
+                            compteur+=1;
+                            JoeurMilieu4.rootNodes[0].rotation.y=-1.57;
+                            JoeurMilieu4.animationGroups.forEach((an) => an.stop());
+                            JoeurMilieu4.animationGroups[0].start();
+                            
+                        }
+                        else if((ball.meshes[0].position.z<-5)&&(compteur==4)){
+                            compteur+=1;
+                            JoeurGauche4.rootNodes[0].rotation.y=-1.57;
+                            JoeurGauche4.animationGroups.forEach((an) => an.stop());
+                            JoeurGauche4.animationGroups[0].start();
+                            
+                        }
+                        else if ((ball.meshes[0].position.z>5)&&(compteur==5)){
+                            compteur+=1;
+                            JoeurDroite5.rootNodes[0].rotation.y=-1.57;
+                            JoeurDroite5.animationGroups.forEach((an) => an.stop());
+                            JoeurDroite5.animationGroups[0].start();
+                            
+                            
+                        }
+                        else if((ball.meshes[0].position.z>-5)&&(ball.meshes[0].position.z<5)&&(compteur==5)){
+                            compteur+=1;
+                            JoeurMilieu5.rootNodes[0].rotation.y=-1.57;
+                            JoeurMilieu5.animationGroups.forEach((an) => an.stop());
+                            JoeurMilieu5.animationGroups[0].start();
+                            
+                        }
+                        else if((ball.meshes[0].position.z<-5)&&(compteur==5)){
+                            compteur+=1;
+                            JoeurGauche5.rootNodes[0].rotation.y=-1.57;
+                            JoeurGauche5.animationGroups.forEach((an) => an.stop());
+                            JoeurGauche5.animationGroups[0].start();
+                            
+                        }
+                        else if ((ball.meshes[0].position.z>5)&&(compteur==6)){
+                            compteur+=1;
+                            JoeurDroite6.rootNodes[0].rotation.y=-1.57;
+                            JoeurDroite6.animationGroups.forEach((an) => an.stop());
+                            JoeurDroite6.animationGroups[0].start();
+                            
+                            
+                        }
+                        else if((ball.meshes[0].position.z>-5)&&(ball.meshes[0].position.z<5)&&(compteur==6)){
+                            compteur+=1;
+                            JoeurMilieu6.rootNodes[0].rotation.y=-1.57;
+                            JoeurMilieu6.animationGroups.forEach((an) => an.stop());
+                            JoeurMilieu6.animationGroups[0].start();
+                            
+                        }
+                        else if((ball.meshes[0].position.z<-5)&&(compteur==6)){
+                            compteur+=1;
+                            JoeurGauche6.rootNodes[0].rotation.y=-1.57;
+                            JoeurGauche6.animationGroups.forEach((an) => an.stop());
+                            JoeurGauche6.animationGroups[0].start();
+
+                        }
+                        
+                        else if((compteur==7)){
+                            compteur+=1;
+                            if(ball.meshes[0].position.z>5){
+                                JoeurDroite7.rootNodes[0].rotation.y=-1.57;
+                                JoeurDroite7.animationGroups.forEach((an) => an.stop());
+                                JoeurDroite7.animationGroups[0].start();
+                            }
+                            if((ball.meshes[0].position.z>-5)&&(ball.meshes[0].position.z<5)){
+                                JoeurMilieu7.rootNodes[0].rotation.y=-1.57;
+                                JoeurMilieu7.animationGroups.forEach((an) => an.stop());
+                                JoeurMilieu7.animationGroups[0].start();
+                            }
+                            if(ball.meshes[0].position.z<-5){
+                                JoeurGauche7.rootNodes[0].rotation.y=-1.57;
+                                JoeurGauche7.animationGroups.forEach((an) => an.stop());
+                                JoeurGauche7.animationGroups[0].start();
+
+                            }
+                            setTimeout(function () {
+                                soccereGoal.animationGroups.forEach((an) => an.stop());
+                                let annim=getRandomArbitrary(1,2);
+                                console.log(annim);
+                                soccereGoal.animationGroups[annim].start();
+                            },1000);
+                            setTimeout(function () { 
+                                started=false;
+                                sifflet.play();
+                                console.log("tu as gagne");
+                                menu2.classList.remove("notplaying");
+                                menu2.classList.add("playing");
+                                end4.classList.remove("notplaying");
+                                end4.classList.add("playing"); 
+                            },3000);
+                            
+                        }
+
+                        ball.meshes[0].checkCollisions = true;
+                        adversairePlayer12.rootNodes[0].checkCollisions = true;
+                        adversairePlayer11.rootNodes[0].checkCollisions = true;
+                        let a;
+                        if(compteur==1||compteur==7){
+                            a=ball.meshes[0].position.x-46;
+                        }
+                        else{
+                            a=ball.meshes[0].position.x-39;
+                        }
+                        let b= ball.meshes[0].position.z;
+                        
+                        if((compteur==1)&&(((event.key=="d")&&((rand1[0]==0)||(rand1[1]==0)))||((event.key=="s")&&((rand1[0]==1)||(rand1[1]==1)))||((event.key=="q")&&((rand1[0]==2)||(rand1[1]==2))))){
+                            console.log("collision ligne 1");
+                            started=false;
+                            sifflet.play();
+                            wintext4.innerText="TU AS PERDUUUUU !!!!";
+                            menu2.classList.remove("notplaying");
+                            menu2.classList.add("playing");
+                            end4.classList.remove("notplaying");
+                            end4.classList.add("playing");
+                        }
+                        else if((compteur==2)&&(((event.key=="d")&&((rand2[0]==0)||(rand2[1]==0)))||((event.key=="s")&&((rand2[0]==1)||(rand2[1]==1)))||((event.key=="q")&&((rand2[0]==2)||(rand2[1]==2))))){
+                            console.log("collision ligne 2");
+                            started=false; 
+                            sifflet.play();
+                            wintext4.innerText="TU AS PERDUUUUU !!!!";
+                            menu2.classList.remove("notplaying");
+                            menu2.classList.add("playing");
+                            end4.classList.remove("notplaying");
+                            end4.classList.add("playing");
+                        }
+                        else if((compteur==3)&&(((event.key=="d")&&((rand3[0]==0)||(rand3[1]==0)))||((event.key=="s")&&((rand3[0]==1)||(rand3[1]==1)))||((event.key=="q")&&((rand3[0]==2)||(rand3[1]==2))))){
+                            console.log("collision ligne 3");
+                            started=false;
+                            sifflet.play();
+                            wintext4.innerText="TU AS PERDUUUUU !!!!";
+                            menu2.classList.remove("notplaying");
+                            menu2.classList.add("playing");
+                            end4.classList.remove("notplaying");                                
+                            end4.classList.add("playing"); 
+                        }
+                        else if((compteur==4)&&(((event.key=="d")&&((rand4[0]==0)||(rand4[1]==0)))||((event.key=="s")&&((rand4[0]==1)||(rand4[1]==1)))||((event.key=="q")&&((rand4[0]==2)||(rand4[1]==2))))){
+                            console.log("collision ligne 4");
+                            started=false; 
+                            sifflet.play();
+                            wintext4.innerText="TU AS PERDUUUUU !!!!";
+                            menu2.classList.remove("notplaying");
+                            menu2.classList.add("playing");
+                            end4.classList.remove("notplaying");
+                            end4.classList.add("playing");
+                        }
+                        else if((compteur==5)&&(((event.key=="d")&&((rand5[0]==0)||(rand5[1]==0)))||((event.key=="s")&&((rand5[0]==1)||(rand5[1]==1)))||((event.key=="q")&&((rand5[0]==2)||(rand5[1]==2))))){
+                            console.log("collision ligne 5");
+                            started=false; 
+                            sifflet.play();
+                            wintext4.innerText="TU AS PERDUUUUU !!!!";
+                            menu2.classList.remove("notplaying");
+                            menu2.classList.add("playing");
+                            end4.classList.remove("notplaying");
+                            end4.classList.add("playing");
+                        }
+                        else if((compteur==6)&&(((event.key=="d")&&((rand6[0]==0)||(rand6[1]==0)))||((event.key=="s")&&((rand6[0]==1)||(rand6[1]==1)))||((event.key=="q")&&((rand6[0]==2)||(rand6[1]==2))))){
+                            console.log("collision ligne 6");
+                            started=false; 
+                            sifflet.play();
+                            wintext4.innerText="TU AS PERDUUUUU !!!!";
+                            menu2.classList.remove("notplaying");
+                            menu2.classList.add("playing");
+                            end4.classList.remove("notplaying");
+                            end4.classList.add("playing");
+                        }
+                        else if((compteur==7)&&(((event.key=="d")&&((rand7[0]==0)||(rand7[1]==0)))||((event.key=="s")&&((rand7[0]==1)||(rand7[1]==1)))||((event.key=="q")&&((rand7[0]==2)||(rand7[1]==2))))){
+                            console.log("collision ligne 7");
+                            started=false;
+                            sifflet.play();
+                            wintext4.innerText="TU AS PERDUUUUU !!!!";
+                            menu2.classList.remove("notplaying");
+                            menu2.classList.add("playing");
+                            end4.classList.remove("notplaying");
+                            end4.classList.add("playing");
+
+                        }
+
+                        scene.onAfterRenderObservable.add(function () {  
+                            if((camera.position.x>ball.meshes[0].position.x)&&(depasser==false)){
+                                setTimeout(function () { 
+                                    if(ball.meshes[0].position.x>-165){
+                                        if(event.key=="d"){
+                                            if(ball.meshes[0].position.x>a){
+                                                ball.meshes[0].position.x-=(60/fps);
+                                                if(b<-10){
+                                                    ball.meshes[0].position.z+=(60/fps);
+                                                }
+                                                else if((b>-10)&&(b<10)){
+                                                    ball.meshes[0].position.z+=0.46*(60/fps);
+                                                }
+                                            }
+                                        
+    
+                                
+                                        } 
+                                        if(event.key=="s"){
+                                            if(ball.meshes[0].position.x>a){;
+                                                ball.meshes[0].position.x-=(60/fps);
+                                                if(b<-10){
+                                                    ball.meshes[0].position.z+=0.46*(60/fps);
+                                                }
+                                                else if(b>10){
+                                                    ball.meshes[0].position.z-=0.46*(60/fps);
+                                                }
+                                            }
+                                        
+                                
+                                        } 
+                                        if(event.key=="q"){
+                                            if(ball.meshes[0].position.x>a){
+                                                ball.meshes[0].position.x-=(60/fps);
+                                                if(b>10){
+                                                    ball.meshes[0].position.z-=(60/fps);
+                                                }
+                                                else if((b>-10)&&(b<10)){
+                                                    ball.meshes[0].position.z-=0.46*(60/fps);
+                                                } 
+                                            }
+                                        
+                                        } 
+                                    }
+                                },1000);  
+                                  
+                            }
+                            else{
+                                depasser=true;
+                            }
+                        });  
+                    }
+
+                    }
+                    
+                    else{
+                        console.log("la cam ne vvoit plus le mesh");
+                        started=false;
+                        sifflet.play();
+                        wintext4.innerText="TU AS ETE TROP LENT !!!!";
+                        menu2.classList.remove("notplaying");
+                        menu2.classList.add("playing");
+                        end4.classList.remove("notplaying");                                
+                        end4.classList.add("playing"); 
+
+                    }
+                })
+            }
+        });
+  
     }
     return scene;
 }
@@ -2875,6 +3852,28 @@ function CreateGrassGroundMaterial(scene) {
     return grassGrdMat;
 }
 
+function createVectorFromRotation(yaw, pitch, roll) {
+    var x = Math.sin(yaw) * Math.cos(pitch);
+    var y = Math.sin(pitch);
+    var z = Math.cos(yaw) * Math.cos(pitch);
+    var coord=[x,y,z];
+    return coord;
+
+}
+
+function getRandomArbitrary(min, max) {
+    return parseInt(Math.random() * (max - min) + min);
+  }
+function getRand1to3(){
+    
+    let un = getRandomArbitrary(0,3);
+    let de = getRandomArbitrary(0,3);
+    while(un==de){
+        de = getRandomArbitrary(0,3);
+    }
+    var rand=[un,de];
+    return rand;
+}
 
 
 
