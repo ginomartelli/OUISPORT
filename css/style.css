@@ -26,9 +26,9 @@
 
 }
 
-#menu, #menu1 {
+#menu, #menu1, #menu4, #sound{
   font-family: Impact, 'Arial Narrow Bold', sans-serif;
-  font-size:3vh;
+  font-size:3.5vh;
   top:0;
   margin: 0;
   padding: 0.2vh;
@@ -40,7 +40,12 @@
   background-color: lavender;
 }
 
-#menu:hover, #menu1:hover, #menu3:hover{
+#sound {
+  left: 9vh;
+  font-size:3.25vh;
+}
+
+#menu:hover, #menu1:hover, #menu3:hover, #menu4:hover, #sound:hover {
   border: 0.5vh solid lavender;
   color: lavender;
   background-color: black;
@@ -74,6 +79,24 @@
   background-color: rgba(0, 0, 0, 0.427);
 }
 
+#menu4 {
+  border-radius: 20px;
+  grid-row: 2;
+  font-size: 40px;
+  position:relative;
+  width: 100%;
+  font-family: Impact, 'Arial Narrow Bold', sans-serif;
+  border: 0px solid black;
+  color:black;
+  background-color: transparent;
+}
+
+#menu4:hover {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.427);
+}
+
+
 #backinterface, #interface {
   width: 90%;
   height: 90%;
@@ -99,6 +122,26 @@
   margin:0;
   text-align:center;
   animation: rotat 2s 0s infinite;
+}
+
+#tip {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -100%);  
+  bottom: 0%;
+  font-size: 2vh;
+  width: 80%;
+  text-align: center;
+  font-weight: 900;
+  margin: 0;
+  padding: 0;
+}
+
+#tip > p {
+  color: rgba(0, 0, 0, 0.526);
+  padding:0;
+  margin:0;
+  text-align:center;
 }
 
 @keyframes rotat {
@@ -436,7 +479,7 @@ span.red:hover{
 
 #end1 {
   font-size: 2.25vh;
-  width: 50%;
+  width: 100vh;
   height: 28%;
   display: grid;
   margin: auto;
@@ -452,9 +495,9 @@ span.red:hover{
   background-color:lavender;
 }
 
-#end2 {
+#end2, #end4 {
   font-size: 3vh;
-  width: 50%;
+  width: 100vh;
   height: 20%;
   display: grid;
   margin: auto;
@@ -472,7 +515,7 @@ span.red:hover{
 }
 
 #end3 {
-  width: 50%;
+  width: 100vh;
   height: 10%;
   margin: auto;
   border-radius: 2vh; 
@@ -506,6 +549,27 @@ span.red:hover{
 #wintext2{
   margin: 0;
   margin-top: 2vh;
+}
+
+#wintext4 {
+  border-radius: 20px;
+  border: 4px solid black;
+  background:
+  radial-gradient(
+    circle at 50% 0,
+    rgb(255 0 0 / 50%),
+    rgb(255 0 0 / 0%) 70.71%
+  ),
+  radial-gradient(
+    circle at 6.7% 75%,
+    rgb(0 0 255 / 50%),
+    rgb(0 0 255 / 0%) 70.71%
+  ),
+  radial-gradient(
+      circle at 93.3% 75%,
+      rgb(0 255 0 / 50%),
+      rgb(0 255 0 / 0%) 70.71%
+    ) beige;
 }
 
 #interface1 {
@@ -618,7 +682,7 @@ span.red:hover{
   margin: 0;
 }
 
-#interface3 {
+#interface3, #interface4{
   width: 70%;
   height: 15%;
   margin: auto;
@@ -643,6 +707,15 @@ span.red:hover{
   color: cyan;
   top: 50%;
   font-size: 3vh ;
+}
+
+#crs1 {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: rgb(0, 217, 255);
+  top: 50%;
 }
 
 #timerj2 {
@@ -671,7 +744,7 @@ span.red:hover{
 
 #gameinterface > * >p{
   font-size: 1.25vw;
-  margin:2vw ;
+  margin:1vw ;
 }
 
 h2{
@@ -798,30 +871,14 @@ h2{
   z-index: 2;
 }
 
-/* #title {
+#title {
   text-align: center;
   margin-top: -4%;
 }
 
 #title > img {
   width: 40%;
-} */
-
-#title {
-  text-align: center;
-  font-size: 12vh;
-  font-weight: 900;
-  padding:0;
 }
-
-#title > p {
-  padding:0;
-  margin-top: -5vh;
-  margin-bottom: 3vh;
-  animation: rotat 2s -0.5s infinite;
-}
-
-
 
 #interfaceInfo, #interfaceParam {
   width: 70%;
@@ -867,7 +924,7 @@ input[type=range] {
 }
 
 .blue:hover {
-  background-image: url("../images/haies.gif");
+  background-image: url("./images/haies.gif");
   background-size: cover;
   background-position: center;
   border: 0.5vw solid blue;
@@ -875,7 +932,7 @@ input[type=range] {
 }
 
 .black:hover {
-  background-image: url("../images/javelot.gif");
+  background-image: url("./images/javelot.gif");
   background-size: cover;
   background-position: center;
   border: 0.5vw solid black;
@@ -883,7 +940,7 @@ input[type=range] {
 }
 
 .red:hover {
-  background-image: url("../images/arc.gif");
+  background-image: url("./images/arc.gif");
   background-size: cover;
   background-position: center;
   border: 0.5vw solid red;
@@ -891,7 +948,7 @@ input[type=range] {
 }
 
 .yellow:hover {
-  background-image: url("../images/options.gif");
+  background-image: url("./images/foot.gif");
   background-size: cover;
   background-position: center;
   border: 0.5vw solid yellow;
@@ -899,7 +956,7 @@ input[type=range] {
 }
 
 .green:hover {
-  background-image: url("../images/options.gif");
+  background-image: url("./images/options.gif");
   background-size: cover;
   background-position: center;
   border: 0.5vw solid green;
@@ -1289,4 +1346,6 @@ input[type=range] {
 .notplaying {
   display : none !important;
 }
+
+
 
