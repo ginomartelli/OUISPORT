@@ -2492,6 +2492,10 @@ async function createScene(engine) {
         var vect1 = new BABYLON.Vector3(0,0,0);
         scene.onBeforeRenderObservable.add(function () {
             if(!pause&&!end){
+                if(!launch){
+                    fleche.rotation.y=camera.rotation.y-1.57;
+                    fleche.rotation.z=-camera.rotation.x-1.57;
+                }
                 if(tour==1){
                     timej1+=1/fps;
                 }
