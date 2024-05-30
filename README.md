@@ -3,6 +3,7 @@
 - ### [Jouer au jeu](https://ginosprod.github.io/OUISPORT/)
 - ### [Code source](https://github.com/Ginosprod/OUISPORT)
 - ### [Vidéos de gameplay et de présentation](https://github.com/Ginosprod/OUISPORT)
+- ### [Trailer](https://youtu.be/jn4E3buxH28)
 - ### [Documentation](https://github.com/gamesonweb/gow-olympic-edition-ouisport/blob/main/Documentation.md)
 
 ## **SOMMAIRE**
@@ -29,6 +30,8 @@
 
 > [!CAUTION]
 > Le jeu ne fonctionne pas sur le navigateur Opera GX.
+>
+> La foule utilise les ressources graphiques de votre appareil. Réduisez la foule dans les paramètres si vous avez des bugs.
 
 > [!TIP]
 > Dans **OUISPORT**, quatre joueurs peuvent s'affronter dans un tournoi où les deux premiers niveaux servent d'étapes éliminatoires. Le niveau 3 correspond à la finale entre les deux derniers joueurs.
@@ -85,7 +88,7 @@ Pendant les vacances de Pâques, Amy et Alexandre ont récupéré la dernière v
 
 Durant le mois de mai, Alexandre s'est occupé de finir le niveau 4 sur une version à part. Gino a développé le niveau 3, créé un nouveau style CSS, une nouvelle version de la foule et une version de **OUISPORT** qui fonctionne sur GitHub Pages afin de mettre le projet en ligne. Il a également ajouté la musique de fond, les effets sonores, le décompte des trois premiers niveaux, les chronomètres sur les niveaux 1 et 3, les caméras décoratives et les animations CSS (du menu et de l'écran de chargement).
 
-Fin mai, la version final de OUISPORT est en ligne avec les 4 niveaux terminés et une nouvelle foule qui ne diminue pas la fluidité du jeu (fps).
+Fin mai, la version final de OUISPORT est en ligne avec les 4 niveaux terminés, une nouvelle foule qui ne diminue pas la fluidité du jeu (fps) et des astuces dans le menu.
 
 ### Le choix des niveaux
 Le choix des disciplines pour chaque niveau s'est fait en fonction des mécaniques de jeu. Nous voulions éviter d'utiliser deux fois la même mécanique. Ainsi, il faut avoir du rythme pour le niveau 1, des réflexes pour le niveau 2, de la précision pour le niveau 3, et de la rapidité de décision pour le niveau 4.
