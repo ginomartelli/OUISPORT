@@ -357,7 +357,6 @@ async function createScene(engine) {
                     }
                 } else if(jeut==1&&k==0){
                     var barricade = Lbarricade.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-                    console.log(barricades);
                     barricade = barricade.rootNodes[0];
                     barricade.position.z=3.8-2.6*(j-1);
                     barricade.position.x=positions.at(i);
