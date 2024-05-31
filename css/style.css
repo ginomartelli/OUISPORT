@@ -79,24 +79,6 @@
   background-color: rgba(0, 0, 0, 0.427);
 }
 
-#menu4 {
-  border-radius: 20px;
-  grid-row: 2;
-  font-size: 40px;
-  position:relative;
-  width: 100%;
-  font-family: Impact, 'Arial Narrow Bold', sans-serif;
-  border: 0px solid black;
-  color:black;
-  background-color: transparent;
-}
-
-#menu4:hover {
-  color: white;
-  background-color: rgba(0, 0, 0, 0.427);
-}
-
-
 #backinterface, #interface {
   width: 90%;
   height: 90%;
