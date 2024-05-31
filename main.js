@@ -8,7 +8,6 @@ const gameinterface = document.getElementById("gameinterface");
 const interface1 = document.getElementById("interface1");
 const interface2 = document.getElementById("interface2");
 const interface3 = document.getElementById("interface3");
-const interface4 = document.getElementById("interface4");
 const interfaceParam = document.getElementById("interfaceInfo");
 const loading = document.getElementById("loading");
 const end1 = document.getElementById("end1");
@@ -30,7 +29,6 @@ soundactive.classList.add("notplaying");
 interface1.classList.add("notplaying");
 interface2.classList.add("notplaying");
 interface3.classList.add("notplaying");
-interface4.classList.add("notplaying");
 interfaceParam.classList.add("notplaying");
 const info = document.getElementById("INFORMATIONS")
 const crowds = document.getElementById("crowds");
@@ -3381,14 +3379,7 @@ async function createScene(engine) {
                 gameinterface.classList.remove("playing");
                 gameinterface.classList.add("notplaying");
                 started=true;
-                console.log("j'ai appuyé");
-                interface4.style.display = "none";
                 var depasser=false;
-                if (camera.isInFrustum(ball.meshes[0])) {
-                    console.log("La caméra voit le mesh !");
-                } else {
-                    console.log("La caméra ne voit pas le mesh.");
-                }
                 window.addEventListener("keydown",function(event){
                     if (camera.isInFrustum(ball.meshes[0])&&((compteur!=1)||(compteur!=2))) { 
                     if((started==true)){
