@@ -90,9 +90,7 @@ var finish=false;
 var activated=false;
 var jeut=1;
 
-var sd = localStorage.getItem("sound");
-console.log(sd)
-if(sd==null){
+if(localStorage.getItem("sound")==null){
             localStorage.setItem("sound", true);
 }
 
@@ -246,6 +244,12 @@ async function createScene(engine) {
     //gradin
     var foule = localStorage.getItem("foule");
     if(foule==null) {foule=25;}
+    if(localStorage.getItem("sound")==true){
+                background.setVolume(0.05*localStorage.getItem("vol"));
+    } else {
+                background.setVolume(0);
+    }
+
     var path = [];
     var bottomLine = BABYLON.Curve3.CreateQuadraticBezier(
     new BABYLON.Vector3(0, 3, -10),
