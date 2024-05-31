@@ -3464,7 +3464,7 @@ async function createScene(engine) {
                             if((compteur==1)&&(((event.key=="d")&&(((rand1[0]==0)||(rand1[1]==0))))||((event.key=="s")&&((rand1[0]==1)||(rand1[1]==1)))||((event.key=="q")&&((rand1[0]==2)||(rand1[1]==2))))){
                                 console.log("collision");
                                 started=false;
-                                wintext4.innerText="TU AS PERDUUUUU !!!!";
+                                wintext4.innerText="MAUVAISE PASSE !";
                                 menu2.classList.remove("notplaying");
                                 menu2.classList.add("playing");
                                 end4.classList.remove("notplaying");
@@ -3480,7 +3480,7 @@ async function createScene(engine) {
                             compteur+=1;
                             JoeurDroite1.rootNodes[0].rotation.y=-1.57;
                             JoeurDroite1.animationGroups.forEach((an) => an.stop());
-                            JoeurDroite1.animationGroups[0].start();
+                            JoeurDroite1.animationGroups[36].start();
                             
                             
                         }
@@ -3488,14 +3488,14 @@ async function createScene(engine) {
                             compteur+=1;
                             JoeurMilieu1.rootNodes[0].rotation.y=-1.57;
                             JoeurMilieu1.animationGroups.forEach((an) => an.stop());
-                            JoeurMilieu1.animationGroups[0].start();
+                            JoeurMilieu1.animationGroups[36].start();
                             
                         }
                         else if((ball.meshes[0].position.z<-5)&&(compteur==1)){
                             compteur+=1;
                             JoeurGauche1.rootNodes[0].rotation.y=-1.57;
                             JoeurGauche1.animationGroups.forEach((an) => an.stop());
-                            JoeurGauche1.animationGroups[0].start();
+                            JoeurGauche1.animationGroups[36].start();
                             
                         }
 
@@ -3504,7 +3504,7 @@ async function createScene(engine) {
                             compteur+=1;
                             JoeurDroite2.rootNodes[0].rotation.y=-1.57;
                             JoeurDroite2.animationGroups.forEach((an) => an.stop());
-                            JoeurDroite2.animationGroups[0].start();
+                            JoeurDroite2.animationGroups[36].start();
                             
                             
                         }
@@ -3512,21 +3512,21 @@ async function createScene(engine) {
                             compteur+=1;
                             JoeurMilieu2.rootNodes[0].rotation.y=-1.57;
                             JoeurMilieu2.animationGroups.forEach((an) => an.stop());
-                            JoeurMilieu2.animationGroups[0].start();
+                            JoeurMilieu2.animationGroups[36].start();
                             
                         }
                         else if((ball.meshes[0].position.z<-5)&&(compteur==2)){
                             compteur+=1;
                             JoeurGauche2.rootNodes[0].rotation.y=-1.57;
                             JoeurGauche2.animationGroups.forEach((an) => an.stop());
-                            JoeurGauche2.animationGroups[0].start();
+                            JoeurGauche2.animationGroups[36].start();
                             
                         }
                         else if ((ball.meshes[0].position.z>5)&&(compteur==3)){
                             compteur+=1;
                             JoeurDroite3.rootNodes[0].rotation.y=-1.57;
                             JoeurDroite3.animationGroups.forEach((an) => an.stop());
-                            JoeurDroite3.animationGroups[0].start();
+                            JoeurDroite3.animationGroups[36].start();
                             
                             
                         }
@@ -3534,21 +3534,21 @@ async function createScene(engine) {
                             compteur+=1;
                             JoeurMilieu3.rootNodes[0].rotation.y=-1.57;
                             JoeurMilieu3.animationGroups.forEach((an) => an.stop());
-                            JoeurMilieu3.animationGroups[0].start();
+                            JoeurMilieu3.animationGroups[36].start();
                             
                         }
                         else if((ball.meshes[0].position.z<-5)&&(compteur==3)){
                             compteur+=1;
                             JoeurGauche3.rootNodes[0].rotation.y=-1.57;
                             JoeurGauche3.animationGroups.forEach((an) => an.stop());
-                            JoeurGauche3.animationGroups[0].start();
+                            JoeurGauche3.animationGroups[36].start();
                             
                         }
                         else if ((ball.meshes[0].position.z>5)&&(compteur==4)){
                             compteur+=1;
                             JoeurDroite4.rootNodes[0].rotation.y=-1.57;
                             JoeurDroite4.animationGroups.forEach((an) => an.stop());
-                            JoeurDroite4.animationGroups[0].start();
+                            JoeurDroite4.animationGroups[36].start();
                             
                             
                         }
@@ -3556,21 +3556,21 @@ async function createScene(engine) {
                             compteur+=1;
                             JoeurMilieu4.rootNodes[0].rotation.y=-1.57;
                             JoeurMilieu4.animationGroups.forEach((an) => an.stop());
-                            JoeurMilieu4.animationGroups[0].start();
+                            JoeurMilieu4.animationGroups[36].start();
                             
                         }
                         else if((ball.meshes[0].position.z<-5)&&(compteur==4)){
                             compteur+=1;
                             JoeurGauche4.rootNodes[0].rotation.y=-1.57;
                             JoeurGauche4.animationGroups.forEach((an) => an.stop());
-                            JoeurGauche4.animationGroups[0].start();
+                            JoeurGauche4.animationGroups[36].start();
                             
                         }
                         else if ((ball.meshes[0].position.z>5)&&(compteur==5)){
                             compteur+=1;
                             JoeurDroite5.rootNodes[0].rotation.y=-1.57;
                             JoeurDroite5.animationGroups.forEach((an) => an.stop());
-                            JoeurDroite5.animationGroups[0].start();
+                            JoeurDroite5.animationGroups[36].start();
                             
                             
                         }
@@ -3578,21 +3578,21 @@ async function createScene(engine) {
                             compteur+=1;
                             JoeurMilieu5.rootNodes[0].rotation.y=-1.57;
                             JoeurMilieu5.animationGroups.forEach((an) => an.stop());
-                            JoeurMilieu5.animationGroups[0].start();
+                            JoeurMilieu5.animationGroups[36].start();
                             
                         }
                         else if((ball.meshes[0].position.z<-5)&&(compteur==5)){
                             compteur+=1;
                             JoeurGauche5.rootNodes[0].rotation.y=-1.57;
                             JoeurGauche5.animationGroups.forEach((an) => an.stop());
-                            JoeurGauche5.animationGroups[0].start();
+                            JoeurGauche5.animationGroups[36].start();
                             
                         }
                         else if ((ball.meshes[0].position.z>5)&&(compteur==6)){
                             compteur+=1;
                             JoeurDroite6.rootNodes[0].rotation.y=-1.57;
                             JoeurDroite6.animationGroups.forEach((an) => an.stop());
-                            JoeurDroite6.animationGroups[0].start();
+                            JoeurDroite6.animationGroups[36].start();
                             
                             
                         }
@@ -3600,14 +3600,14 @@ async function createScene(engine) {
                             compteur+=1;
                             JoeurMilieu6.rootNodes[0].rotation.y=-1.57;
                             JoeurMilieu6.animationGroups.forEach((an) => an.stop());
-                            JoeurMilieu6.animationGroups[0].start();
+                            JoeurMilieu6.animationGroups[36].start();
                             
                         }
                         else if((ball.meshes[0].position.z<-5)&&(compteur==6)){
                             compteur+=1;
                             JoeurGauche6.rootNodes[0].rotation.y=-1.57;
                             JoeurGauche6.animationGroups.forEach((an) => an.stop());
-                            JoeurGauche6.animationGroups[0].start();
+                            JoeurGauche6.animationGroups[36].start();
 
                         }
                         
@@ -3616,23 +3616,22 @@ async function createScene(engine) {
                             if(ball.meshes[0].position.z>5){
                                 JoeurDroite7.rootNodes[0].rotation.y=-1.57;
                                 JoeurDroite7.animationGroups.forEach((an) => an.stop());
-                                JoeurDroite7.animationGroups[0].start();
+                                JoeurDroite7.animationGroups[36].start();
                             }
                             if((ball.meshes[0].position.z>-5)&&(ball.meshes[0].position.z<5)){
                                 JoeurMilieu7.rootNodes[0].rotation.y=-1.57;
                                 JoeurMilieu7.animationGroups.forEach((an) => an.stop());
-                                JoeurMilieu7.animationGroups[0].start();
+                                JoeurMilieu7.animationGroups[36].start();
                             }
                             if(ball.meshes[0].position.z<-5){
                                 JoeurGauche7.rootNodes[0].rotation.y=-1.57;
                                 JoeurGauche7.animationGroups.forEach((an) => an.stop());
-                                JoeurGauche7.animationGroups[0].start();
+                                JoeurGauche7.animationGroups[36].start();
 
                             }
                             setTimeout(function () {
                                 soccereGoal.animationGroups.forEach((an) => an.stop());
                                 let annim=getRandomArbitrary(1,2);
-                                console.log(annim);
                                 soccereGoal.animationGroups[annim].start();
                             },1000);
                             setTimeout(function () { 
