@@ -3663,7 +3663,7 @@ async function createScene(engine) {
                             a=45;  //distance goal - ball 1
                         }
                         else if(compteur==7){
-                            a=40;  //distance joueur - ball 7
+                            a=35;  //distance joueur - ball 7
                         }
                         else{
                             a=40;  //distance joueur - ball
