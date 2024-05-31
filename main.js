@@ -248,6 +248,9 @@ async function createScene(engine) {
     if(localStorage.getItem("sound")=="false"){
         background.setVolume(0);
     }
+    if(jeut==3){
+        foule=foule/3;
+    }        
 
     var path = [];
     var bottomLine = BABYLON.Curve3.CreateQuadraticBezier(
