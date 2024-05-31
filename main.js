@@ -3640,7 +3640,10 @@ async function createScene(engine) {
                             setTimeout(function () { 
                                 started=false;
                                 sifflet.play();
-                                console.log("tu as gagne");
+                                if(localStorage.getItem("sound")=="true"){
+                                    background.setVolume(0.3*vol);
+                                }
+                                clap1.play();
                                 menu2.classList.remove("notplaying");
                                 menu2.classList.add("playing");
                                 end4.classList.remove("notplaying");
