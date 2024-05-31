@@ -3650,13 +3650,17 @@ async function createScene(engine) {
                         adversairePlayer12.rootNodes[0].checkCollisions = true;
                         adversairePlayer11.rootNodes[0].checkCollisions = true;
                         let a;
-                        if(compteur==1||compteur==7){
-                            a=ball.meshes[0].position.x-46;
+                        if(compteur==1){
+                            a=45;  //distance goal - ball 1
+                        }
+                        else if(compteur==7){
+                            a=40;  //distance joueur - ball 7
                         }
                         else{
-                            a=ball.meshes[0].position.x-39;
+                            a=40;  //distance joueur - ball
                         }
-                        let b= ball.meshes[0].position.z;
+                        let b= ball.meshes[0].position.z;  //position gauche-20 mid0 droite20
+                        let c= ball.meshes[0].position.x; //position ball
                         
                         if((compteur==1)&&(((event.key=="d")&&((rand1[0]==0)||(rand1[1]==0)))||((event.key=="s")&&((rand1[0]==1)||(rand1[1]==1)))||((event.key=="q")&&((rand1[0]==2)||(rand1[1]==2))))){
                             console.log("collision ligne 1");
@@ -3733,46 +3737,17 @@ async function createScene(engine) {
                         scene.onAfterRenderObservable.add(function () {  
                             if((camera.position.x>ball.meshes[0].position.x)&&(depasser==false)){
                                 setTimeout(function () { 
-                                    if(ball.meshes[0].position.x>-165){
-                                        if(event.key=="d"){
-                                            if(ball.meshes[0].position.x>a){
-                                                ball.meshes[0].position.x-=(60/fps);
-                                                if(b<-10){
-                                                    ball.meshes[0].position.z+=(60/fps);
-                                                }
-                                                else if((b>-10)&&(b<10)){
-                                                    ball.meshes[0].position.z+=0.46*(60/fps);
-                                                }
-                                            }
-                                        
-    
-                                
-                                        } 
-                                        if(event.key=="s"){
-                                            if(ball.meshes[0].position.x>a){;
-                                                ball.meshes[0].position.x-=(60/fps);
-                                                if(b<-10){
-                                                    ball.meshes[0].position.z+=0.46*(60/fps);
-                                                }
-                                                else if(b>10){
-                                                    ball.meshes[0].position.z-=0.46*(60/fps);
-                                                }
-                                            }
-                                        
-                                
-                                        } 
-                                        if(event.key=="q"){
-                                            if(ball.meshes[0].position.x>a){
-                                                ball.meshes[0].position.x-=(60/fps);
-                                                if(b>10){
-                                                    ball.meshes[0].position.z-=(60/fps);
-                                                }
-                                                else if((b>-10)&&(b<10)){
-                                                    ball.meshes[0].position.z-=0.46*(60/fps);
-                                                } 
-                                            }
-                                        
-                                        } 
+                                    if(ball.meshes[0].position.x>c-a){
+                                        ball.meshes[0].position.x-=(60/fps);
+                                        if(event.key=="d"&&b<10){
+                                            ball.meshes[0].position.z=b+((20-b)/a)*(c-ball.meshes[0].position.x);
+                                        }
+                                        if(event.key=="s"&&!(b<10&&b>-10)){
+                                            ball.meshes[0].position.z=b+((-b)/a)*(c-ball.meshes[0].position.x);
+                                        }
+                                        if(event.key=="q"&&b>-10){
+                                            ball.meshes[0].position.z=b+((-20-b)/a)*(c-ball.meshes[0].position.x);
+                                        }
                                     }
                                 },1000);  
                                   
