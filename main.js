@@ -91,7 +91,7 @@ var activated=false;
 var jeut=1;
 
 if(localStorage.getItem("sound")==null){
-            localStorage.setItem("sound", true);
+    localStorage.setItem("sound", true);
 }
 
 
