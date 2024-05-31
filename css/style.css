@@ -546,31 +546,11 @@ span.red:hover{
   margin-top: 1vh;
 }
 
-#wintext2{
+#wintext2, #wintext4{
   margin: 0;
   margin-top: 2vh;
 }
 
-#wintext4 {
-  border-radius: 20px;
-  border: 4px solid black;
-  background:
-  radial-gradient(
-    circle at 50% 0,
-    rgb(255 0 0 / 50%),
-    rgb(255 0 0 / 0%) 70.71%
-  ),
-  radial-gradient(
-    circle at 6.7% 75%,
-    rgb(0 0 255 / 50%),
-    rgb(0 0 255 / 0%) 70.71%
-  ),
-  radial-gradient(
-      circle at 93.3% 75%,
-      rgb(0 255 0 / 50%),
-      rgb(0 255 0 / 0%) 70.71%
-    ) beige;
-}
 
 #interface1 {
   width:70%;
@@ -682,7 +662,7 @@ span.red:hover{
   margin: 0;
 }
 
-#interface3, #interface4{
+#interface3{
   width: 70%;
   height: 15%;
   margin: auto;
