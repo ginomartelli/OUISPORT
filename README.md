@@ -99,6 +99,7 @@ Le choix des disciplines pour chaque niveau s'est fait en fonction des mécaniqu
 
 ### Qui sommes-nous ?
 Nous sommes trois étudiants de Polytech Nice Sophia, actuellement en deuxième année du cycle préparatoire de l'école (Peip2). Nous avons décidé de participer à ce concours afin d'appliquer nos connaissances en programmation et d'en acquérir de nouvelles. Ce projet nous a permis de découvrir de nombreux outils et technologies tels que Blender, Gimp, Mixamo, CGTrader, Davinci Resolve, mais surtout Babylon.js.
+
 [Vidéo de présentation](https://youtu.be/Dg2bNl0iQno)
 
 ### Contacts
