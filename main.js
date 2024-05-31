@@ -3389,7 +3389,7 @@ async function createScene(engine) {
                 } else {
                     console.log("La caméra ne voit pas le mesh.");
                 }
-                canvas.addEventListener("keydown",function(event){
+                window.addEventListener("keydown",function(event){
                     if (camera.isInFrustum(ball.meshes[0])&&((compteur!=1)||(compteur!=2))) { 
                     if((started==true)){
                         if((event.key.toLowerCase()=="q"||event.key.toLowerCase()=="s"||event.key.toLowerCase()=="d")&&(compteur==0)){
