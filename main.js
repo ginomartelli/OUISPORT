@@ -3392,7 +3392,7 @@ async function createScene(engine) {
                 window.addEventListener("keydown",function(event){
                     if (camera.isInFrustum(ball.meshes[0])&&((compteur!=1)||(compteur!=2))) { 
                     if((started==true)){
-                        if((event.key.toLowerCase()=="q"||event.key.toLowerCase()=="s"||event.key.toLowerCase()=="d")&&(compteur==0)){
+                        if((event.key=="q"||event.key=="s"||event.key=="d")&&(compteur==0)){
                             var cameraMove = BABYLON.MeshBuilder.CreateBox("startBox", { size:3}, scene); cameraMove.isVisible=false; cameraMove.position.x=180; cameraMove.position.y=11; cameraMove.position.z=0;
                             scene.onAfterRenderObservable.add(function () { 
                                 setTimeout(function (){
@@ -3407,7 +3407,7 @@ async function createScene(engine) {
                                 });
                             });
                             compteur+=1;
-                            if((compteur==1)&&(((event.key.toLowerCase()=="d")&&(((rand1[0]==0)||(rand1[1]==0))))||((event.key.toLowerCase()=="s")&&((rand1[0]==1)||(rand1[1]==1)))||((event.key.toLowerCase()=="q")&&((rand1[0]==2)||(rand1[1]==2))))){
+                            if((compteur==1)&&(((event.key=="d")&&(((rand1[0]==0)||(rand1[1]==0))))||((event.key=="s")&&((rand1[0]==1)||(rand1[1]==1)))||((event.key=="q")&&((rand1[0]==2)||(rand1[1]==2))))){
                                 console.log("collision");
                                 started=false;
                                 wintext4.innerText="TU AS PERDUUUUU !!!!";
@@ -3605,7 +3605,7 @@ async function createScene(engine) {
                         }
                         let b= ball.meshes[0].position.z;
                         
-                        if((compteur==1)&&(((event.key.toLowerCase()=="d")&&((rand1[0]==0)||(rand1[1]==0)))||((event.key.toLowerCase()=="s")&&((rand1[0]==1)||(rand1[1]==1)))||((event.key.toLowerCase()=="q")&&((rand1[0]==2)||(rand1[1]==2))))){
+                        if((compteur==1)&&(((event.key=="d")&&((rand1[0]==0)||(rand1[1]==0)))||((event.key=="s")&&((rand1[0]==1)||(rand1[1]==1)))||((event.key=="q")&&((rand1[0]==2)||(rand1[1]==2))))){
                             console.log("collision ligne 1");
                             started=false;
                             sifflet.play();
@@ -3615,7 +3615,7 @@ async function createScene(engine) {
                             end4.classList.remove("notplaying");
                             end4.classList.add("playing");
                         }
-                        else if((compteur==2)&&(((event.key.toLowerCase()=="d")&&((rand2[0]==0)||(rand2[1]==0)))||((event.key.toLowerCase()=="s")&&((rand2[0]==1)||(rand2[1]==1)))||((event.key.toLowerCase()=="q")&&((rand2[0]==2)||(rand2[1]==2))))){
+                        else if((compteur==2)&&(((event.key=="d")&&((rand2[0]==0)||(rand2[1]==0)))||((event.key=="s")&&((rand2[0]==1)||(rand2[1]==1)))||((event.key=="q")&&((rand2[0]==2)||(rand2[1]==2))))){
                             console.log("collision ligne 2");
                             started=false; 
                             sifflet.play();
@@ -3625,7 +3625,7 @@ async function createScene(engine) {
                             end4.classList.remove("notplaying");
                             end4.classList.add("playing");
                         }
-                        else if((compteur==3)&&(((event.key.toLowerCase()=="d")&&((rand3[0]==0)||(rand3[1]==0)))||((event.key.toLowerCase()=="s")&&((rand3[0]==1)||(rand3[1]==1)))||((event.key.toLowerCase()=="q")&&((rand3[0]==2)||(rand3[1]==2))))){
+                        else if((compteur==3)&&(((event.key=="d")&&((rand3[0]==0)||(rand3[1]==0)))||((event.key=="s")&&((rand3[0]==1)||(rand3[1]==1)))||((event.key=="q")&&((rand3[0]==2)||(rand3[1]==2))))){
                             console.log("collision ligne 3");
                             started=false;
                             sifflet.play();
@@ -3635,7 +3635,7 @@ async function createScene(engine) {
                             end4.classList.remove("notplaying");                                
                             end4.classList.add("playing"); 
                         }
-                        else if((compteur==4)&&(((event.key.toLowerCase()=="d")&&((rand4[0]==0)||(rand4[1]==0)))||((event.key.toLowerCase()=="s")&&((rand4[0]==1)||(rand4[1]==1)))||((event.key.toLowerCase()=="q")&&((rand4[0]==2)||(rand4[1]==2))))){
+                        else if((compteur==4)&&(((event.key=="d")&&((rand4[0]==0)||(rand4[1]==0)))||((event.key=="s")&&((rand4[0]==1)||(rand4[1]==1)))||((event.key=="q")&&((rand4[0]==2)||(rand4[1]==2))))){
                             console.log("collision ligne 4");
                             started=false; 
                             sifflet.play();
@@ -3645,7 +3645,7 @@ async function createScene(engine) {
                             end4.classList.remove("notplaying");
                             end4.classList.add("playing");
                         }
-                        else if((compteur==5)&&(((event.key.toLowerCase()=="d")&&((rand5[0]==0)||(rand5[1]==0)))||((event.key.toLowerCase()=="s")&&((rand5[0]==1)||(rand5[1]==1)))||((event.key.toLowerCase()=="q")&&((rand5[0]==2)||(rand5[1]==2))))){
+                        else if((compteur==5)&&(((event.key=="d")&&((rand5[0]==0)||(rand5[1]==0)))||((event.key=="s")&&((rand5[0]==1)||(rand5[1]==1)))||((event.key=="q")&&((rand5[0]==2)||(rand5[1]==2))))){
                             console.log("collision ligne 5");
                             started=false; 
                             sifflet.play();
@@ -3655,7 +3655,7 @@ async function createScene(engine) {
                             end4.classList.remove("notplaying");
                             end4.classList.add("playing");
                         }
-                        else if((compteur==6)&&(((event.key.toLowerCase()=="d")&&((rand6[0]==0)||(rand6[1]==0)))||((event.key.toLowerCase()=="s")&&((rand6[0]==1)||(rand6[1]==1)))||((event.key.toLowerCase()=="q")&&((rand6[0]==2)||(rand6[1]==2))))){
+                        else if((compteur==6)&&(((event.key=="d")&&((rand6[0]==0)||(rand6[1]==0)))||((event.key=="s")&&((rand6[0]==1)||(rand6[1]==1)))||((event.key=="q")&&((rand6[0]==2)||(rand6[1]==2))))){
                             console.log("collision ligne 6");
                             started=false; 
                             sifflet.play();
@@ -3665,7 +3665,7 @@ async function createScene(engine) {
                             end4.classList.remove("notplaying");
                             end4.classList.add("playing");
                         }
-                        else if((compteur==7)&&(((event.key.toLowerCase()=="d")&&((rand7[0]==0)||(rand7[1]==0)))||((event.key.toLowerCase()=="s")&&((rand7[0]==1)||(rand7[1]==1)))||((event.key.toLowerCase()=="q")&&((rand7[0]==2)||(rand7[1]==2))))){
+                        else if((compteur==7)&&(((event.key=="d")&&((rand7[0]==0)||(rand7[1]==0)))||((event.key=="s")&&((rand7[0]==1)||(rand7[1]==1)))||((event.key=="q")&&((rand7[0]==2)||(rand7[1]==2))))){
                             console.log("collision ligne 7");
                             started=false;
                             sifflet.play();
@@ -3681,7 +3681,7 @@ async function createScene(engine) {
                             if((camera.position.x>ball.meshes[0].position.x)&&(depasser==false)){
                                 setTimeout(function () { 
                                     if(ball.meshes[0].position.x>-165){
-                                        if(event.key.toLowerCase()=="d"){
+                                        if(event.key=="d"){
                                             if(ball.meshes[0].position.x>a){
                                                 ball.meshes[0].position.x-=(60/fps);
                                                 if(b<-10){
@@ -3695,7 +3695,7 @@ async function createScene(engine) {
     
                                 
                                         } 
-                                        if(event.key.toLowerCase()=="s"){
+                                        if(event.key=="s"){
                                             if(ball.meshes[0].position.x>a){;
                                                 ball.meshes[0].position.x-=(60/fps);
                                                 if(b<-10){
@@ -3708,7 +3708,7 @@ async function createScene(engine) {
                                         
                                 
                                         } 
-                                        if(event.key.toLowerCase()=="q"){
+                                        if(event.key=="q"){
                                             if(ball.meshes[0].position.x>a){
                                                 ball.meshes[0].position.x-=(60/fps);
                                                 if(b>10){
