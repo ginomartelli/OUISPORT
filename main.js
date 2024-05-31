@@ -90,7 +90,12 @@ var finish=false;
 var activated=false;
 var jeut=1;
 
-localStorage.setItem("sound", true);
+var sd = localStorage.getItem("sound");
+console.log(sd)
+if(sd==null){
+            localStorage.setItem("sound", true);
+}
+
 
 var background = new BABYLON.Sound("background", "sounds/background.mp3", undefined, null, { loop: true, autoplay: true, volume:0.05});
 
@@ -141,8 +146,8 @@ info.addEventListener('click', function() {
     interfaceParam.classList.remove("notplaying");
     Interface.classList.add("notplaying");
     if(localStorage.getItem("vol")==null){
-        document.getElementById('rangeValue1').innerHTML = 25;
-        volum.value = 25;
+        document.getElementById('rangeValue1').innerHTML = 1.5;
+        volum.value = 1.5;
     } else {
         document.getElementById('rangeValue1').innerHTML = localStorage.getItem("vol");
         volum.value = localStorage.getItem("vol");
