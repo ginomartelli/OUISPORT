@@ -2828,24 +2828,20 @@ async function createScene(engine) {
         var started=false;
         // CONSTRUCTIOINN TERRAIN :
         BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "soccergoal.glb", scene).then((result) => {
-            result.meshes.forEach((mesh)=>{
-                mesh.scaling = new BABYLON.Vector3(0.17, 0.13, 0.12);
-                mesh.rotationQuaternion = null;
-                mesh.rotation.y=0.84;
-                mesh.position.x=145.2;
-                mesh.position.y=0;
-                mesh.position.z=23;
-            })
+            mesh = result.meshes[0];
+            mesh.scaling = new BABYLON.Vector3(0.025, 0.022, 0.022);
+            mesh.rotationQuaternion = null;
+            mesh.position.x=164.6;
+            mesh.rotation.y=1.57;
+            mesh.position.z=7;
         });
         BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "soccergoal.glb", scene).then((result) => {
-            result.meshes.forEach((mesh)=>{
-                mesh.scaling = new BABYLON.Vector3(0.17, 0.13, 0.12);
-                mesh.rotationQuaternion = null;
-                mesh.rotation.y=-0.87;
-                mesh.position.x=-147.2;
-                mesh.position.y=0;
-                mesh.position.z=12.5;
-            })
+            mesh = result.meshes[0];
+            mesh.scaling = new BABYLON.Vector3(0.025, 0.022, 0.022);
+            mesh.rotationQuaternion = null;
+            mesh.position.x=-164.6;
+            mesh.rotation.y=-1.57;
+            mesh.position.z=-5.5;
         });
 
         const landPoints = [
