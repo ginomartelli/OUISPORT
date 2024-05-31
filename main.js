@@ -3631,8 +3631,8 @@ async function createScene(engine) {
                             }
                             setTimeout(function () {
                                 soccereGoal.animationGroups.forEach((an) => an.stop());
-                                let annim=getRandomArbitrary(1,2);
-                                soccereGoal.animationGroups[annim].start();
+                                var animm = [0,2]
+                                soccereGoal.animationGroups[animm[Math.floor(Math.random()*2)]].start();
                             },1000);
                             setTimeout(function () { 
                                 started=false;
@@ -3662,7 +3662,7 @@ async function createScene(engine) {
                             console.log("collision ligne 1");
                             started=false;
                             sifflet.play();
-                            wintext4.innerText="TU AS PERDUUUUU !!!!";
+                            wintext4.innerText="MAUVAISE PASSE !";
                             menu2.classList.remove("notplaying");
                             menu2.classList.add("playing");
                             end4.classList.remove("notplaying");
@@ -3672,7 +3672,7 @@ async function createScene(engine) {
                             console.log("collision ligne 2");
                             started=false; 
                             sifflet.play();
-                            wintext4.innerText="TU AS PERDUUUUU !!!!";
+                            wintext4.innerText="MAUVAISE PASSE !";
                             menu2.classList.remove("notplaying");
                             menu2.classList.add("playing");
                             end4.classList.remove("notplaying");
@@ -3682,7 +3682,7 @@ async function createScene(engine) {
                             console.log("collision ligne 3");
                             started=false;
                             sifflet.play();
-                            wintext4.innerText="TU AS PERDUUUUU !!!!";
+                            wintext4.innerText="MAUVAISE PASSE !";
                             menu2.classList.remove("notplaying");
                             menu2.classList.add("playing");
                             end4.classList.remove("notplaying");                                
@@ -3692,7 +3692,7 @@ async function createScene(engine) {
                             console.log("collision ligne 4");
                             started=false; 
                             sifflet.play();
-                            wintext4.innerText="TU AS PERDUUUUU !!!!";
+                            wintext4.innerText="MAUVAISE PASSE !";
                             menu2.classList.remove("notplaying");
                             menu2.classList.add("playing");
                             end4.classList.remove("notplaying");
@@ -3702,7 +3702,7 @@ async function createScene(engine) {
                             console.log("collision ligne 5");
                             started=false; 
                             sifflet.play();
-                            wintext4.innerText="TU AS PERDUUUUU !!!!";
+                            wintext4.innerText="MAUVAISE PASSE !";
                             menu2.classList.remove("notplaying");
                             menu2.classList.add("playing");
                             end4.classList.remove("notplaying");
@@ -3712,7 +3712,7 @@ async function createScene(engine) {
                             console.log("collision ligne 6");
                             started=false; 
                             sifflet.play();
-                            wintext4.innerText="TU AS PERDUUUUU !!!!";
+                            wintext4.innerText="MAUVAISE PASSE !";
                             menu2.classList.remove("notplaying");
                             menu2.classList.add("playing");
                             end4.classList.remove("notplaying");
@@ -3722,7 +3722,7 @@ async function createScene(engine) {
                             console.log("collision ligne 7");
                             started=false;
                             sifflet.play();
-                            wintext4.innerText="TU AS PERDUUUUU !!!!";
+                            wintext4.innerText="MAUVAISE PASSE !";
                             menu2.classList.remove("notplaying");
                             menu2.classList.add("playing");
                             end4.classList.remove("notplaying");
@@ -3789,7 +3789,7 @@ async function createScene(engine) {
                         console.log("la cam ne vvoit plus le mesh");
                         started=false;
                         sifflet.play();
-                        wintext4.innerText="TU AS ETE TROP LENT !!!!";
+                        wintext4.innerText="TU AS ÉTÉ TROP LENT !!!!";
                         menu2.classList.remove("notplaying");
                         menu2.classList.add("playing");
                         end4.classList.remove("notplaying");                                
