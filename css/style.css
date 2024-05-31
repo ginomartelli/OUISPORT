@@ -40,7 +40,9 @@
   background-color: lavender;
 }
 
-#menu4 {
+/* #menu4 {
+  border-radius: 2vh;
+  font-size:5vh;
   grid-row: 2;
   position:relative;
   width: 100%;
@@ -48,14 +50,14 @@
   border: 0px solid black;
   color:black;
   background-color: transparent;
-}
+} */
 
 #sound {
   left: 9vh;
   font-size:3.25vh;
 }
 
-#menu:hover, #menu1:hover, #menu3:hover, #menu4:hover, #sound:hover {
+#menu:hover, #menu1:hover, #menu3:hover, #sound:hover {
   border: 0.5vh solid lavender;
   color: lavender;
   background-color: black;
@@ -70,7 +72,7 @@
   border-radius: 2vh;
 }
 
-#menu2 {
+#menu2, #menu4 {
   border-radius: 2vh;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -84,7 +86,7 @@
   background-color: transparent;
 }
 
-#menu2:hover {
+#menu2:hover, #menu4:hover {
   color: lavender;
   background-color: rgba(0, 0, 0, 0.427);
 }
