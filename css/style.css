@@ -26,7 +26,7 @@
 
 }
 
-#menu, #menu1, #menu4, #sound{
+#menu, #menu1, #sound{
   font-family: Impact, 'Arial Narrow Bold', sans-serif;
   font-size:3.5vh;
   top:0;
@@ -38,6 +38,16 @@
   border: 0.5vh solid black;
   color:black;
   background-color: lavender;
+}
+
+#menu4 {
+  grid-row: 2;
+  position:relative;
+  width: 100%;
+  font-family: Impact, 'Arial Narrow Bold', sans-serif;
+  border: 0px solid black;
+  color:black;
+  background-color: transparent;
 }
 
 #sound {
