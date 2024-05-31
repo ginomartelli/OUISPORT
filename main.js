@@ -2889,19 +2889,14 @@ async function createScene(engine) {
         ]
         const goalLinesGauche  = BABYLON.MeshBuilder.CreateLines("lines", {points: goalPointsGauche});
         const butLinesGauche  = BABYLON.MeshBuilder.CreateLines("lines", {points: butPointsGauche});
-
-
         var mySinus = [];
         var radius = 10;
-        
         for (var i = -Math.PI; i <= Math.PI; i+=Math.PI/360) {
          mySinus.push( new BABYLON.Vector3(radius*Math.cos(i),0, radius*Math.sin(i)) );
         }
         const baseCircle = BABYLON.Mesh.CreateLines("qbezier2", mySinus, scene);
         baseCircle.scaling = new BABYLON.Vector3(1.3, 1.3, 1.3);
 
-        
-        
         var premierGardien = await BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "premierGardien.glb", scene);
                 premierGardien.animationGroups[0].play(true);
                 premierGardien.meshes[0].rotationQuaternion = null;
@@ -2910,11 +2905,14 @@ async function createScene(engine) {
                 premierGardien.meshes[0].rotation.y=-1.57;
                 
         //LIGNE JOEUR 1 :
-        var Joeur = await BABYLON.SceneLoader.LoadAssetContainerAsync("./models/","soccerPlayer.glb",scene);// ("", "./models/", "player13.glb", scene);
+        var Joeur = await BABYLON.SceneLoader.LoadAssetContainerAsync("./models/","soccerPlayer.glb",scene);// ("", "/models/", "player13.glb", scene);
         Joeur.addAllToScene();
         Joeur.meshes[0].position.y=-10;
+        console.log(Joeur.animationGroups.length)
         const JoeurDroite1 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurDroite1.animationGroups[1].play(true);
+        JoeurDroite1.animationGroups[51].play(true);
+        JoeurDroite1.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurDroite1.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurDroite1.rootNodes[0].rotationQuaternion = null;
         JoeurDroite1.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurDroite1.rootNodes[0].position.x=115;
@@ -2923,7 +2921,9 @@ async function createScene(engine) {
         JoeurDroite1.rootNodes[0].position.y=0;
         
         const JoeurMilieu1 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurMilieu1.animationGroups[1].play(true);
+        JoeurMilieu1.animationGroups[51].play(true);
+        JoeurMilieu1.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurMilieu1.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurMilieu1.rootNodes[0].rotationQuaternion = null;
         JoeurMilieu1.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurMilieu1.rootNodes[0].position.x=115;
@@ -2932,7 +2932,9 @@ async function createScene(engine) {
         JoeurMilieu1.rootNodes[0].position.y=0;
         
         const JoeurGauche1 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurGauche1.animationGroups[1].play(true);
+        JoeurGauche1.animationGroups[51].play(true);
+        JoeurGauche1.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurGauche1.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurGauche1.rootNodes[0].rotationQuaternion = null;
         JoeurGauche1.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurGauche1.rootNodes[0].position.x=115;
@@ -2940,12 +2942,11 @@ async function createScene(engine) {
         JoeurGauche1.rootNodes[0].position.z=-20;
         JoeurGauche1.rootNodes[0].position.y=0;
         
-        
-        
-
         //LIGNE JOEUR 2 :
         const JoeurDroite2 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurDroite2.animationGroups[1].play(true);
+        JoeurDroite2.animationGroups[51].play(true);
+        JoeurDroite2.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurDroite2.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurDroite2.rootNodes[0].rotationQuaternion = null;
         JoeurDroite2.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurDroite2.rootNodes[0].position.x=75;
@@ -2955,7 +2956,9 @@ async function createScene(engine) {
 
 
         const JoeurMilieu2 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurMilieu2.animationGroups[1].play(true);
+        JoeurMilieu2.animationGroups[51].play(true);
+        JoeurMilieu2.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurMilieu2.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurMilieu2.rootNodes[0].rotationQuaternion = null;
         JoeurMilieu2.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurMilieu2.rootNodes[0].position.x=75;
@@ -2964,7 +2967,9 @@ async function createScene(engine) {
         JoeurMilieu2.rootNodes[0].position.y=0;
         
         const JoeurGauche2 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurGauche2.animationGroups[1].play(true);
+        JoeurGauche2.animationGroups[51].play(true);
+        JoeurGauche2.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurGauche2.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurGauche2.rootNodes[0].rotationQuaternion = null;
         JoeurGauche2.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurGauche2.rootNodes[0].position.x=75;
@@ -2976,7 +2981,9 @@ async function createScene(engine) {
         //LIGNE JOEUR 3 :
 
         const JoeurDroite3 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurDroite3.animationGroups[1].play(true);
+        JoeurDroite3.animationGroups[51].play(true);
+        JoeurDroite3.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurDroite3.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurDroite3.rootNodes[0].rotationQuaternion = null;
         JoeurDroite3.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurDroite3.rootNodes[0].position.x=35;
@@ -2985,7 +2992,9 @@ async function createScene(engine) {
         JoeurDroite3.rootNodes[0].position.y=0;
         
         const JoeurMilieu3 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurMilieu3.animationGroups[1].play(true);
+        JoeurMilieu3.animationGroups[51].play(true);
+        JoeurMilieu3.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurMilieu3.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurMilieu3.rootNodes[0].rotationQuaternion = null;
         JoeurMilieu3.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurMilieu3.rootNodes[0].position.x=35;
@@ -2994,7 +3003,9 @@ async function createScene(engine) {
         JoeurMilieu3.rootNodes[0].position.y=0;
         
         const JoeurGauche3 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurGauche3.animationGroups[1].play(true);
+        JoeurGauche3.animationGroups[51].play(true);
+        JoeurGauche3.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurGauche3.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurGauche3.rootNodes[0].rotationQuaternion = null;
         JoeurGauche3.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurGauche3.rootNodes[0].position.x=35;
@@ -3005,7 +3016,9 @@ async function createScene(engine) {
 
         //LIGNE JOEUR 4 :
         const JoeurDroite4 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurDroite4.animationGroups[1].play(true);
+        JoeurDroite4.animationGroups[51].play(true);
+        JoeurDroite4.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurDroite4.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurDroite4.rootNodes[0].rotationQuaternion = null;
         JoeurDroite4.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurDroite4.rootNodes[0].position.x=-5;
@@ -3014,7 +3027,9 @@ async function createScene(engine) {
         JoeurDroite4.rootNodes[0].position.y=0;
 
         const JoeurMilieu4 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurMilieu4.animationGroups[1].play(true);
+        JoeurMilieu4.animationGroups[51].play(true);
+        JoeurMilieu4.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurMilieu4.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurMilieu4.rootNodes[0].rotationQuaternion = null;
         JoeurMilieu4.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurMilieu4.rootNodes[0].position.x=-5;
@@ -3023,7 +3038,9 @@ async function createScene(engine) {
         JoeurMilieu4.rootNodes[0].position.y=0;
 
         const JoeurGauche4 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurGauche4.animationGroups[1].play(true);
+        JoeurGauche4.animationGroups[51].play(true);
+        JoeurGauche4.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurGauche4.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurGauche4.rootNodes[0].rotationQuaternion = null;
         JoeurGauche4.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurGauche4.rootNodes[0].position.x=-5;
@@ -3033,7 +3050,9 @@ async function createScene(engine) {
 
         //LIGNE JOEUR 5 :
         const JoeurDroite5 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurDroite5.animationGroups[1].play(true);
+        JoeurDroite5.animationGroups[51].play(true);
+        JoeurDroite5.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurDroite5.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurDroite5.rootNodes[0].rotationQuaternion = null;
         JoeurDroite5.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurDroite5.rootNodes[0].position.x=-45;
@@ -3042,7 +3061,9 @@ async function createScene(engine) {
         JoeurDroite5.rootNodes[0].position.y=0;
 
         const JoeurMilieu5 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurMilieu5.animationGroups[1].play(true);
+        JoeurMilieu5.animationGroups[51].play(true);
+        JoeurMilieu5.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurMilieu5.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurMilieu5.rootNodes[0].rotationQuaternion = null;
         JoeurMilieu5.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurMilieu5.rootNodes[0].position.x=-45;
@@ -3051,7 +3072,9 @@ async function createScene(engine) {
         JoeurMilieu5.rootNodes[0].position.y=0;
         
         const JoeurGauche5 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurGauche5.animationGroups[1].play(true);
+        JoeurGauche5.animationGroups[51].play(true);
+        JoeurGauche5.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurGauche5.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurGauche5.rootNodes[0].rotationQuaternion = null;
         JoeurGauche5.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurGauche5.rootNodes[0].position.x=-45;
@@ -3062,7 +3085,9 @@ async function createScene(engine) {
         //LIGNE JOEUR 6 :
 
         const JoeurDroite6 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurDroite6.animationGroups[1].play(true);
+        JoeurDroite6.animationGroups[51].play(true);
+        JoeurDroite6.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurDroite6.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurDroite6.rootNodes[0].rotationQuaternion = null;
         JoeurDroite6.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurDroite6.rootNodes[0].position.x=-85;
@@ -3071,7 +3096,9 @@ async function createScene(engine) {
         JoeurDroite6.rootNodes[0].position.y=0;
 
         const JoeurMilieu6 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurMilieu6.animationGroups[1].play(true);
+        JoeurMilieu6.animationGroups[51].play(true);
+        JoeurMilieu6.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurMilieu6.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurMilieu6.rootNodes[0].rotationQuaternion = null;
         JoeurMilieu6.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurMilieu6.rootNodes[0].position.x=-85;
@@ -3080,7 +3107,9 @@ async function createScene(engine) {
         JoeurMilieu6.rootNodes[0].position.y=0;
         
         const JoeurGauche6 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurGauche6.animationGroups[1].play(true);
+        JoeurGauche6.animationGroups[51].play(true);
+        JoeurGauche6.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurGauche6.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurGauche6.rootNodes[0].rotationQuaternion = null;
         JoeurGauche6.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurGauche6.rootNodes[0].position.x=-85;
@@ -3090,7 +3119,9 @@ async function createScene(engine) {
             //LIGNE JOEUR 7 :
 
         const JoeurDroite7 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurDroite7.animationGroups[1].play(true);
+        JoeurDroite7.animationGroups[51].play(true);
+        JoeurDroite7.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurDroite7.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurDroite7.rootNodes[0].rotationQuaternion = null;
         JoeurDroite7.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurDroite7.rootNodes[0].position.x=-125;
@@ -3099,7 +3130,9 @@ async function createScene(engine) {
         JoeurDroite7.rootNodes[0].position.y=0;
 
         const JoeurMilieu7 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurMilieu7.animationGroups[1].play(true);
+        JoeurMilieu7.animationGroups[51].play(true);
+        JoeurMilieu7.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurMilieu7.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurMilieu7.rootNodes[0].rotationQuaternion = null;
         JoeurMilieu7.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurMilieu7.rootNodes[0].position.x=-125;
@@ -3108,7 +3141,9 @@ async function createScene(engine) {
         JoeurMilieu7.rootNodes[0].position.y=0;
 
         const JoeurGauche7 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-        JoeurGauche7.animationGroups[1].play(true);
+        JoeurGauche7.animationGroups[51].play(true);
+        JoeurGauche7.animationGroups[51].speedRatio=Math.random()*2+0.5;
+        JoeurGauche7.animationGroups[51].goToFrame(Math.floor(Math.random()*100));
         JoeurGauche7.rootNodes[0].rotationQuaternion = null;
         JoeurGauche7.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         JoeurGauche7.rootNodes[0].position.x=-125;
@@ -3120,10 +3155,12 @@ async function createScene(engine) {
 
         //LIGNE D'ADVERSAIRE 1
         let rand1=getRand1to3();
-        var JoeurAdd = await BABYLON.SceneLoader.LoadAssetContainerAsync("./models/","adversairplayer.glb",scene);// ("", "./models/", "player13.glb", scene);
+        var JoeurAdd = await BABYLON.SceneLoader.LoadAssetContainerAsync("./models/","adversairplayer.glb",scene);// ("", "/models/", "player13.glb", scene);
         JoeurAdd.meshes[0].position.y=-10;
         var adversairePlayer11 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
         adversairePlayer11.animationGroups[0].play(true);
+        adversairePlayer11.animationGroups[0].speedRatio=Math.random()*2+0.5;
+        adversairePlayer11.animationGroups[0].goToFrame(Math.floor(Math.random()*100));
         adversairePlayer11.rootNodes[0].rotationQuaternion = null;
         adversairePlayer11.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         adversairePlayer11.rootNodes[0].position.x=120;
@@ -3140,6 +3177,8 @@ async function createScene(engine) {
         }
         var adversairePlayer12 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
         adversairePlayer12.animationGroups[0].play(true);
+        adversairePlayer12.animationGroups[0].speedRatio=Math.random()*2+0.5;
+        adversairePlayer12.animationGroups[0].goToFrame(Math.floor(Math.random()*100));
         adversairePlayer12.rootNodes[0].rotationQuaternion = null;
         adversairePlayer12.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         adversairePlayer12.rootNodes[0].position.x=120;
@@ -3158,6 +3197,8 @@ async function createScene(engine) {
         let rand2=getRand1to3();
         var adversairePlayer21 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
         adversairePlayer21.animationGroups[0].play(true);
+        adversairePlayer21.animationGroups[0].speedRatio=Math.random()*2+0.5;
+        adversairePlayer21.animationGroups[0].goToFrame(Math.floor(Math.random()*100));
         adversairePlayer21.rootNodes[0].rotationQuaternion = null;
         adversairePlayer21.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         adversairePlayer21.rootNodes[0].position.x=80;
@@ -3174,6 +3215,8 @@ async function createScene(engine) {
         }
         var adversairePlayer22 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
         adversairePlayer22.animationGroups[0].play(true);
+        adversairePlayer22.animationGroups[0].speedRatio=Math.random()*2+0.5;
+        adversairePlayer22.animationGroups[0].goToFrame(Math.floor(Math.random()*100));
         adversairePlayer22.rootNodes[0].rotationQuaternion = null;
         adversairePlayer22.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         adversairePlayer22.rootNodes[0].position.x=80;
@@ -3192,6 +3235,8 @@ async function createScene(engine) {
         let rand3=getRand1to3();
         var adversairePlayer31 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
         adversairePlayer31.animationGroups[0].play(true);
+        adversairePlayer31.animationGroups[0].speedRatio=Math.random()*2+0.5;
+        adversairePlayer31.animationGroups[0].goToFrame(Math.floor(Math.random()*100));
         adversairePlayer31.rootNodes[0].rotationQuaternion = null;
         adversairePlayer31.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         adversairePlayer31.rootNodes[0].position.x=40;
@@ -3208,6 +3253,8 @@ async function createScene(engine) {
         }
         var adversairePlayer32 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
         adversairePlayer32.animationGroups[0].play(true);
+        adversairePlayer32.animationGroups[0].speedRatio=Math.random()*2+0.5;
+        adversairePlayer32.animationGroups[0].goToFrame(Math.floor(Math.random()*100));
         adversairePlayer32.rootNodes[0].rotationQuaternion = null;
         adversairePlayer32.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         adversairePlayer32.rootNodes[0].position.x=40;
@@ -3226,6 +3273,8 @@ async function createScene(engine) {
         let rand4=getRand1to3();
         var adversairePlayer41 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
         adversairePlayer41.animationGroups[0].play(true);
+        adversairePlayer41.animationGroups[0].speedRatio=Math.random()*2+0.5;
+        adversairePlayer41.animationGroups[0].goToFrame(Math.floor(Math.random()*100));
         adversairePlayer41.rootNodes[0].rotationQuaternion = null;
         adversairePlayer41.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         adversairePlayer41.rootNodes[0].position.x=0;
@@ -3242,6 +3291,8 @@ async function createScene(engine) {
         }
         var adversairePlayer42 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
         adversairePlayer42.animationGroups[0].play(true);
+        adversairePlayer42.animationGroups[0].speedRatio=Math.random()*2+0.5;
+        adversairePlayer42.animationGroups[0].goToFrame(Math.floor(Math.random()*100));
         adversairePlayer42.rootNodes[0].rotationQuaternion = null;
         adversairePlayer42.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         adversairePlayer42.rootNodes[0].position.x=0;
@@ -3260,6 +3311,8 @@ async function createScene(engine) {
         let rand5=getRand1to3(); 
         var adversairePlayer51 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
         adversairePlayer51.animationGroups[0].play(true);
+        adversairePlayer51.animationGroups[0].speedRatio=Math.random()*2+0.5;
+        adversairePlayer51.animationGroups[0].goToFrame(Math.floor(Math.random()*100));
         adversairePlayer51.rootNodes[0].rotationQuaternion = null;
         adversairePlayer51.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         adversairePlayer51.rootNodes[0].position.x=-40;
@@ -3276,6 +3329,8 @@ async function createScene(engine) {
         }
         var adversairePlayer52 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
         adversairePlayer52.animationGroups[0].play(true);
+        adversairePlayer52.animationGroups[0].speedRatio=Math.random()*2+0.5;
+        adversairePlayer52.animationGroups[0].goToFrame(Math.floor(Math.random()*100));
         adversairePlayer52.rootNodes[0].rotationQuaternion = null;
         adversairePlayer52.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         adversairePlayer52.rootNodes[0].position.x=-40;
@@ -3294,6 +3349,8 @@ async function createScene(engine) {
         let rand6=getRand1to3(); 
         var adversairePlayer61 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
         adversairePlayer61.animationGroups[0].play(true);
+        adversairePlayer61.animationGroups[0].speedRatio=Math.random()*2+0.5;
+        adversairePlayer61.animationGroups[0].goToFrame(Math.floor(Math.random()*100));
         adversairePlayer61.rootNodes[0].rotationQuaternion = null;
         adversairePlayer61.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         adversairePlayer61.rootNodes[0].position.x=-80;
@@ -3310,6 +3367,8 @@ async function createScene(engine) {
         }
         var adversairePlayer62 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
         adversairePlayer62.animationGroups[0].play(true);
+        adversairePlayer62.animationGroups[0].speedRatio=Math.random()*2+0.5;
+        adversairePlayer62.animationGroups[0].goToFrame(Math.floor(Math.random()*100));
         adversairePlayer62.rootNodes[0].rotationQuaternion = null;
         adversairePlayer62.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         adversairePlayer62.rootNodes[0].position.x=-80;
@@ -3328,6 +3387,8 @@ async function createScene(engine) {
         let rand7=getRand1to3();
         var adversairePlayer71 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
         adversairePlayer71.animationGroups[0].play(true);
+        adversairePlayer71.animationGroups[0].speedRatio=Math.random()*2+0.5;
+        adversairePlayer71.animationGroups[0].goToFrame(Math.floor(Math.random()*100));
         adversairePlayer71.rootNodes[0].rotationQuaternion = null;
         adversairePlayer71.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         adversairePlayer71.rootNodes[0].position.x=-120;
@@ -3344,6 +3405,8 @@ async function createScene(engine) {
         }
         var adversairePlayer72 = JoeurAdd.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
         adversairePlayer72.animationGroups[0].play(true);
+        adversairePlayer72.animationGroups[0].speedRatio=Math.random()*2+0.5;
+        adversairePlayer72.animationGroups[0].goToFrame(Math.floor(Math.random()*100));
         adversairePlayer72.rootNodes[0].rotationQuaternion = null;
         adversairePlayer72.rootNodes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
         adversairePlayer72.rootNodes[0].position.x=-120;
