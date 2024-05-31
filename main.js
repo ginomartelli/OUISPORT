@@ -8,6 +8,7 @@ const gameinterface = document.getElementById("gameinterface");
 const interface1 = document.getElementById("interface1");
 const interface2 = document.getElementById("interface2");
 const interface3 = document.getElementById("interface3");
+const interface4 = document.getElementById("interface4");
 const interfaceParam = document.getElementById("interfaceInfo");
 const loading = document.getElementById("loading");
 const end1 = document.getElementById("end1");
@@ -29,6 +30,7 @@ soundactive.classList.add("notplaying");
 interface1.classList.add("notplaying");
 interface2.classList.add("notplaying");
 interface3.classList.add("notplaying");
+interface4.classList.add("notplaying");
 interfaceParam.classList.add("notplaying");
 const info = document.getElementById("INFORMATIONS")
 const crowds = document.getElementById("crowds");
@@ -125,6 +127,7 @@ jeux.forEach((elem) => {
             start3.classList.remove("notplaying");
             crs.classList.remove("notplaying");
         } else if(jeut==4){
+            interface4.classList.remove("notplaying");                    
             interface2.classList.remove("notplaying");
             start4.classList.remove("notplaying");
         }
