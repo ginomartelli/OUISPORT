@@ -2828,7 +2828,7 @@ async function createScene(engine) {
         var started=false;
         // CONSTRUCTIOINN TERRAIN :
         BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "soccergoal.glb", scene).then((result) => {
-            mesh = result.meshes[0];
+            var mesh = result.meshes[0];
             mesh.scaling = new BABYLON.Vector3(0.025, 0.022, 0.022);
             mesh.rotationQuaternion = null;
             mesh.position.x=164.6;
@@ -2836,7 +2836,7 @@ async function createScene(engine) {
             mesh.position.z=7;
         });
         BABYLON.SceneLoader.ImportMeshAsync("", "./models/", "soccergoal.glb", scene).then((result) => {
-            mesh = result.meshes[0];
+            var mesh = result.meshes[0];
             mesh.scaling = new BABYLON.Vector3(0.025, 0.022, 0.022);
             mesh.rotationQuaternion = null;
             mesh.position.x=-164.6;
