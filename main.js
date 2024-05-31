@@ -244,10 +244,8 @@ async function createScene(engine) {
     //gradin
     var foule = localStorage.getItem("foule");
     if(foule==null) {foule=25;}
-    if(localStorage.getItem("sound")==true){
-                background.setVolume(0.05*localStorage.getItem("vol"));
-    } else {
-                background.setVolume(0);
+    if(localStorage.getItem("sound")=="false"){
+        background.setVolume(0);
     }
 
     var path = [];
