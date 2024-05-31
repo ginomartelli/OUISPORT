@@ -1,7 +1,8 @@
 ![title](https://github.com/gamesonweb/gow-olympic-edition-ouisport/assets/85039742/b5f87b09-0b1e-4e49-8009-ff5cc9500ac0)
 # DÉFIEZ VOS AMIS AUX JEUX OLYMPIQUES !
 - ## [Jouer au jeu](https://ginosprod.github.io/OUISPORT/)
-- ## [Présentation](https://youtu.be/Dg2bNl0iQno)
+- ## [Vidéo de présentation](https://youtu.be/Dg2bNl0iQno)
+- ## [Vidéos de démonstrations](https://www.youtube.com/playlist?list=PLZdl2luFG2HaPQPemqGdx8-uSNhNyVGFC)
 - ## [Trailer](https://youtu.be/jn4E3buxH28)
 - ## [Documentation](https://github.com/gamesonweb/gow-olympic-edition-ouisport/blob/main/Documentation.md)
 - ## [Code source](https://github.com/Ginosprod/OUISPORT)
@@ -24,6 +25,8 @@
 
 # Description de OUISPORT
 **OUISPORT** contient 4 mini-jeux de 1 à 4 joueurs chacun pour soi. Chaque niveau contient une discipline qui est ou a été présente aux jeux olympiques.
+[Vidéos de démonstrations](https://www.youtube.com/playlist?list=PLZdl2luFG2HaPQPemqGdx8-uSNhNyVGFC)
+
 ![image](https://github.com/gamesonweb/gow-olympic-edition-ouisport/assets/85039742/4d3e3d95-599f-44c0-ac42-2e8a3deb7b10)
 > [!NOTE]
 > [Description détaillée du jeu](https://github.com/gamesonweb/gow-olympic-edition-ouisport/blob/main/Documentation.md#description-d%C3%A9taill%C3%A9e-du-jeu-).
@@ -57,7 +60,8 @@ Ce niveau se joue à 2 joueurs. Le but de ce niveau est de marquer le plus de po
 ![image](https://github.com/gamesonweb/gow-olympic-edition-ouisport/assets/85039742/6523957b-f563-4252-b6ea-54c82d113b33)
 
 ## Niveau 4 : Le football.
-Ce dernier niveau se joue en solo. Le but de ce niveau est de marquer un but en effectuant des passes rapides aux bons joueurs. 
+Ce dernier niveau se joue en solo. Le but de ce niveau est de marquer un but avant la fin du match en effectuant des passes aux bons joueurs.
+![Capture d’écran (14)](https://github.com/gamesonweb/gow-olympic-edition-ouisport/assets/85039742/49e9fe1e-44d6-483b-aa4b-36be86d25ae6)
 
 
 # Personnes impliquées dans le projet
