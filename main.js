@@ -416,7 +416,6 @@ async function createScene(engine) {
                     }
                 } else if(jeut==1&&k==0){
                     var barricade = Lbarricade.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
-                    console.log(barricades);
                     barricade = barricade.rootNodes[0];
                     barricade.position.z=3.8-2.6*(j-1);
                     barricade.position.x=positions.at(i);
@@ -2914,7 +2913,6 @@ async function createScene(engine) {
         var Joeur = await BABYLON.SceneLoader.LoadAssetContainerAsync("./models/","soccerPlayer.glb",scene);// ("", "/models/", "player13.glb", scene);
         Joeur.addAllToScene();
         Joeur.meshes[0].position.y=-10;
-        console.log(Joeur.animationGroups.length)
         const JoeurDroite1 = Joeur.instantiateModelsToScene(undefined, false, { doNotInstantiate: false });
         JoeurDroite1.animationGroups[51].play(true);
         JoeurDroite1.animationGroups[51].speedRatio=Math.random()*2+0.5;
@@ -3468,7 +3466,6 @@ async function createScene(engine) {
                             });
                             compteur+=1;
                             if((compteur==1)&&(((event.key=="d")&&(((rand1[0]==0)||(rand1[1]==0))))||((event.key=="s")&&((rand1[0]==1)||(rand1[1]==1)))||((event.key=="q")&&((rand1[0]==2)||(rand1[1]==2))))){
-                                console.log("collision");
                                 started=false;
                                 wintext4.innerText="MAUVAISE PASSE !";
                                 menu2.classList.remove("notplaying");
